@@ -2,6 +2,9 @@
 const userInput = document.getElementById("user-input");
 const submitBtn = document.getElementById("submit")
 const studentName = document.getElementById("user-name")
+const subjectsList = document.getElementById("section-content-list")
+const sectionContent = document.querySelector(".section-subject-content")
+const notFoundMessage = document.getElementById("no-data-found-wrapper")
 
 const url = "http://localhost:3333/api"
 
@@ -18,7 +21,6 @@ async function getUserbyID(user_id) {
 async function getAllUsers() {
     const response = await fetch(`${url}/users/`)
     const users = await response.json()
-    console.log(users)
     return users
 }
 
@@ -28,7 +30,6 @@ async function deleteUserByID(user_id) {
         mode: "cors"
     })
     const deletedUser = await response.json()
-    console.log(deletedUser)
     return deletedUser
 }
 
@@ -40,28 +41,45 @@ async function getSubjectsbyStudent(student_id){
         mode: "cors"
     })
     const subjects = await response.json()
+    console.log(subjects);
     return subjects
-    //printando apenas nome da disciplina
-    // subjects.forEach(subject => console.log(subject.subject_name))
-    // console.log(subjects)
 }
 
 
-//manipulando dashboard
+//Dashboard
 async function setUserNameInGreetings(user_id) {
     user = await getUserbyID(user_id)
     user_name = user.name
     studentName.innerHTML = user_name
 }
 
-//desenvolvendo funcao de mostrar disciplinas no dashboard
 async function setUserSubjects(user_id){
     subjects = await getSubjectsbyStudent(user_id)
+    if (subjects.length > 0) {
+        subjects.forEach(subject => {
+            const li = document.createElement('li')
+            li.classList.add('section-content-item')
+        
+            const subjectTitle = document.createElement('p')
+            subjectTitle.classList.add('section-content-item-title')
+            subjectTitle.textContent = subject.subject_name
+    
+            li.appendChild(subjectTitle)
+            subjectsList.appendChild(li)
+            sectionContent.classList.remove("hidden")
+            notFoundMessage.classList.add("hidden")
+        })
+        return
+    }
+    sectionContent.classList.add("hidden")
+    notFoundMessage.classList.remove("hidden")
 
-    // <li id="section-content-item">
-    //     <p id="section-content-item-title">Matemática Discreta</p>
-    // </li>
 
 }
 
+///estudante matriculado 665dd12cb32daebe61e383e4
+//estudante nao matriculado 665dd134b32daebe61e383e6
+
 setUserNameInGreetings("665df5064d2b25c3e619f353")
+getSubjectsbyStudent("665df5064d2b25c3e619f353")
+setUserSubjects("665dd134b32daebe61e383e6")

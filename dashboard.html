@@ -37,18 +37,17 @@
             <p id="user-greeting">Bem-vindo, <span id="user-name">Aluno!</span></p>
         </div>
         <div id="section-content">
-            <h1 id="section-content-title">Disciplinas</h1>
-            <ul id="section-content-list">
-                <li id="section-content-item">
-                    <p id="section-content-item-title">Matemática Discreta</p>
-                </li>
-                <li id="section-content-item">
-                    <p id="section-content-item-title">Fundamentos de Desenvolvimento de Software</p>
-                </li>
-                <li id="section-content-item">
-                    <p id="section-content-item-title">Programação Orientada a Objetos</p>
-                </li>
-            </ul>
+            <div class="section-subject-content">
+                <h1 id="section-content-title">Disciplinas</h1>
+                <ul id="section-content-list">
+                </ul>
+            </div>
+            <div class="hidden" id="no-data-found-wrapper">
+                <div id="no-data-found">
+                    <img src="./assets/emptySubjects.svg" alt="" id="no-data-found-img">
+                    <p id="no-data-found-text">Nenhuma disciplina encontrada...</p>
+                </div>
+            </div>
         </div>
     </div>
     <script src="/scripts/service.js"></script>
