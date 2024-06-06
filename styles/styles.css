@@ -48,6 +48,7 @@ body {
 #side-bar-content-list {
     display: flex;
     flex-direction: column;
+    gap: 16px;
 }
 
 #side-bar-content-item {
@@ -153,4 +154,59 @@ body {
 
 .hidden {
     display: none;
+}
+
+
+@media (max-width: 450px) {
+    
+    body {
+        flex-direction: column;
+    }
+
+    #side-bar{
+        height: 81px;
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        padding: 24px;
+        
+    }
+
+    #side-bar-container{ 
+        flex-direction: row;
+        margin: 0
+    }
+
+    #side-bar-content-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #side-bar-content-list{
+        flex-direction: row;
+    }
+
+    #side-bar-polvo-img{
+        padding: 0;
+    }
+
+    #side-bar-content-item-description {
+        display: none;
+    }
+
+    #side-bar-footer{
+        margin: 0;
+    }
+
+    #side-bar-footer-description{
+        display: none;
+    }
+
+    #side-bar-footer{
+        position: absolute;
+        right: 24px;
+        top: 56px;
+
+    }
 }
