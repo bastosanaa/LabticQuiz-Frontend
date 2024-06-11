@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polvo - login</title>
+    <title>Polvo - Login</title>
     <link rel="icon" href="./assets/polvo.png">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
+    <div id="polvo-card" >
+        <img src="assets/polvo.png" alt="polvo logo" id="polvo-card-img">
+        <p id="polvo-card-title">Polvo</p>
+    </div>
     <div id="login-container">
-        <form action="">
-            <p id="user-input-title">Insira o id do usuario</p>
-            <input type="text" id="user-input">
-            <button id="submit">Entrar</button>
+        <p id="login-title">Faça Login</p>
+        <form action="" id="login-form">
+            <div id="login-user">
+                <p id="login-user-label">Matrícula ou Email</p>
+                <input type="text" id="login-user-input" placeholder="usuario@gmail.com">
+            </div>
+            <div id="login-password">
+                <p id="login-password-label">Senha</p>
+                <input type="text" id="login-password-input" placeholder="••••••••••••">
+                <img src="assets/eye.png" alt="olho" id="hide-show-password-icon">
+
+            </div>
+            <p id="login-password-help">esqueceu a senha ou deseja trocar?</p>
+            <button type="submit" id="login-submit-button">Entrar</button>
         </form>
-        <p id="user_found">user</p>
     </div>
 </body>
-<script src="scripts/service.js"></script>
 </html>
