@@ -1,22 +1,142 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-    --primary-color: #FAFAFA;
+    --primary-white: #FAFAFA;
+    --secondary-white: #F5F5F5;
     --secondary-color: #6366F1;
     --terciary-color: #312E81;
+    --border-color: #E5E5E5;
+    --underline-color: #D4D4D4;
+    --text-color: #1C1917;
+    --secondary-text-color: #A8A29E;
+    --card--color: #334155;
 }
 
 body {
-    background-image: url("assets/bg.svg") ;
-    border: 2px solid red;
+    font-family:  "Open Sans", sans-serif;;
+    background-image: url("../assets/bg.svg") ;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: var(--border-color);
 }
-
+/* card */ 
 #polvo-card{
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 23px;
+    top: 27px;
+    display: flex;
+    flex-direction:row ;
+    align-items: center;
+    font-size: 2rem;
+    font-weight:600;
+    letter-spacing: -1px;
+    color: var(--card--color);
+    
+    gap: 0.6rem;
+}
+
+#polvo-card-img {
+    fill: var(--card--color);
+}
+
+/* login */
+#login-container {
+    width: 545px;
+    height: 642px;
+    background-color: var(--primary-white);
+    border: 1px solid var(--border-color);
+    box-shadow: 2px 2px 2px var(--border-color) ;
+    border-radius: 20px;
+    padding: 96px 65px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-title {
+    box-sizing: border-box;
+    padding: 0 16px 18px 16px;
+    font-size: 2.25rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--underline-color);
+    margin-bottom: 3rem;
+    color: var(--text-color);
+}
+
+#login-user{
+    margin-bottom: 2.25rem;
+}
+#login-user, #login-password {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+#login-label {
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+#login-password {
+    position: relative;
+}
+
+#login-password-input, #login-user-input {
+    border: 1px solid var(--border-color);
+    width: 415px;
+    box-sizing: border-box;
+    padding: 12px 8px;
+    border-radius: 6px;
+    line-height: 1.5rem;
+    font-size: 1rem;
+    background-color: var(--secondary-white);
+    color: var(--secondary-text-color);
+
+}
+
+#login-password-input:focus, #login-user-input:focus {
+    outline: 1px solid var(--secondary-color);
+} 
+#toggle-password-icon{
+    position: absolute;
+    top: 70%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#login-footer {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-password-help{
+    color: var(--terciary-color);
+}
+
+#login-submit-button {
+    margin-top: 30px;
+    width: 320px;
+    box-sizing: border-box;
+    padding: 12px;
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--primary-white);
+    border-radius: 6px;
+    line-height: 1.75rem;
+    font-size: 1.25rem;
+}
+
+#login-submit-button:hover {
+    background-color: var(--terciary-color);
+    cursor: pointer;
 }

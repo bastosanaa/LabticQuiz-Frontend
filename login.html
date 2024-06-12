@@ -10,24 +10,26 @@
 </head>
 <body>
     <div id="polvo-card" >
-        <img src="assets/polvo.png" alt="polvo logo" id="polvo-card-img">
+        <img src="assets/polvo.svg" alt="polvo logo" id="polvo-card-img">
         <p id="polvo-card-title">Polvo</p>
     </div>
     <div id="login-container">
         <p id="login-title">Faça Login</p>
         <form action="" id="login-form">
             <div id="login-user">
-                <p id="login-user-label">Matrícula ou Email</p>
+                <p id="login-label">Matrícula ou Email</p>
                 <input type="text" id="login-user-input" placeholder="usuario@gmail.com">
             </div>
             <div id="login-password">
-                <p id="login-password-label">Senha</p>
+                <p id="login-label">Senha</p>
                 <input type="text" id="login-password-input" placeholder="••••••••••••">
-                <img src="assets/eye.png" alt="olho" id="hide-show-password-icon">
+                <img src="assets/eye.png" alt="olho" id="toggle-password-icon">
 
             </div>
-            <p id="login-password-help">esqueceu a senha ou deseja trocar?</p>
-            <button type="submit" id="login-submit-button">Entrar</button>
+            <div id="login-footer">
+                <p id="login-password-help">Esqueceu a senha ou deseja trocar?</p>
+                <button type="submit" id="login-submit-button">Entrar</button>
+            </div>
         </form>
     </div>
 </body>
