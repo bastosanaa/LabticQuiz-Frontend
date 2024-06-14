@@ -9,7 +9,7 @@ const notFoundMessage = document.getElementById("no-data-found-wrapper")
 const url = "http://localhost:3333/api"
 
 //User
-async function getUserbyID(user_id) {
+export async function getUserbyID(user_id) {
     const response = await fetch(`${url}/users/${user_id}`, {
         method: "GET",
         mode: "cors"
@@ -45,7 +45,7 @@ export async function userLogin(user, password) {
 }
 
 //usersSubjects
-async function getSubjectsbyStudent(student_id){
+export async function getSubjectsbyStudent(student_id){
     const response = await fetch(`${url}/studentsSubjects/${student_id}`, {
         method: "GET",
         mode: "cors"
@@ -58,8 +58,9 @@ async function getSubjectsbyStudent(student_id){
 
 //Dashboard
 async function setUserNameInGreetings(user_id) {
-    user = await getUserbyID(user_id)
-    user_name = user.name
+    const user = await getUserbyID(user_id)
+    console.log(user);
+    const user_name = user.name
     studentName.innerHTML = user_name
 }
 
@@ -87,9 +88,6 @@ async function setUserSubjects(user_id){
 
 }
 
-///estudante matriculado 665dd12cb32daebe61e383e4
-//estudante nao matriculado 665dd134b32daebe61e383e6
-
-// setUserNameInGreetings("665df5064d2b25c3e619f353")
-// getSubjectsbyStudent("665df5064d2b25c3e619f353")
-// setUserSubjects("665dd134b32daebe61e383e6")
+// setUserNameInGreetings("6667424463bed68e02b71dba")
+// // getSubjectsbyStudent("6667424463bed68e02b71dba")
+// // setUserSubjects("6667424463bed68e02b71dba")
