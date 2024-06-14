@@ -16,3 +16,4 @@ function togglePasswordStatus() {
     togglePasswordIcon.setAttribute('src', 'assets/eye.png' )
     passwordInput.setAttribute('type', 'password')
 }
+

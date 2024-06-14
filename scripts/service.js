@@ -32,7 +32,17 @@ async function deleteUserByID(user_id) {
     const deletedUser = await response.json()
     return deletedUser
 }
-
+// fazer para matricula tambem
+export async function userLogin(user, password) {
+    const response = await fetch(`${url}/users/auth`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email: user, password: password})
+    })
+    return response
+}
 
 //usersSubjects
 async function getSubjectsbyStudent(student_id){
@@ -80,6 +90,6 @@ async function setUserSubjects(user_id){
 ///estudante matriculado 665dd12cb32daebe61e383e4
 //estudante nao matriculado 665dd134b32daebe61e383e6
 
-setUserNameInGreetings("665df5064d2b25c3e619f353")
-getSubjectsbyStudent("665df5064d2b25c3e619f353")
-setUserSubjects("665dd134b32daebe61e383e6")
+// setUserNameInGreetings("665df5064d2b25c3e619f353")
+// getSubjectsbyStudent("665df5064d2b25c3e619f353")
+// setUserSubjects("665dd134b32daebe61e383e6")

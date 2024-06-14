@@ -10,6 +10,7 @@
     --text-color: #1C1917;
     --secondary-text-color: #A8A29E;
     --card--color: #334155;
+    --error-color: #EF4444;
 }
 
 body {
@@ -45,7 +46,8 @@ body {
 
 /* login */
 #login-container {
-    width: 545px;
+    width: 100%;
+    max-width: 545px;
     height: 642px;
     background-color: var(--primary-white);
     border: 1px solid var(--border-color);
@@ -69,28 +71,22 @@ body {
     color: var(--text-color);
 }
 
-#login-user{
-    margin-bottom: 2.25rem;
-}
-#login-user, #login-password {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
 #login-label {
     color: var(--text-color);
     font-size: 1rem;
     font-weight: 400;
+    margin-bottom: 0.8rem;
 }
 
 #login-password {
     position: relative;
+    margin-top: 2.5rem;
 }
 
 #login-password-input, #login-user-input {
     border: 1px solid var(--border-color);
-    width: 415px;
+    width: 100%;
+    max-width: 80vw;
     box-sizing: border-box;
     padding: 12px 8px;
     border-radius: 6px;
@@ -111,8 +107,16 @@ body {
     cursor: pointer;
 }
 
+#error-msg {
+    color: var(--error-color);
+    font-size: 1rem;
+    margin-top: 4px;
+    line-height: 20px;
+    position: absolute;
+}
+
 #login-footer {
-    margin-top: 30px;
+    margin-top: 3.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,4 +142,8 @@ body {
 #login-submit-button:hover {
     background-color: var(--terciary-color);
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
