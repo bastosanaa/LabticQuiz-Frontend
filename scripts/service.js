@@ -34,7 +34,7 @@ async function deleteUserByID(user_id) {
 }
 // fazer para matricula tambem
 export async function userLogin(user, password) {
-    const response = await fetch(`${url}/users/auth`, {
+    const response = await fetch(`${url}/auth/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -84,10 +84,19 @@ async function setUserSubjects(user_id){
     }
     sectionContent.classList.add("hidden")
     notFoundMessage.classList.remove("hidden")
-
-
 }
 
-// setUserNameInGreetings("6667424463bed68e02b71dba")
-// // getSubjectsbyStudent("6667424463bed68e02b71dba")
-// // setUserSubjects("6667424463bed68e02b71dba")
+//funcao req user_id 
+export async function getUserIDByToken(token) {
+    const response = await fetch("/users/authorization", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        },
+        body: JSON.stringify({token: token})
+    })
+    console.log( await response.json());
+    return await response.json()
+}

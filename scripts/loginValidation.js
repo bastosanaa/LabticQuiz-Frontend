@@ -25,21 +25,21 @@ function checkIfEmpty(field) {
 
 // Login - req
 submitBtn.addEventListener('click', async (event) => {
+    console.log("submit")
     event.preventDefault()
-    const userData = await sendUserDataToFetch()
-    if (!userData.ok) {
-        sendLoginErrorMessage()
-        
-        return
+    try {
+        const userData = await sendUserDataToFetch()
+        if (!userData.ok) {
+            sendLoginErrorMessage()
+            
+            return
+        }
+        const data = await userData.json()
+        localStorage.setItem('token', data.token)
+        window.location.href = "http://127.0.0.1:5500/dashboard.html"
+    } catch (error) {
+        alert('Login Falhou')
     }
-    console.log("certo");
-    //tela de carregamento
-    //abre dashboard do usuario passando token;
-    // window.location.href = "http://127.0.0.1:5500/dashboard.html"
-    // await setUserDashboard(data.user_id)
-    const data = await userData.json()
-
-    localStorage.setItem('token', data.token)
 })
 
 async function sendUserDataToFetch() {
@@ -61,13 +61,16 @@ function sendLoginErrorMessage() {
     lastFieldErrorMessageText.textContent = "usuário ou senha incorretos"
     lastFieldErrorMessage.classList.remove('hidden')
 
-    // formFields.forEach(field => {
-    //     field.addEventListener("click", () => {
-    //         lastFieldErrorMessage.classList.add('hidden')
-    //         formFields.forEach(field => {
-    //             field.value = ""
-    //             field.style.border = ""
-    //         })
-    //     })
-    // })
+    formFields.forEach(field => {
+        field.addEventListener("click", () => {
+            lastFieldErrorMessage.classList.add('hidden')
+            formFields.forEach(field => {
+                field.style.border = ""
+            })
+        })
+    })
+}
+
+async function fetchUserAutorization() {
+    const token = localStorage.getItem('token')
 }

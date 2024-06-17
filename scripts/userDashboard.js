@@ -1,10 +1,19 @@
 import { getUserbyID } from "./service.js"
 import  { getSubjectsbyStudent } from "./service.js"
+import { getUserIDByToken } from "./service.js"
 
 const studentName = document.getElementById("user-name")
 const subjectsList = document.getElementById("section-content-list")
 const sectionContent = document.querySelector(".section-subject-content")
 const notFoundMessage = document.getElementById("no-data-found-wrapper")
+
+// funcao pega user id pelo token
+async function setUserID() {
+    const token = localStorage.getItem('token')
+    const user_id = await getUserIDByToken(token)
+    setUserDashboard(user_id)
+    return user_id
+}
 
 export async function setUserDashboard(user_id) {
     await setUserNameInGreetings(user_id)
@@ -40,4 +49,4 @@ async function setUserSubjects(user_id){
     notFoundMessage.classList.remove("hidden")
 }
 
-setUserDashboard()
+setUserID()
