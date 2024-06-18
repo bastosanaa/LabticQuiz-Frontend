@@ -11,24 +11,27 @@ const notFoundMessage = document.getElementById("no-data-found-wrapper")
 async function setUserID() {
     const token = localStorage.getItem('token')
     const user_id = await getUserIDByToken(token)
-    setUserDashboard(user_id)
+    await setUserDashboard(user_id, token)
     return user_id
 }
 
-export async function setUserDashboard(user_id) {
-    await setUserNameInGreetings(user_id)
-    await setUserSubjects(user_id)
+export async function setUserDashboard(user_id, token) {
+    await setUserNameInGreetings(user_id, token)
+    console.log(token)
+    await setUserSubjects(user_id, token)
 }
 
-async function setUserNameInGreetings(user_id) {
-    const user = await getUserbyID(user_id)
+async function setUserNameInGreetings(user_id, token) {
+    console.log(user_id.user, 'AQUIII');
+    const user = await getUserbyID(user_id, token)
     const user_name = user.name
     studentName.innerHTML = user_name
     console.log(user_name);
 }
 
-async function setUserSubjects(user_id){
-    subjects = await getSubjectsbyStudent(user_id)
+async function setUserSubjects(user_id, token){
+    const subjects = await getSubjectsbyStudent(user_id, token)
+    console.log(subjects);
     if (subjects.length > 0) {
         subjects.forEach(subject => {
             const li = document.createElement('li')

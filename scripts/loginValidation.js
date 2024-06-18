@@ -1,5 +1,4 @@
 import { userLogin } from "./service.js";
-import { setUserDashboard } from "./userDashboard.js"
 const formFields = document.querySelectorAll('[required]');
 const submitBtn = document.getElementById('login-submit-button');
 const dashboardLocation = 'http://127.0.0.1:5500/dashboard.html'
