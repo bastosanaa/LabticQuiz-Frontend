@@ -86,7 +86,6 @@ body {
 #login-password-input, #login-user-input {
     border: 1px solid var(--border-color);
     width: 100%;
-    max-width: 80vw;
     box-sizing: border-box;
     padding: 12px 8px;
     border-radius: 6px;
@@ -146,4 +145,33 @@ body {
 
 .hidden {
     display: none;
+}
+
+@media (max-width: 450px) {
+
+    :root {
+        font-size: 14px;
+    }
+
+    #login-container {
+        width: 95%;
+        height: 554px;
+        padding: 56px 20px;
+    }
+
+    #login-title {
+        font-size: 1.8rem;
+    }
+
+    #login-form {
+        width: 100%;
+    }
+    
+    #login-submit-button {
+        width: 100%;
+    }
+
+    #polvo-card {
+        top:15px
+    }
 }
