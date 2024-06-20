@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/dashboard.css">
 </head>
-<body>
+<body id="page">
     <nav id="side-bar">
         <div id="side-bar-container">
             <div id="side-bar-header">
@@ -35,25 +35,30 @@
             <p id="side-bar-footer-description">Trocar senha</p>
         </div>
     </nav>
-    <div id="section-container">
-        <div id="section-header">
-            <p id="section-name">Dashboard</p>
-            <p id="user-greeting">Bem-vindo, <span id="user-name">Aluno!</span></p>
-        </div>
-        <div id="section-content">
-            <div class="section-subject-content">
-                <h1 id="section-content-title">Disciplinas</h1>
-                <ul id="section-content-list">
-                </ul>
-            </div>
-            <div class="hidden" id="no-data-found-wrapper">
-                <div id="no-data-found">
-                    <img src="./assets/emptySubjects.svg" alt="" id="no-data-found-img">
-                    <p id="no-data-found-text">Nenhuma disciplina encontrada...</p>
+        <div id="section-container">
+            <div id="section-content-wrapper" class="hidden">
+                <div id="section-header">
+                    <p id="section-name">Dashboard</p>
+                    <p id="user-greeting">Bem-vindo, <span id="user-name">Aluno!</span></p>
+                </div>
+                <div id="section-content">
+                    <div class="section-subject-content">
+                        <h1 id="section-content-title">Disciplinas</h1>
+                        <ul id="section-content-list">
+                        </ul>
+                    </div>
+                    <div class="hidden" id="no-data-found-wrapper">
+                        <div id="no-data-found">
+                            <img src="./assets/emptySubjects.svg" alt="" id="no-data-found-img">
+                            <p id="no-data-found-text">Nenhuma disciplina encontrada...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="section-content-loading">
+                <div class="loader"></div>
+            </div>
         </div>
-    </div>
     <script src="/scripts/service.js" type="module"></script>
     <script src="/scripts/userDashboard.js" type="module"></script>
 </body>
