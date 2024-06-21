@@ -13,7 +13,7 @@ const sectionContentWrapper = document.getElementById("section-content-wrapper")
 async function setUserID() {
     const token = localStorage.getItem('token')
     const user_id = await getUserIDByToken(token)
-    await setUserDashboard(user_id, token)
+    await setUserDashboard(token)
     await esperarUmSegundo()
     loader.classList.add('hidden')
     sectionContentWrapper.classList.remove('hidden')
@@ -26,21 +26,22 @@ function esperarUmSegundo() {
     });
 }
 
-export async function setUserDashboard(user_id, token) {
-    await setUserNameInGreetings(user_id, token)
+export async function setUserDashboard(token) {
+    await setUserNameInGreetings(token)
     console.log(token)
-    await setUserSubjects(user_id, token)
+    await setUserSubjects(token)
 }
 
-async function setUserNameInGreetings(user_id, token) {
-    const user = await getUserbyID(user_id, token)
+async function setUserNameInGreetings(token) {
+    const user = await getUserbyID(token)
+    console.log("usuario", user);
     const user_name = user.name
-    studentName.innerHTML = user_name
+    studentName.innerHTML = user.name
     console.log(user_name);
 }
 
-async function setUserSubjects(user_id, token){
-    const subjects = await getSubjectsbyStudent(user_id, token)
+async function setUserSubjects(token){
+    const subjects = await getSubjectsbyStudent(token)
     console.log(subjects);
     if (subjects.length > 0) {
         subjects.forEach(subject => {

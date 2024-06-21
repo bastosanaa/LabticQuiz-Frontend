@@ -9,8 +9,8 @@ const notFoundMessage = document.getElementById("no-data-found-wrapper")
 const url = "http://localhost:3333/api"
 
 //User
-export async function getUserbyID(user_id, token) {
-    const response = await fetch(`${url}/users/${user_id}`, {
+export async function getUserbyID(token) {
+    const response = await fetch(`${url}/users`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -29,8 +29,9 @@ async function getAllUsers() {
     return users
 }
 
-async function deleteUserByID(user_id, token) {
-    const response = await fetch(`${url}/users/${user_id}`, {
+async function deleteUserByID(token) {
+    const response = await fetch(`${url}/users
+    `, {
         method: "delete",
         mode: "cors",
         headers: {
@@ -57,9 +58,9 @@ export async function userLogin(user, password) {
 }
 
 //usersSubjects
-export async function getSubjectsbyStudent(student_id, token){
+export async function getSubjectsbyStudent(token){
     console.log(token)
-    const response = await fetch(`${url}/studentsSubjects/${student_id}`, {
+    const response = await fetch(`${url}/studentsSubjects`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -104,21 +105,4 @@ export async function getSubjectsbyStudent(student_id, token){
 //     notFoundMessage.classList.remove("hidden")
 // }
 
-//funcao req user_id 
-export async function getUserIDByToken(token) {
-    const response = await fetch(`${url}/users/authorization`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
 
-        },
-        body: JSON.stringify({token: token})
-    })
-
-    const user = await response.json()
-
-    const userID = user.user
-
-    return userID
-}

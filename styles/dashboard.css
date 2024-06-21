@@ -159,9 +159,9 @@ body {
     justify-content: center;
     align-items: center;
     padding-bottom: 40px;
+    
 }
 
-/* HTML: <div class="loader"></div> */
 .loader {
     width: 50px;
     aspect-ratio: 1;
@@ -286,6 +286,12 @@ body {
     #side-bar-footer {
         margin: 0;
         padding-left: 30px ;
+    }
+
+    #side-bar-footer:hover {
+        color: var(--primary-yellow);
+        
+        
     }
 
     #section-container {
