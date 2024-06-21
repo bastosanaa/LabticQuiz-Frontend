@@ -59,7 +59,6 @@ export async function userLogin(user, password) {
 
 //usersSubjects
 export async function getSubjectsbyStudent(token){
-    console.log(token)
     const response = await fetch(`${url}/studentsSubjects`, {
         method: "GET",
         mode: "cors",
@@ -70,7 +69,6 @@ export async function getSubjectsbyStudent(token){
         }
     })
     const subjects = await response.json()
-    console.log(subjects);
     return subjects
 }
 
@@ -105,4 +103,21 @@ export async function getSubjectsbyStudent(token){
 //     notFoundMessage.classList.remove("hidden")
 // }
 
+export async function getRoleByToken(token) {
+    const response = await fetch(`${url}/users/role`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
 
+        },
+        body: JSON.stringify({token: token})
+    })
+
+    console.log("get role")
+    const user = await response.json()
+    console.log(user);
+    const user_role = user.user_role
+
+    return user_role
+}

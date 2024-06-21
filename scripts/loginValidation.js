@@ -1,7 +1,9 @@
 import { userLogin } from "./service.js";
+import { getRoleByToken } from "./service.js"
 const formFields = document.querySelectorAll('[required]');
 const submitBtn = document.getElementById('login-submit-button');
 const dashboardLocation = 'http://127.0.0.1:5500/dashboard.html'
+
 
 formFields.forEach(field => {
     field.addEventListener("blur", () => {
@@ -24,7 +26,6 @@ function checkIfEmpty(field) {
 
 // Login - req
 submitBtn.addEventListener('click', async (event) => {
-    console.log("submit")
     event.preventDefault()
     try {
         const userData = await sendUserDataToFetch()
@@ -34,9 +35,16 @@ submitBtn.addEventListener('click', async (event) => {
             return
         }
         const data = await userData.json()
-        localStorage.setItem('token', data.token)
-        window.location.href = "http://127.0.0.1:5500/dashboard.html"
+        const token = data.token
+        localStorage.setItem('token', token)
+        // verifica qual a role do usuario pelo token
+        const user_role = await getRoleByToken(token)
+        if (user_role == "estudante") {
+            window.location.href = "http://127.0.0.1:5500/dashboardStudent.html"
+        }
+
     } catch (error) {
+        console.log(error);
         alert('Login Falhou')
     }
 })

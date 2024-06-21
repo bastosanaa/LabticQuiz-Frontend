@@ -16,24 +16,20 @@ function esperarUmSegundo() {
 export async function setUserDashboard() {
     const token = localStorage.getItem('token')
     await setUserNameInGreetings(token)
-    console.log(token)
     await setUserSubjects(token)
-    await esperarUmSegundo()
+    // await esperarUmSegundo()
     loader.classList.add('hidden')
     sectionContentWrapper.classList.remove('hidden')
 }
 
 async function setUserNameInGreetings(token) {
     const user = await getUserbyID(token)
-    console.log("usuario", user);
     const user_name = user.name
     studentName.innerHTML = user.name
-    console.log(user_name);
 }
 
 async function setUserSubjects(token){
     const subjects = await getSubjectsbyStudent(token)
-    console.log(subjects);
     if (subjects.length > 0) {
         subjects.forEach(subject => {
             const li = document.createElement('li')
