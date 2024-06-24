@@ -19,11 +19,11 @@
             </div>
             <div id="side-bar-content-container">
                 <ul id="side-bar-content-list" >
-                    <li id="side-bar-content-item" class="highlight">
+                    <li id="side-bar-content-item" class="">
                         <img src="./assets/menu.png" alt="" id="side-bar-content-item-img" >
                         <p id="side-bar-content-item-description">Dashboard</p>
                     </li>
-                    <li id="side-bar-content-item">
+                    <li id="side-bar-content-item" class="highlight">
                         <img src="./assets/subjects.png" alt="" id="side-bar-content-item-img">
                         <p id="side-bar-content-item-description">Painel</p>
                         <img src="./assets/caret-down.svg" alt="seta para baixo" class="carret-down">
@@ -31,7 +31,7 @@
                     <ul id="board-options">
                         <a href="" class="board-option">Alunos</a>
                         <a href="" class="board-option">Professores</a>
-                        <a href="" class="board-option">Disciplinas</a>
+                        <a href="" class="board-option yellow">Disciplinas</a>
                     </ul>
                 </ul>
             </div>
@@ -43,28 +43,48 @@
     </nav>
         <div id="section-container">
             <div id="section-content-wrapper" class="">
-                <div id="section-header">
-                    <p id="section-name">Dashboard</p>
-                    <p id="user-greeting">Bem-vindo, <span id="user-name">Administrador!</span></p>
+                <div id="section-header-wrapper">
+                    <img src="./assets/caret-back.svg" id="back-icon" alt="voltar">
+                    <div id="section-header">
+                        <p id="section-name">Disciplinas</p>
+                        <p id="user-greeting"><span id="numero-entidades">n</span> disciplinas cadastradas</p>
+                    </div>
+                    <button id="register-btn">
+                        <img src="./assets/register.svg" alt="">
+                        <p>Cadastrar</p>
+                    </button>
                 </div>
                 <div id="section-content">
-                    <div class="section-subject-content">
-                        <h1 id="section-content-title">Painel</h1>
-                        <ul id="section-content-list">
-                            <li class="section-content-item" id="Students">
-                                <p class="section-content-item-title">Alunos</p>
-                                <a href="" class="crud-anchor" >Cadastrar Novo</a>
-                            </li>
-                            <li class="section-content-item" id="Teachers">
-                                <p class="section-content-item-title">Professores</p>
-                                <a href="" class="crud-anchor">Cadastrar Novo</a>
-                            </li>
-                            <li class="section-content-item" id="Subjects">
-                                <p class="section-content-item-title">Disciplinas</p>
-                                <a href="" class="crud-anchor">Cadastrar Novo</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <table id="section-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Professor</th>
+                                <th>Quiz</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>matematica</td>
+                                <td>jojo</td>
+                                <td>10</td>
+                                <td>
+                                    <a href="" class="crud-anchor">Editar</a>
+                                    <a href="" class="crud-anchor">Remover</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-entity-info">biologia</td>
+                                <td class="table-entity-info">jojoooooooooooo</td>
+                                <td class="table-entity-number">10</td>
+                                <td class="table-actions">
+                                    <a href="" class="crud-anchor">Editar</a>
+                                    <a href="" class="crud-anchor">Remover</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div class="hidden" id="no-data-found-wrapper">
                         <div id="no-data-found">
                             <img src="./assets/emptySubjects.svg" alt="" id="no-data-found-img">
@@ -77,6 +97,6 @@
                 <div class="loader"></div>
             </div>
         </div>
-        <script src="scripts/dashboard/admDashboard.js"></script>
+        <script src="scripts/painel/setPainel.js" type="module"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-import { userLogin } from "./service.js";
-import { getRoleByToken } from "./service.js"
+import { userLogin } from "../service.js";
+import { getRoleByToken } from "../service.js"
 const formFields = document.querySelectorAll('[required]');
 const submitBtn = document.getElementById('login-submit-button');
 const dashboardLocation = 'http://127.0.0.1:5500/dashboard.html'

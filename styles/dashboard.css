@@ -7,6 +7,7 @@
     --secondary-beige: #F5F5F5;
     --primary-yellow: #FEF08A;
     --purple-color: #6366F1;
+    --stone-color : #78716C;
 }
 
 body {
@@ -103,7 +104,7 @@ body {
     padding-left: 2rem;
 }
 
-#board-option {
+.board-option {
     color: var(--primary-color);
     font-weight: 300;
     text-decoration: none;
@@ -125,6 +126,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding-left: 2.25rem;
 }
 
 #section-name{
@@ -167,19 +169,91 @@ body {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .section-content-item-title {
     margin-left: 20px;
     font-size: 1.1rem;
+    
 }
 
 /* adm */
-#register-anchor {
+.crud-anchor {
     text-decoration: none;
     padding-right: 1rem;
     font-size: 0.875rem;
     color: var(--purple-color);
+}
+
+/* painel */
+#section-header-wrapper{
+    display: flex;
+    position: relative;
+}
+
+#back-icon {
+    width: 1.6rem;
+    position: absolute;
+    cursor: pointer;
+    
+}
+
+.yellow {
+    color: var(--primary-yellow);
+}
+
+#register-btn {
+    position: absolute;
+    right: 0;
+    background: var(--purple-color);
+    border-radius: 6px;
+    border: none;
+    padding: 0.8rem 0;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* table */
+#section-table {
+    width: 100%;
+    border-collapse: separate; /* Para permitir bordas arredondadas */
+    border-spacing: 0 10px; /* Espaçamento entre as linhas */
+    margin: 2.5rem 0;
+    font-size: 16px;
+}
+
+#section-table td:last-child{
+    /* espaco entre as anchors */
+}
+
+#section-table td{
+    padding: 1rem;
+    border: none; /* Remover bordas padrão */
+}
+
+tbody tr {
+    background-color: var(--secondary-beige); /* Cor de fundo das linhas */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+#section-table th{
+    text-align: left;
+    color: var(--stone-color);
+    font-weight: normal;
+    padding: 0rem 1rem ;
+}
+
+#section-table a:first-of-type{
+    padding-right: 2rem;
 }
 
 /* loading */
@@ -190,6 +264,18 @@ body {
     align-items: center;
     padding-bottom: 40px;
     
+}
+
+.table-entity-info {
+    width: 30vw;
+}
+
+.table-actions {
+    width: 15vw;
+}
+
+.table-entity-number{
+    width: 15vw;
 }
 
 .loader {

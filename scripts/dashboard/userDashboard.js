@@ -1,5 +1,5 @@
-import { getUserbyID } from "./service.js"
-import  { getSubjectsbyStudent } from "./service.js"
+import { getUserbyID } from "../service.js"
+import  { getSubjectsbyStudent } from "../service.js"
 const studentName = document.getElementById("user-name")
 const subjectsList = document.getElementById("section-content-list")
 const sectionContent = document.querySelector(".section-subject-content")
