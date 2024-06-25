@@ -72,37 +72,6 @@ export async function getSubjectsbyStudent(token){
     return subjects
 }
 
-
-//Dashboard
-// async function setUserNameInGreetings(user_id) {
-//     const user = await getUserbyID(user_id)
-//     console.log(user);
-//     const user_name = user.name
-//     studentName.innerHTML = user_name
-// }
-
-// async function setUserSubjects(user_id){
-//     subjects = await getSubjectsbyStudent(user_id)
-//     if (subjects.length > 0) {
-//         subjects.forEach(subject => {
-//             const li = document.createElement('li')
-//             li.classList.add('section-content-item')
-        
-//             const subjectTitle = document.createElement('p')
-//             subjectTitle.classList.add('section-content-item-title')
-//             subjectTitle.textContent = subject.subject_name
-    
-//             li.appendChild(subjectTitle)
-//             subjectsList.appendChild(li)
-//             sectionContent.classList.remove("hidden")
-//             notFoundMessage.classList.add("hidden")
-//         })
-//         return
-//     }
-//     sectionContent.classList.add("hidden")
-//     notFoundMessage.classList.remove("hidden")
-// }
-
 export async function getRoleByToken(token) {
     const response = await fetch(`${url}/users/role`, {
         method: 'POST',
@@ -120,4 +89,19 @@ export async function getRoleByToken(token) {
     const user_role = user.user_role
 
     return user_role
+}
+
+//Painel - subjects
+export async function getAllSubjects(token) {
+    const response = await fetch (`${url}/subjects/painel`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        }
+    })
+
+    const subjects = await response.json()
+    return subjects
 }

@@ -1,4 +1,7 @@
+
 const contentItemOption = document.querySelectorAll(".section-content-item")
+
+
 
 console.log(contentItemOption);
 contentItemOption.forEach(item => item.addEventListener('click', () => {

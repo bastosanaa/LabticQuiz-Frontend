@@ -42,6 +42,9 @@ submitBtn.addEventListener('click', async (event) => {
         if (user_role == "estudante") {
             window.location.href = "http://127.0.0.1:5500/dashboardStudent.html"
         }
+        if (user_role == "administrador") {
+            window.location.href = "http://127.0.0.1:5500/dashboardAdm.html"
+        }
 
     } catch (error) {
         console.log(error);

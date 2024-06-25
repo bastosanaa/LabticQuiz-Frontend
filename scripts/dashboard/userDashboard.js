@@ -7,6 +7,11 @@ const notFoundMessage = document.getElementById("no-data-found-wrapper")
 const loader = document.querySelector(".section-content-loading")
 const sectionContentWrapper = document.getElementById("section-content-wrapper")
 
+export async function setUserNameInGreetings(token) {
+    const user = await getUserbyID(token)
+    const user_name = user.name
+    studentName.innerHTML = user.name
+}
 function esperarUmSegundo() {
     return new Promise(resolve => {
         setTimeout(resolve, 1000);
@@ -22,11 +27,6 @@ export async function setUserDashboard() {
     sectionContentWrapper.classList.remove('hidden')
 }
 
-async function setUserNameInGreetings(token) {
-    const user = await getUserbyID(token)
-    const user_name = user.name
-    studentName.innerHTML = user.name
-}
 
 async function setUserSubjects(token){
     const subjects = await getSubjectsbyStudent(token)
