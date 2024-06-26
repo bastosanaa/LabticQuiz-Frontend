@@ -1,15 +1,18 @@
 import { getAllSubjects } from "../service.js";
 const backBtn = document.getElementById("back-icon")
 const numberOfSubjects = document.getElementById("numero-entidades")
+const createSubjectBtn = document.getElementById("register-btn")
 
+// mudar o nome desse arquivo ja que nao apenas seta o painel
 
 async function setPainelSubjects() {
     const token = localStorage.getItem('token')
     const subjects = await getAllSubjects(token)
-    console.log(subjects)
     await setNumberOfSubjects(subjects)
-    setHeader()
-    setTableRows(subjects)
+    if (subjects) {
+        setHeader()
+        setTableRows(subjects)
+    }
     
 }
 
@@ -19,6 +22,10 @@ async function setNumberOfSubjects(subjects) {
 
 backBtn.addEventListener('click', () => {
     window.location.href = "http://127.0.0.1:5500/dashboardAdm.html"
+})
+
+createSubjectBtn.addEventListener('click', () => {
+    window.location.href = "http://127.0.0.1:5500/cadastroSubjects.html"
 })
 
 
