@@ -54,7 +54,8 @@
                     <form action="" id="form-container" >
                         <div id="form-field">
                             <label for="sub-name" id="form-label">Nome</label>
-                                <input type="text" id="sub-name"  placeholder="disciplina 1">
+                            <input type="text" id="sub-name"  placeholder="disciplina 1">
+                            <p id="error-msg" class="hidden">Campo obrigatório</p>
                         </div>
                         <div id="form-field">
                             <label for="sub-teacher" id="form-label">Professor
@@ -74,6 +75,6 @@
                 <div class="loader"></div>
             </div>
         </div>
-        <script src="./scripts/crud/subjectsCrud.js"></script>
+        <script src="./scripts/crud/subjectsCrud.js" type="module"></script>
 </body>
 </html>

@@ -105,3 +105,18 @@ export async function getAllSubjects(token) {
     const subjects = await response.json()
     return subjects
 }
+
+//create -subjects
+export async function getAllTeachers(token) {
+    const response = await fetch (`${url}/users/teachers`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        }
+    })
+
+    const teachers = await response.json()
+    return teachers
+}
