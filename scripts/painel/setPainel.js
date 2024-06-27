@@ -64,7 +64,11 @@ function createRow(subject) {
     tdSubject.textContent = subject.name
     const tdTeacher = document.createElement('td')
     tdTeacher.classList.add('string-spacing')
-    tdTeacher.textContent = subject.teacher_id.name
+    if (subject.teacher_id) {
+        tdTeacher.textContent = subject.teacher_id.name
+    } else {
+        tdTeacher.textContent = "Professor indefinido"
+    }
     const tdQuizzes = document.createElement('td')
     tdQuizzes.textContent = (subject.quizzes).length
     const tdActions = document.createElement('td')

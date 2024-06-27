@@ -120,3 +120,22 @@ export async function getAllTeachers(token) {
     const teachers = await response.json()
     return teachers
 }
+
+export async function createTeacher(token, name, teacher_id) {
+    let newSubject = {}
+    if (!teacher_id) {
+        newSubject = {name: name}
+    } else {
+        newSubject = {name: name, teacher_id: teacher_id }
+    }
+    const response = await fetch(`${url}/subjects/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(newSubject)
+    })
+    console.log(response)
+    return response
+}
