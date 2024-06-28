@@ -121,7 +121,7 @@ export async function getAllTeachers(token) {
     return teachers
 }
 
-export async function createTeacher(token, name, teacher_id) {
+export async function createSubject(token, name, teacher_id) {
     let newSubject = {}
     if (!teacher_id) {
         newSubject = {name: name}
@@ -135,6 +135,18 @@ export async function createTeacher(token, name, teacher_id) {
             'Authorization': token
         },
         body: JSON.stringify(newSubject)
+    })
+    return response
+}
+
+export async function deleteSubject(token, subject_id) {
+    const response = await fetch(`${url}/subjects`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({id: subject_id})
     })
     console.log(response)
     return response

@@ -1,4 +1,5 @@
 import { getAllSubjects } from "../service.js";
+import { deleteSubject } from "../service.js"
 const backBtn = document.getElementById("back-icon")
 const numberOfSubjects = document.getElementById("numero-entidades")
 const createSubjectBtn = document.getElementById("register-btn")
@@ -13,6 +14,7 @@ async function setPainelSubjects() {
         setHeader()
         setTableRows(subjects)
     }
+
     
 }
 
@@ -72,10 +74,20 @@ function createRow(subject) {
     const tdQuizzes = document.createElement('td')
     tdQuizzes.textContent = (subject.quizzes).length
     const tdActions = document.createElement('td')
-    tdActions.innerHTML = `
-    <a href="" class="crud-anchor">Editar</a>
-    <a href="" class="crud-anchor">Remover</a>
-    `
+
+    const aRemoveBtn = document.createElement('a')
+    aRemoveBtn.textContent = 'Remover'
+    aRemoveBtn.id = 'remove-btn'
+    aRemoveBtn.classList.add('crud-anchor')
+
+    const aEditBtn = document.createElement('a')
+    aEditBtn.textContent = 'Editar'
+    aEditBtn.id = 'edit-btn'
+    aEditBtn.classList.add('crud-anchor')
+
+    tdActions.appendChild(aEditBtn)
+    tdActions.appendChild(aRemoveBtn)
+
 
     tr.appendChild(tdSubject)
     tr.appendChild(tdTeacher)
@@ -83,19 +95,18 @@ function createRow(subject) {
     tr.appendChild(tdActions)
     tbody.appendChild(tr)
 
+    aRemoveBtn.addEventListener('click', async () => {
+        await deleteSubjectFromTable(subject._id)
+    })
+
+
 }
 
-setPainelSubjects()
+await setPainelSubjects()
 
-
-
-// <tbody>
-//     <tr>
-//         <td>matematica</td>
-//         <td>jojo</td>
-//         <td>10</td>
-//         <td>
-//             <a href="" class="crud-anchor">Editar</a>
-//             <a href="" class="crud-anchor">Remover</a>
-//         </td>
-//     </tr>
+//DELETE
+async function deleteSubjectFromTable(subject_id) {
+    const token = localStorage.getItem('token')
+    deleteSubject(token,subject_id)
+    location.reload()
+}
