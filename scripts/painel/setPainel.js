@@ -4,6 +4,7 @@ const backBtn = document.getElementById("back-icon")
 const numberOfSubjects = document.getElementById("numero-entidades")
 const createSubjectBtn = document.getElementById("register-btn")
 
+
 // mudar o nome desse arquivo ja que nao apenas seta o painel
 
 async function setPainelSubjects() {
@@ -56,7 +57,7 @@ function setHeader(){
 
 }
 
-function createRow(subject) {
+async function createRow(subject) {
 
     const tbody = document.getElementById('table-body')
 
@@ -94,9 +95,15 @@ function createRow(subject) {
     tr.appendChild(tdQuizzes)
     tr.appendChild(tdActions)
     tbody.appendChild(tr)
+    
 
     aRemoveBtn.addEventListener('click', async () => {
-        await deleteSubjectFromTable(subject._id)
+        const dialog = await createDialog(subject)
+        const body = document.getElementById('page')
+        body.append(dialog)
+        dialog.showModal()
+        // await deleteSubjectFromTable(subject._id)
+
     })
 
 
@@ -107,6 +114,70 @@ await setPainelSubjects()
 //DELETE
 async function deleteSubjectFromTable(subject_id) {
     const token = localStorage.getItem('token')
-    deleteSubject(token,subject_id)
-    location.reload()
+    await deleteSubject(token,subject_id)
+    // location.reload()
+}
+
+//dialog
+async function createDialog(subject) {
+    const dialog = document.createElement('dialog')
+    dialog.id = 'dialog-container'
+
+    //header
+    const dialogHeader = document.createElement('p')
+    dialogHeader.id = 'dialog-header'
+    dialogHeader.textContent = 'Tem certeza?'
+
+    //description
+    const dialogDescription = document.createElement('p')
+    dialogDescription.id = 'dialog-description'
+    
+    const textBefore = document.createTextNode('Você excluirá a disciplina ');
+    const textAfter = document.createTextNode(' Este é o texto depois do span.');
+
+    const span = document.createElement('span')
+    span.textContent = subject.name
+    span.classList.add('subject-name-span')
+
+    dialogDescription.appendChild(textBefore)
+    dialogDescription.appendChild(span)
+    dialogDescription.appendChild(textAfter)
+
+    //form
+    const form = document.createElement('form')
+    form.action = 'dialog'
+    form.id = 'dialog-form'
+
+    const backButton = document.createElement('button')
+    backButton.id = 'back-button'
+    backButton.textContent = 'Voltar'
+
+    const removeButton = document.createElement('button')
+    removeButton.id = 'remove-button'
+    removeButton.textContent = 'Deletar'
+
+    form.appendChild(backButton)
+    form.appendChild(removeButton)
+
+    //dialog 
+    dialog.appendChild(dialogHeader)
+    dialog.appendChild(dialogDescription)
+    dialog.appendChild(form)
+
+    backButton.addEventListener('click',  (event) => {
+        event.preventDefault()
+        dialog.close()
+    })
+    
+    console.log(dialog)
+    removeButton.addEventListener('click', async (event) => {
+        event.preventDefault()
+        await deleteSubjectFromTable(subject._id)
+        dialog.close()
+        location.reload()
+    }
+    )
+
+    
+    return dialog
 }
