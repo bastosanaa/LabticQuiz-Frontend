@@ -1,5 +1,6 @@
 import { getAllSubjects } from "../service.js";
-import { deleteSubject } from "../service.js"
+import { deleteSubject } from "../service.js";
+import { deleteStudentSubject } from "../service.js"
 const backBtn = document.getElementById("back-icon")
 const numberOfSubjects = document.getElementById("numero-entidades")
 const createSubjectBtn = document.getElementById("register-btn")
@@ -15,14 +16,12 @@ async function setPainelSubjects() {
         setHeader()
         setTableRows(subjects)
     }
-
-    
 }
 
 async function setNumberOfSubjects(subjects) {
     numberOfSubjects.textContent = await subjects.length
 }
-
+//navigation
 backBtn.addEventListener('click', () => {
     window.location.href = "http://127.0.0.1:5500/dashboardAdm.html"
 })
@@ -31,7 +30,7 @@ createSubjectBtn.addEventListener('click', () => {
     window.location.href = "http://127.0.0.1:5500/cadastroSubjects.html"
 })
 
-
+//setPainel
 function setTableRows(subjects){
     subjects.forEach(subject => createRow(subject))
 }
@@ -84,6 +83,7 @@ async function createRow(subject) {
     const aEditBtn = document.createElement('a')
     aEditBtn.textContent = 'Editar'
     aEditBtn.id = 'edit-btn'
+    aEditBtn.href = 'http://127.0.0.1:5500/edicaoSubjects.html'
     aEditBtn.classList.add('crud-anchor')
 
     tdActions.appendChild(aEditBtn)
@@ -112,10 +112,13 @@ async function createRow(subject) {
 await setPainelSubjects()
 
 //DELETE
-async function deleteSubjectFromTable(subject_id) {
-    const token = localStorage.getItem('token')
+async function deleteSubjectFromTable(token, subject_id) {
     await deleteSubject(token,subject_id)
     // location.reload()
+}
+
+async function deleteStudentSubjectRelation(token, subject_id) {
+    await deleteStudentSubject(token, subject_id)
 }
 
 //dialog
@@ -168,16 +171,15 @@ async function createDialog(subject) {
         event.preventDefault()
         dialog.close()
     })
-    
-    console.log(dialog)
+    //remove
     removeButton.addEventListener('click', async (event) => {
         event.preventDefault()
-        await deleteSubjectFromTable(subject._id)
+        const token = localStorage.getItem('token')
+        await deleteSubjectFromTable(token, subject._id)
+        await deleteStudentSubjectRelation(token, subject._id)
         dialog.close()
         location.reload()
     }
     )
-
-    
     return dialog
 }

@@ -151,3 +151,17 @@ export async function deleteSubject(token, subject_id) {
     console.log(response)
     return response
 }
+
+export async function deleteStudentSubject(token, subject_id) {
+    console.log("requisicao pro back")
+    const response = await fetch(`${url}/studentsSubjects`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({id: subject_id})
+    })
+    console.log(response)
+    return response
+}

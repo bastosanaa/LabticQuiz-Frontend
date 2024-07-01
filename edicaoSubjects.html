@@ -7,6 +7,7 @@
     <link rel="icon" href="./assets/polvo.png">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/form.css">
 </head>
 <body id="page">
     <nav id="side-bar">
@@ -46,35 +47,34 @@
                 <div id="section-header-wrapper">
                     <img src="./assets/caret-back.svg" id="back-icon" alt="voltar">
                     <div id="section-header">
-                        <p id="section-name">Disciplinas</p>
-                        <p id="user-greeting"><span id="numero-entidades">n</span> disciplina(s) cadastrada(s)</p>
+                        <p id="section-name">Editar Disciplina</p>
                     </div>
-                    <button id="register-btn">
-                        <img src="./assets/register.svg" alt="">
-                        <p>Cadastrar</p>
-                    </button>
                 </div>
-                <div id="section-content">
-                    <table id="section-table">
-                        <thead id="table-head">
-                        </thead>
-                        <tbody id="table-body">
-                        </tbody>
-                    </table>
-                    <div class="hidden" id="no-data-found-wrapper">
-                        <div id="no-data-found">
-                            <img src="./assets/emptySubjects.svg" alt="" id="no-data-found-img">
-                            <p id="no-data-found-text">Nenhuma disciplina encontrada...</p>
+                <div id="form-container-wrapper">
+                    <form action="" id="form-container" >
+                        <div id="form-field">
+                            <label for="sub-name" id="form-label">Nome</label>
+                            <input type="text" id="sub-name"  placeholder="disciplina 1">
+                            <p id="error-msg" class="hidden">Campo obrigatório</p>
                         </div>
-                    </div>
+                        <div id="form-field">
+                            <label for="sub-teacher" id="form-label">Professor
+                                <img src="./assets/question.svg" alt="interrogação" id="teacher-question-mark" title="Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.">
+                            </label>
+                                <select name="" id="teacher-select" >
+                                    <option value="" disabled selected>Selecione um professor</option>
+                                </select>
+                        </div>
+                    </form>
+                    <button type="submit" id="form-submit-button">
+                        <p>Salvar Alterações</p>
+                    </button>
                 </div>
             </div>
             <div class="section-content-loading hidden">
                 <div class="loader"></div>
             </div>
         </div>
-
-
-        <script src="scripts/painel/setPainel.js" type="module"></script>
+        <script src="./scripts/crud/subjectsCrud.js" type="module"></script>
 </body>
 </html>
