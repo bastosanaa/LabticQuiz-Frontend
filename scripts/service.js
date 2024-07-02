@@ -91,7 +91,7 @@ export async function getRoleByToken(token) {
     return user_role
 }
 
-//Painel - subjects
+//Painel - Subjects
 export async function getAllSubjects(token) {
     const response = await fetch (`${url}/subjects/painel`, {
         method: "GET",
@@ -106,7 +106,7 @@ export async function getAllSubjects(token) {
     return subjects
 }
 
-//create -subjects
+//create - Subjects
 export async function getAllTeachers(token) {
     const response = await fetch (`${url}/users/teachers`, {
         method: "GET",
@@ -164,4 +164,23 @@ export async function deleteStudentSubject(token, subject_id) {
     })
     console.log(response)
     return response
+}
+
+//edit - Subjects
+export async function getSubjectByID(token, id){
+    const response = await fetch(`${url}/subjects/${id}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        }
+    })
+    const subject = await response.json()
+    return subject
+}
+
+export async function updateSubjectChanges(token) {
+
 }

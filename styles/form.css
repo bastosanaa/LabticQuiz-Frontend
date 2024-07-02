@@ -74,7 +74,7 @@ form select {
 }
 
 
-#form-submit-button {
+#create-form-submit-button, #edit-form-submit-button {
     width: 260px;
     height: 3rem;
     border: none;

@@ -83,7 +83,7 @@ async function createRow(subject) {
     const aEditBtn = document.createElement('a')
     aEditBtn.textContent = 'Editar'
     aEditBtn.id = 'edit-btn'
-    aEditBtn.href = 'http://127.0.0.1:5500/edicaoSubjects.html'
+    aEditBtn.href = `http://127.0.0.1:5500/edicaoSubjects.html?id=${subject._id}`
     aEditBtn.classList.add('crud-anchor')
 
     tdActions.appendChild(aEditBtn)
