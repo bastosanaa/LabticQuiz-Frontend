@@ -181,6 +181,17 @@ export async function getSubjectByID(token, id){
     return subject
 }
 
-export async function updateSubjectChanges(token) {
+export async function updateSubjectChanges(token, id, new_name, new_teacher) {
+    const response = await fetch(`${url}/subjects/${id}`, {
+        method: "PATCH",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
 
+        },
+        body: JSON.stringify({name: new_name, teacher_id: new_teacher})
+    })
+    console.log(response)
+    return response
 }
