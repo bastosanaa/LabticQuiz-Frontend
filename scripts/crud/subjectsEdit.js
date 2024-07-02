@@ -16,16 +16,22 @@ async function setEditPage() {
     const id = getSubjectID()
     const subject = await getSubjectByID(token,id)
     subjectNameInput.value = subject.subject_name
-    if (subject.subject_teacher === null) {
-        subjectSelectTeacher.value = ''
-    } else {
+    
+    if (subject.subject_teacher !== null) {
         subjectSelectTeacher.value = subject.subject_teacher
+        console.log('entrouuu')
+    } else {
+        console.log(subject.subject_teacher);
+        subjectSelectTeacher.value = ''
+        
+        
     }
     
 }
 
 await setEditPage()
 
+console.log(subjectSelectTeacher.value);
 saveChangesButton.addEventListener('click', async () => {
     await sendNewSubjectData()
     window.location.href = "http://127.0.0.1:5500/painelSubjects.html"

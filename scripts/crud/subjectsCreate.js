@@ -1,6 +1,7 @@
 import { createSubject } from "../service.js"
 const selectTeacher = document.getElementById('teacher-select')
 const inputName = document.getElementById('sub-name')
+const submitCreateFormBtn = document.getElementById('create-form-submit-button')
 
 
 submitCreateFormBtn.addEventListener('click', async () => {

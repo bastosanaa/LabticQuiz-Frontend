@@ -2,9 +2,7 @@ import { getAllTeachers } from "../service.js"
 import { createSubject } from "../service.js"
 const backBtn = document.getElementById("back-icon")
 const teachersSelect = document.getElementById('teacher-select')
-const inputName = document.getElementById('sub-name')
-const selectTeacher = document.getElementById('teacher-select')
-const submitCreateFormBtn = document.getElementById('create-form-submit-button')
+
 
 
 
