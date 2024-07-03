@@ -85,11 +85,23 @@ body {
     border-left: 5px solid var(--primary-yellow);
 }
 
-#side-bar-footer{
-    margin: 0px 0px 32px 36px;
+#side-bar-footer {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 32px 36px;
+    gap: 1rem;
+
+}
+
+.side-bar-footer-item{
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+}
+
+.side-bar-footer-item:hover {
+    color: var(--primary-yellow);
 }
 
 /* adm */
@@ -110,6 +122,10 @@ body {
     color: var(--primary-color);
     font-weight: 300;
     text-decoration: none;
+}
+
+.board-option:hover {
+    color: var(--primary-yellow);
 }
 
 /* section container */
@@ -451,7 +467,7 @@ background-color: var(--primary-color);
     justify-content: end;
 }
 
-#back-button, #remove-button {
+#back-button, #confirm-button {
     width: 20%;
     height: 2.5rem;
     font-size: 1rem;
@@ -460,7 +476,7 @@ background-color: var(--primary-color);
     font-weight: 500;
 }
 
-#back-button:hover, #remove-button:hover {
+#back-button:hover, #confirm-button:hover {
     border: 1px solid var(--stone-color);
 }
 
@@ -471,7 +487,7 @@ background-color: var(--primary-color);
     outline: none;
 } 
 
-#remove-button {
+#confirm-button {
     background-color: var(--red-color);
     border: none;
     color: var(--primary-color);

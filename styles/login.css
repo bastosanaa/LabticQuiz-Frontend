@@ -23,7 +23,18 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-color: var(--border-color);
+    animation: fadeInOut 1s linear 1 forwards;
 }
+
+@keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
 /* card */ 
 #polvo-card{
     position: absolute;

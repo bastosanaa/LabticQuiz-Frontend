@@ -38,8 +38,14 @@
             </div>
         </div>
         <div id="side-bar-footer">
-            <img src="./assets/password.png" alt="representação de senha" id="side-bar-footer-img">
-            <p id="side-bar-footer-description">Trocar senha</p>
+            <div id="change-password" class="side-bar-footer-item">
+                <img src="./assets/password.svg" alt="representação de senha" id="side-bar-footer-img">
+                <p id="side-bar-footer-description">Trocar senha</p>
+            </div>
+            <div id="sign-out" class="side-bar-footer-item">
+                <img src="./assets/sign-out.svg" id="side-bar-footer-img" alt="porta de saida">
+                <p id="side-bar-footer-description" >Encerrar Sessão</p>
+            </div>
         </div>
     </nav>
         <div id="section-container">
@@ -55,7 +61,10 @@
                         <div id="form-field">
                             <label for="sub-name" id="form-label">Nome</label>
                             <input type="text" id="sub-name"  placeholder="disciplina 1">
-                            <p id="error-msg" class="hidden">Campo obrigatório</p>
+                            <div id="error-msg" class="hidden">
+                                <p id="error-msg-text">Campo Obrigatório</p>
+                            </div>
+                            
                         </div>
                         <div id="form-field">
                             <label for="sub-teacher" id="form-label">Professor
@@ -77,5 +86,6 @@
         </div>
         <script src="./scripts/crud/subjectsCrud.js" type="module"></script>
         <script src="./scripts/crud/subjectsCreate.js" type="module"></script>
+        <script src="./scripts/side-bar/sideBar.js"></script>
 </body>
 </html>

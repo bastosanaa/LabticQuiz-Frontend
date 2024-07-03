@@ -156,7 +156,7 @@ async function createDialog(subject) {
     backButton.textContent = 'Voltar'
 
     const removeButton = document.createElement('button')
-    removeButton.id = 'remove-button'
+    removeButton.id = 'confirm-button'
     removeButton.textContent = 'Deletar'
 
     form.appendChild(backButton)

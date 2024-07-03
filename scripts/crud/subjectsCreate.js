@@ -20,3 +20,4 @@ async function postNewSubject() {
     console.log(subjectName)
     console.log(selectedTeacher);
 }
+
