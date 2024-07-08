@@ -3,6 +3,7 @@ import { createSubject } from "../service.js"
 const backBtn = document.getElementById("back-icon")
 const teachersSelect = document.getElementById('teacher-select')
 const inputName = document.getElementById('sub-name')
+const url = 'http://127.0.0.1:5501'
 
 
 
@@ -10,7 +11,7 @@ const inputName = document.getElementById('sub-name')
 
 
 backBtn.addEventListener('click', () => {
-    window.location.href = "http://127.0.0.1:5500/painelSubjects.html"
+    window.location.href = `${url}/painelSubjects.html`
 })
 
 //CREATE

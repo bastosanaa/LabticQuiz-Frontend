@@ -4,6 +4,7 @@ import { deleteStudentSubject } from "../service.js"
 const backBtn = document.getElementById("back-icon")
 const numberOfSubjects = document.getElementById("numero-entidades")
 const createSubjectBtn = document.getElementById("register-btn")
+const url = 'http://127.0.0.1:5501'
 
 
 // mudar o nome desse arquivo ja que nao apenas seta o painel
@@ -23,11 +24,11 @@ async function setNumberOfSubjects(subjects) {
 }
 //navigation
 backBtn.addEventListener('click', () => {
-    window.location.href = "http://127.0.0.1:5500/dashboardAdm.html"
+    window.location.href = `${url}/dashboardAdm.html`
 })
 
 createSubjectBtn.addEventListener('click', () => {
-    window.location.href = "http://127.0.0.1:5500/cadastroSubjects.html"
+    window.location.href = `${url}/cadastroSubjects.html`
 })
 
 //setPainel
@@ -83,7 +84,7 @@ async function createRow(subject) {
     const aEditBtn = document.createElement('a')
     aEditBtn.textContent = 'Editar'
     aEditBtn.id = 'edit-btn'
-    aEditBtn.href = `http://127.0.0.1:5500/edicaoSubjects.html?id=${subject._id}`
+    aEditBtn.href = `${url}/edicaoSubjects.html?id=${subject._id}`
     aEditBtn.classList.add('crud-anchor')
 
     tdActions.appendChild(aEditBtn)

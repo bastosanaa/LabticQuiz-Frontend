@@ -2,11 +2,12 @@ import { createSubject } from "../service.js"
 const selectTeacher = document.getElementById('teacher-select')
 const inputName = document.getElementById('sub-name')
 const submitCreateFormBtn = document.getElementById('create-form-submit-button')
+const url = 'http://127.0.0.1:5501'
 
 
 submitCreateFormBtn.addEventListener('click', async () => {
     await postNewSubject()
-    window.location.href = "http://127.0.0.1:5500/painelSubjects.html"
+    window.location.href = `${url}/painelSubjects.html`
 })
 
 async function postNewSubject() {

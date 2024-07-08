@@ -2,7 +2,8 @@ import { userLogin } from "../service.js";
 import { getRoleByToken } from "../service.js"
 const formFields = document.querySelectorAll('[required]');
 const submitBtn = document.getElementById('login-submit-button');
-const dashboardLocation = 'http://127.0.0.1:5500/dashboard.html'
+const url = 'http://127.0.0.1:5501'
+const dashboardLocation = `${url}/dashboard.html`
 
 
 formFields.forEach(field => {
@@ -36,14 +37,15 @@ submitBtn.addEventListener('click', async (event) => {
         }
         const data = await userData.json()
         const token = data.token
+        console.log(token);
         localStorage.setItem('token', token)
         // verifica qual a role do usuario pelo token
         const user_role = await getRoleByToken(token)
         if (user_role == "estudante") {
-            window.location.href = "http://127.0.0.1:5500/dashboardStudent.html"
+            window.location.href = `${url}/dashboardStudent.html`
         }
         if (user_role == "administrador") {
-            window.location.href = "http://127.0.0.1:5500/dashboardAdm.html"
+            window.location.href = `${url}/dashboardAdm.html`
         }
 
     } catch (error) {

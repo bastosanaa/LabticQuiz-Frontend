@@ -3,6 +3,7 @@ import { updateSubjectChanges } from "../service.js"
 const subjectNameInput = document.getElementById('sub-name')
 const subjectSelectTeacher = document.getElementById('teacher-select')
 const saveChangesButton = document.getElementById('edit-form-submit-button')
+const url = 'http://127.0.0.1:5501'
 
 function getSubjectID() {
     const url = window.location.search
@@ -34,7 +35,7 @@ await setEditPage()
 console.log(subjectSelectTeacher.value);
 saveChangesButton.addEventListener('click', async () => {
     await sendNewSubjectData()
-    window.location.href = "http://127.0.0.1:5500/painelSubjects.html"
+    window.location.href = `${url}/painelSubjects.html`
 })
 
     
