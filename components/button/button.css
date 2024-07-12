@@ -1,0 +1,74 @@
+:root {
+    --default-color: #6366F1;
+    --outline-color: #A8A29E;
+    --destructive-color: #EF4444;
+    --white-color: #FAFAFA
+}
+
+#page {
+    display: flex;
+    gap: 2rem;
+    padding: 5rem;
+    background-color: var(--white-color);
+    flex-direction: column;
+}
+
+.size-large {
+    width: 320px;
+}
+
+.size-medium {
+    width: 200px;
+}
+
+.size-small {
+    width: 100px;
+}
+
+.button-default,.button-outline,.button-default-destructive, .button-outline-destructive  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.button-default {
+
+    border: none;
+    background-color: var(--default-color);
+    color: var(--white-color);
+    line-height: 1.75rem;
+    font-size: 1.25rem;
+}
+
+.button-outline {
+
+    border: 2px solid var(--outline-color);
+    color: var(--outline-color);
+    background-color: var(--white-color);
+    line-height: 1.75rem;
+    font-size: 1.25rem;
+}
+
+.button-default-destructive{
+
+    border: none;
+    background-color: var(--destructive-color);
+    color: var(--white-color);
+    line-height: 1.75rem;
+    font-size: 1.25rem;
+}
+
+.button-outline-destructive{
+
+    border: 2px solid var(--destructive-color);
+    background-color: var(--white-color-color);
+    color: var(--destructive-color);
+    line-height: 1.75rem;
+    font-size: 1.25rem;
+}
+
