@@ -1,6 +1,7 @@
 import { getAllSubjects } from "../service.js";
 import { deleteSubject } from "../service.js";
 import { deleteStudentSubject } from "../service.js"
+import { Dialog } from "../components/dialog.js";
 const backBtn = document.getElementById("back-icon")
 const numberOfSubjects = document.getElementById("numero-entidades")
 const createSubjectBtn = document.getElementById("register-btn")
@@ -99,15 +100,33 @@ async function createRow(subject) {
     
 
     aRemoveBtn.addEventListener('click', async () => {
-        const dialog = await createDialog(subject)
+        // const dialog = await createDialog(subject)
+        const dialog = await Dialog({
+            headerText : 'Tem certeza?',
+            textBeforeContent : 'Você excluirá a disciplina ',
+            confirmBtnText: 'Deletar',
+            confirmedAction: async (object, dialog) => {
+                console.log("confirmado");
+                await removeSubject(object, dialog)
+            },
+            textAfterContent: ' , todos os quizzes nela cadastrados, e as relações entre ela e os alunos matriculados',
+            object: subject
+        })
+        
         const body = document.getElementById('page')
         body.append(dialog)
         dialog.showModal()
         // await deleteSubjectFromTable(subject._id)
-
     })
+}
+async function removeSubject(subject, dialog) {
+    console.log(subject);
 
-
+    const token = localStorage.getItem('token')
+    await deleteSubjectFromTable(token, subject._id)
+    await deleteStudentSubjectRelation(token, subject._id)
+    dialog.close()
+    location.reload()
 }
 
 await setPainelSubjects()
