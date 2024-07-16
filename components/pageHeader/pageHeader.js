@@ -8,6 +8,7 @@ export function PageHeader({title_text, subtitle_text = null, subtitle_size = 'n
 
     if (back_btn) {
         const img = document.createElement('img')
+        img.classList.add('back-btn')
         img.src = '../assets/caret-back.svg'
         title_div.appendChild(img)
     }

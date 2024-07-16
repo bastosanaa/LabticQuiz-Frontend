@@ -3,6 +3,10 @@
     --secondary-text-color: #44403C;
 }
 
+.back-btn{
+    cursor: pointer;
+}
+
 .header {
     display: flex;
     gap: 0.5rem;

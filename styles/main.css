@@ -1,1 +1,20 @@
-@import url('./');
+@import url('../components/button/button.css');
+@import url('../components/contentItem/contentItem.css');
+@import url('../components/contentList/contentList.css');
+@import url('../components/navBar/navBar.css');
+@import url('../components/pageHeader/pageHeader.css');
+
+.page{
+    display: flex;
+    gap: 2rem;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: var(--white-color);
+    flex-direction: column;
+    font-family: arial;
+    width: calc(100vw - 250px);
+}
+
+#main {
+    display: flex;
+}
