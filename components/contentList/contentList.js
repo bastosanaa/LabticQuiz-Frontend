@@ -16,7 +16,6 @@ export function ContentList({title_text, content_items = []}) {
         const new_item = ContentItem({
             text: item.text
         })
-        console.log(new_item);
         ul.appendChild(new_item)
     })
     content.appendChild(ul)

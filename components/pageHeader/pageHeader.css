@@ -5,6 +5,7 @@
 
 .back-btn{
     cursor: pointer;
+    position: absolute;
 }
 
 .header {
@@ -25,6 +26,7 @@
     font-weight: 700;
     color: var(--primary-text-color);
     line-height: 2.25rem;
+    padding-left: 45px;
 }
 
 .subtitle {

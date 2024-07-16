@@ -15,10 +15,14 @@ async function getUserName(token) {
 
 async function getUserSubjects(token) {
     const subjects = await getSubjectsbyStudent(token)
+    const subjects_items = []
     if (subjects.length > 0) {
         subjects.forEach(subject => {
-            console.log(subject);
+            const item = {text: subject.subject_name} 
+            subjects_items.push(item)
         })
+        console.log(subjects_items);
+        return subjects_items
     } else {
         console.log('nada');
     }
@@ -27,12 +31,12 @@ async function getUserSubjects(token) {
 async function setPage() {
     const token = localStorage.getItem('token')
     const user_name =  await getUserName(token)
-    getUserSubjects(token)
-    await setUserDashboard(user_name)
+    const subjects = await getUserSubjects(token)
+    await setUserDashboard(user_name, subjects)
 
 }
 
-async function setUserDashboard(user_name) {
+async function setUserDashboard(user_name, subjects) {
     const main = document.getElementById('main')
     
     const navBar = NavBar()
@@ -46,12 +50,17 @@ async function setUserDashboard(user_name) {
         back_btn: true,
         subtitle_text: `Bem-vindo(a), ${user_name}`
     })
+
+    const subjectList = ContentList({
+        title_text: 'Disciplinas',
+        content_items: subjects,
+    })
     
     page.append(header)
+    page.append(subjectList)
     
     main.append(page)
 
-    //setar a lista com elements passndo as disciplinas
 }
 
 await setPage()

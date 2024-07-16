@@ -6,84 +6,9 @@
     <title>Polvo - Adm</title>
     <link rel="icon" href="./assets/polvo.png">
     <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
-<body id="page">
-    <nav id="side-bar">
-        <div id="side-bar-container">
-            <div id="side-bar-header">
-                <div id="side-bar-polvo-img">
-                    <img src="./assets/polvo-white.png" alt="icone do app" id="side-bar-polvo-icon">
-                </div>
-                <p id="side-bar-polvo-title">Polvo</p>
-            </div>
-            <div id="side-bar-content-container">
-                <ul id="side-bar-content-list" >
-                    <li id="side-bar-content-item" class="highlight">
-                        <img src="./assets/menu.png" alt="" id="side-bar-content-item-img" >
-                        <p id="side-bar-content-item-description">Dashboard</p>
-                    </li>
-                    <li id="side-bar-content-item">
-                        <img src="./assets/subjects.png" alt="" id="side-bar-content-item-img">
-                        <p id="side-bar-content-item-description">Painel</p>
-                        <img src="./assets/caret-down.svg" alt="seta para baixo" class="carret-down">
-                    </li>
-                    <ul id="board-options">
-                        <a href="" class="board-option">Alunos</a>
-                        <a href="" class="board-option">Professores</a>
-                        <a href="http://127.0.0.1:5500/painelSubjects.html" class="board-option">Disciplinas</a>
-                    </ul>
-                </ul>
-            </div>
-        </div>
-        <div id="side-bar-footer">
-            <div id="change-password" class="side-bar-footer-item">
-                <img src="./assets/password.svg" alt="representação de senha" id="side-bar-footer-img">
-                <p id="side-bar-footer-description">Trocar senha</p>
-            </div>
-            <div id="sign-out" class="side-bar-footer-item">
-                <img src="./assets/sign-out.svg" id="side-bar-footer-img" alt="porta de saida">
-                <p id="side-bar-footer-description" >Encerrar Sessão</p>
-            </div>
-        </div>
-    </nav>
-        <div id="section-container">
-            <div id="section-content-wrapper" class="">
-                <div id="section-header">
-                    <p id="section-name">Dashboard</p>
-                    <p id="user-greeting">Bem-vindo, <span id="user-name">Administrador!</span></p>
-                </div>
-                <div id="section-content">
-                    <div class="section-subject-content">
-                        <h1 id="section-content-title">Painel</h1>
-                        <ul id="section-content-list">
-                            <li class="section-content-item" id="Students">
-                                <p class="section-content-item-title">Alunos</p>
-                                <a href="" class="crud-anchor" >Cadastrar Novo</a>
-                            </li>
-                            <li class="section-content-item" id="Teachers">
-                                <p class="section-content-item-title">Professores</p>
-                                <a href="" class="crud-anchor">Cadastrar Novo</a>
-                            </li>
-                            <li class="section-content-item" id="Subjects">
-                                <p class="section-content-item-title">Disciplinas</p>
-                                <a href="http://127.0.0.1:5500/cadastroSubjects.html" class="crud-anchor">Cadastrar Novo</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="hidden" id="no-data-found-wrapper">
-                        <div id="no-data-found">
-                            <img src="./assets/emptySubjects.svg" alt="" id="no-data-found-img">
-                            <p id="no-data-found-text">Nenhuma disciplina encontrada...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-content-loading hidden">
-                <div class="loader"></div>
-            </div>
-        </div>
-        <script src="scripts/dashboard/admDashboard.js" type="module"></script>
-        <script src="scripts/side-bar/sideBar.js" type="module"></script>
+<body id="main">
+    <script src="./dashboardAdm.js" type="module"></script>
 </body>
 </html>
