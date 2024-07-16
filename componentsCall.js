@@ -1,76 +1,35 @@
 import { Button } from "./components/button/button.js";
 import { ContentItem } from "./components/contentItem/contentItem.js";
-const page = document.getElementById('page')
+import { NavBar } from "./components/navBar/navBar.js";
+import { PageHeader } from "./components/pageHeader/pageHeader.js";
+import { ContentList } from "./components/contentList/contentList.js";
 
-const button1 = Button({
-    text: 'outro',
-    action: () => {
-        console.log("oi");
-        page.appendChild(Button({
-            text: '2'
-        }))
+const main = document.getElementById('main')
+
+const navBar = NavBar()
+main.appendChild(navBar)
+
+const page = document.createElement('div')
+page.classList.add('page')
+
+const header = PageHeader({
+    title_text: 'Título da página',
+    back_btn: true,
+    subtitle_text: 'subtítulo da página'
+})
+page.append(header)
+
+const content = ContentList({
+    title_text: 'Conteúdo da lista',
+    content_items: [{
+        text: 'item de lista'
     },
-    imgSrc: "/assets/register.svg"
+    {
+        text: 'item de lista 2'
+    }]
 })
-page.appendChild(button1)
+page.append(content)
 
-const button12 = Button({
-    size: "medium",
-    text: 'defaultBtn',
-    action: () => {
-        console.log("acao");
-    },
-})
-page.appendChild(button12)
-console.log(button12);
 
-const button13 = Button({
-    size: "small",
-    text: 'miniBtn',
-    action: () => {
-        console.log("acao");
-    },
-})
-page.appendChild(button13)
-console.log(button13);
-
-const button2 = Button({
-    text: 'outlinedBtn',
-    type: 'outline',
-    action: () => {
-        console.log("acao");
-    }
-})
-page.appendChild(button2)
-
-const button3 = Button({
-    text: 'destructiveBtn',
-    type: 'destructive',
-    action: () => {
-        console.log("acao");
-    }
-})
-page.appendChild(button3)
-
-const button4 = Button({
-    text: 'destrulinedBtn',
-    type: 'destructive-outline',
-    action: () => {
-        console.log("acao");
-    }
-})
-page.appendChild(button4)
-
-const contentItem = ContentItem({
-    text: 'item de lista xD',
-    action: 'ação'
-})
-page.append(contentItem)
-
-const contentItem2 = ContentItem({
-    text: 'segundo item de lista xD',
-    address: "endereco",
-})
-page.append(contentItem2)
-
+main.append(page)
 

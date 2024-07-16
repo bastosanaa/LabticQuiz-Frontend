@@ -1,0 +1,38 @@
+:root {
+    --primary-text-color: #1C1917;
+    --secondary-text-color: #44403C;
+}
+
+.header {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.title-div {
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    line-height: 2.25rem;
+}
+
+.subtitle {
+    padding-left: 45px;
+    color: var(--secondary-text-color);
+    line-height: 2rem;
+}
+
+.size-normal {
+    font-size: 1.5rem;
+}
+
+.size-small {
+    font-size: 1.125rem;
+}

@@ -7,19 +7,28 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./components/button/button.css">
     <link rel="stylesheet" href="./components/contentItem/contentItem.css">
+    <link rel="stylesheet" href="./components/pageHeader/pageHeader.css">
+    <link rel="stylesheet" href="./components/navBar/navBar.css">
+    <link rel="stylesheet" href="./components/contentList/contentList.css">
 
     <style>
-        #page{
+        .page{
             display: flex;
             gap: 2rem;
-            padding: 5rem;
+            padding: 40px;
+            box-sizing: border-box;
             background-color: var(--white-color);
             flex-direction: column;
             font-family: arial;
+            width: calc(100vw - 250px);
+        }
+
+        #main {
+            display: flex;
         }
     </style>
 </head>
-<body id="page">
+<body id="main">
     <script src="componentsCall.js" type="module"></script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+:root {
+    --text-color: #44403C;
+}
+
+.content {
+    padding-left: 45px;
+}
+
+.content-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    line-height: 2.125rem;
+}
+
+.content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
