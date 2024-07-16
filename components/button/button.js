@@ -27,6 +27,10 @@ export function Button({type = 'default', size = 'large', text, action = null, i
         "small": "size-small"
     } 
 
+    button.addEventListener('click', () => {
+        action()
+    })
+
     const btnSize = btnsSize[size]
     button.classList.add(btnSize)
 

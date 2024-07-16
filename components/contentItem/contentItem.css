@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+:root {
+    --primary-beige: #E7E5E4;
+    --secondary-beige: #F5F5F5;
+    --purple-color: #4338CA;
+}
+
+#content-item {
+    height: 60px;
+    border-radius: 12px;
+    border: 1px solid var(--primary-beige);
+    background-color: var(--secondary-beige);
+    box-shadow: 2px 2px 2px var(--primary-beige);
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0 20px;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+#content-item-anchor {
+    color:var(--purple-color) ;
+}

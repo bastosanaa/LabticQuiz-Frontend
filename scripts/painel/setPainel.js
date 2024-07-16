@@ -1,7 +1,7 @@
 import { getAllSubjects } from "../service.js";
 import { deleteSubject } from "../service.js";
 import { deleteStudentSubject } from "../service.js"
-import { Dialog } from "../components/dialog.js";
+// import { Dialog } from "../components/dialog.js";
 const backBtn = document.getElementById("back-icon")
 const numberOfSubjects = document.getElementById("numero-entidades")
 const createSubjectBtn = document.getElementById("register-btn")

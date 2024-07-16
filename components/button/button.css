@@ -2,28 +2,31 @@
     --default-color: #6366F1;
     --outline-color: #A8A29E;
     --destructive-color: #EF4444;
-    --white-color: #FAFAFA
-}
-
-#page {
-    display: flex;
-    gap: 2rem;
-    padding: 5rem;
-    background-color: var(--white-color);
-    flex-direction: column;
+    --white-color: #FAFAFA;
 }
 
 .size-large {
-    width: 320px;
+    max-width: 320px;
+    padding: 12px;
+    line-height: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .size-medium {
-    width: 200px;
+    max-width: 110px;
+    padding: 12px ;
+    line-height: 1.5rem;
+    font-size: 1.125rem;
 }
 
 .size-small {
-    width: 100px;
+    max-width: 90px;
+    padding: 8px 20px;
+    line-height: 1.5rem;
+    box-sizing: border-box;
+    font-size: 1rem;
 }
+
 
 .button-default,.button-outline,.button-default-destructive, .button-outline-destructive  {
     display: flex;
@@ -32,43 +35,37 @@
     flex-direction: row;
     gap: 0.5rem;
     box-sizing: border-box;
-    padding: 12px;
     border-radius: 6px;
+    cursor: pointer;
+}
+
+.button-default:hover,.button-outline:hover, .button-default-destructive:hover,.button-outline-destructive:hover {
+    opacity: 0.5;
 }
 
 .button-default {
-
     border: none;
     background-color: var(--default-color);
     color: var(--white-color);
-    line-height: 1.75rem;
-    font-size: 1.25rem;
+
 }
 
 .button-outline {
-
     border: 2px solid var(--outline-color);
     color: var(--outline-color);
     background-color: var(--white-color);
-    line-height: 1.75rem;
-    font-size: 1.25rem;
+
 }
 
 .button-default-destructive{
-
     border: none;
     background-color: var(--destructive-color);
     color: var(--white-color);
-    line-height: 1.75rem;
-    font-size: 1.25rem;
 }
 
 .button-outline-destructive{
-
     border: 2px solid var(--destructive-color);
     background-color: var(--white-color-color);
     color: var(--destructive-color);
-    line-height: 1.75rem;
-    font-size: 1.25rem;
 }
 

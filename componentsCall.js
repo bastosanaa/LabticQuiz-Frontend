@@ -1,10 +1,14 @@
 import { Button } from "./components/button/button.js";
+import { ContentItem } from "./components/contentItem/contentItem.js";
 const page = document.getElementById('page')
 
 const button1 = Button({
-    text: 'defaultBtn',
+    text: 'outro',
     action: () => {
-        console.log("acao");
+        console.log("oi");
+        page.appendChild(Button({
+            text: '2'
+        }))
     },
     imgSrc: "/assets/register.svg"
 })
@@ -16,10 +20,19 @@ const button12 = Button({
     action: () => {
         console.log("acao");
     },
-    imgSrc: "/assets/register.svg"
 })
 page.appendChild(button12)
 console.log(button12);
+
+const button13 = Button({
+    size: "small",
+    text: 'miniBtn',
+    action: () => {
+        console.log("acao");
+    },
+})
+page.appendChild(button13)
+console.log(button13);
 
 const button2 = Button({
     text: 'outlinedBtn',
@@ -48,5 +61,16 @@ const button4 = Button({
 })
 page.appendChild(button4)
 
+const contentItem = ContentItem({
+    text: 'item de lista xD',
+    action: 'ação'
+})
+page.append(contentItem)
+
+const contentItem2 = ContentItem({
+    text: 'segundo item de lista xD',
+    address: "endereco",
+})
+page.append(contentItem2)
 
 
