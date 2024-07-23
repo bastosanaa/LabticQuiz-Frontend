@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('../components/button/button.css');
 @import url('../components/contentItem/contentItem.css');
 @import url('../components/contentList/contentList.css');
 @import url('../components/navBar/navBar.css');
 @import url('../components/pageHeader/pageHeader.css');
+@import url('../components/logo/logo.css');
 
-.page{
+body {
+    font-family: "Open Sans", sans-serif;
+}
+.page {
     display: flex;
     gap: 2rem;
     padding: 40px;

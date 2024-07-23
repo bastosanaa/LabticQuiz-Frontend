@@ -30,6 +30,7 @@ async function createUserDashboard(user_name, subjects) {
     const subjectList = ContentList({
         title_text: 'Opções',
         content_items: [
+            //passar as acoes aqui
             {text: 'Alunos'},
             {text: 'Professores'},
             {text: 'Disciplinas'}

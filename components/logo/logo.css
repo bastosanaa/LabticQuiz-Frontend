@@ -1,0 +1,27 @@
+:root {
+    --white-color: #EEF2FF;
+
+}
+.logo{
+    display: flex;
+    flex-direction:row ;
+    align-items: center;
+    gap: 0.5rem;
+    /* justify-content: center; */
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight:700;
+    color: var(--white-color);
+    transform: scaleX(0.8);
+    transform: scaleY(1.4);
+
+
+}
+
+.logo-img{
+    width: 28px;
+    fill: var(--white-color);
+
+}
