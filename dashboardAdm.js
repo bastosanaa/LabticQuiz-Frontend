@@ -15,7 +15,19 @@ async function getUserName(token) {
 async function createUserDashboard(user_name, subjects) {
     const main = document.getElementById('main')
     
-    const navBar = NavBar()
+    const navBar = NavBar({items:
+        [
+            {
+                imgSrc: '../assets/menu.svg',
+                title: 'Dashboard',
+                anchor: 'aaa'
+            },
+            {
+                imgSrc: '../assets/books.svg',
+                title: 'teste',
+            }
+        ]
+    })
     main.appendChild(navBar)
     
     const page = document.createElement('div')

@@ -1,5 +1,5 @@
 :root {
-    --white-color: #EEF2FF;
+    --logo-color: #EEF2FF;
 
 }
 .logo{
@@ -13,7 +13,7 @@
 .logo-text {
     font-size: 1.4rem;
     font-weight:700;
-    color: var(--white-color);
+    color: var(--logo-color);
     transform: scaleX(0.8);
     transform: scaleY(1.4);
 
@@ -22,6 +22,6 @@
 
 .logo-img{
     width: 28px;
-    fill: var(--white-color);
+    fill: var(--logo-color);
 
 }

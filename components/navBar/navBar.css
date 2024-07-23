@@ -1,5 +1,6 @@
 :root {
     --blue-color: #1E1B4B;
+    --nav-white-color: #EEF2FF;
 }
 
 .nav-bar {
@@ -8,5 +9,22 @@
     background-color: var(--blue-color);
     padding: 40px 35px;
     box-sizing: border-box;
+    color: var(--nav-white-color);
+    position: relative;
+}
+
+.nav-items {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute;
+    bottom: 40px;
 
 }
