@@ -1,0 +1,32 @@
+:root {
+    --white-color: #FAFAFA;
+}
+
+.dialog {
+    max-width: 25vw;
+    line-height: 1.3rem;
+    padding: 40px;
+    border: none;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    border-radius: 1.5rem;
+    z-index: 1;
+}
+
+.dialog-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.dialog-description {
+    margin-top: 1rem ;
+}
+
+.dialog-form {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: end;
+
+}

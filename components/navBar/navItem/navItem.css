@@ -17,7 +17,9 @@
     padding: 0;
     font-weight: 500;
     cursor: pointer;
+    position: relative; 
 }
+
 
 .selected {
     color: var(--primary-yellow);
@@ -26,3 +28,41 @@
 .nav-item p {
     padding: 0 1.25rem 0 0.5rem;
 }
+
+.nav-item img {
+    transition: transform 0.2s ease-in-out;
+}
+
+.dropdown {
+    display: flex;
+    justify-content: baseline;
+    /* background-color: grey; */
+    position: absolute;
+    width: 100%;
+    top: calc(21px + 1rem);
+    animation: fadeInOut 1s linear 1 forwards;
+}
+
+.dropdown ul {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    font-weight: 400;
+    gap: 1rem;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.dropdown li:hover {
+    color: var(--primary-yellow);
+}
+
+
+@keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }

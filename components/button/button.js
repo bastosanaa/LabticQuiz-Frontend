@@ -27,7 +27,8 @@ export function Button({type = 'default', size = 'large', text, action = null, i
         "small": "size-small"
     } 
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault()
         action()
     })
 

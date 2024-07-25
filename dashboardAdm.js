@@ -20,11 +20,12 @@ async function createUserDashboard(user_name, subjects) {
             {
                 imgSrc: '../assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'aaa'
+                anchor: 'http://127.0.0.1:5501/dashboardAdm.html'
             },
             {
                 imgSrc: '../assets/books.svg',
-                title: 'teste',
+                title: 'Painel',
+                dropdownItems: ['alunos', 'professores', 'disciplinas']
             }
         ]
     })

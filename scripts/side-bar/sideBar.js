@@ -2,19 +2,20 @@ const SignOutBtn = document.getElementById('sign-out')
 
 //sign out
 
-SignOutBtn.addEventListener('click', async() => {
-    const dialog = await createDialog()
+SignOutBtn.addEventListener('click', () => {
+    const dialog =  createDialog()
     const body = document.getElementById('page')
     body.append(dialog)
     dialog.showModal()
 })
 
-function signOut() {
+export function signOut() {
     localStorage.removeItem('token')
     window.location.href = 'http://127.0.0.1:5501/login.html'
 }
 
-async function createDialog() {
+export function createDialog() {
+    
     const dialog = document.createElement('dialog')
     dialog.id = 'dialog-container'
 

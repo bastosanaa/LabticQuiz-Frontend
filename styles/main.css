@@ -6,6 +6,7 @@
 @import url('../components/pageHeader/pageHeader.css');
 @import url('../components/logo/logo.css');
 @import url('../components/navBar/navItem/navItem.css');
+@import url('../components/dialog/dialog.css');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -35,4 +36,8 @@ time, mark, audio, video {
 
 #main {
     display: flex;
+}
+
+.hidden {
+    display: none;
 }
