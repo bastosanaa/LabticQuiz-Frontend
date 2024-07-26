@@ -1,6 +1,6 @@
 
 
-export function ContentItem({text, address=null, action = null}) {
+export function ContentItem({text, href=null, action = null}) {
     const item = document.createElement('li')
     item.id = 'content-item'
     const p = document.createElement('p')
@@ -21,10 +21,9 @@ export function ContentItem({text, address=null, action = null}) {
         })
     }
 
-    if (address) {
+    if (href) {
         item.addEventListener('click', () => {
-            console.log(address)
-            // window.location.href = address
+            window.location.href = href
         })
     }
     return item

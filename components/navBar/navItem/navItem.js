@@ -38,12 +38,15 @@ export function NavItem({imgSrc, title, anchor = null, dropdownItems = [], actio
         navItem.classList.add('nav-item')
         navItem.appendChild(img)
         navItem.appendChild(p)
+        if (selected) {
+            const div = document.createElement('div')
+            div.classList.add('selected')
+            navItem.appendChild(div)
+        }
         return navItem
     } else {
         const navItem = document.createElement('button')
         navItem.classList.add('nav-item')
-        //adicionar acao ao clicar no botao
-        console.log(action);
         navItem.addEventListener('click', action)
         navItem.appendChild(img)
         navItem.appendChild(p)
@@ -57,9 +60,10 @@ function createDropDown(items) {
     div.classList.add('dropdown')
     const ul = document.createElement('ul')
     items.forEach(item => {
-        const li = document.createElement('li')
-        li.textContent = item
-        ul.appendChild(li)
+        const a = document.createElement('a')
+        a.setAttribute('href', item.href )
+        a.textContent = item.text
+        ul.appendChild(a)
     })
     div.appendChild(ul)
 

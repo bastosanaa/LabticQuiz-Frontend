@@ -14,7 +14,9 @@ export function ContentList({title_text, content_items = []}) {
     ul.classList.add('content-list')
     content_items.forEach(item => {
         const new_item = ContentItem({
-            text: item.text
+            text: item.text,
+            href: item.href,
+            action: item.action
         })
         ul.appendChild(new_item)
     })

@@ -22,7 +22,11 @@
 
 
 .selected {
-    color: var(--primary-yellow);
+    width: 4px;
+    height: 21px;
+    background-color: var(--primary-yellow);
+    position: absolute;
+    left: -30px;
 }
 
 .nav-item p {
@@ -53,7 +57,12 @@
     overflow: hidden;
 }
 
-.dropdown li:hover {
+.dropdown a {
+    text-decoration: none;
+    color: var(--nav-white-color);
+}
+
+.dropdown a:hover {
     color: var(--primary-yellow);
 }
 

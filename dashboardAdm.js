@@ -20,12 +20,18 @@ async function createUserDashboard(user_name, subjects) {
             {
                 imgSrc: '../assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/dashboardAdm.html'
+                selected: true,
+                anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
             },
             {
                 imgSrc: '../assets/books.svg',
                 title: 'Painel',
-                dropdownItems: ['alunos', 'professores', 'disciplinas']
+                dropdownItems: [
+                    {text:'alunos', href:''},
+                    {text:'professores', href:''},
+                    {text:'disciplinas', href:'http://127.0.0.1:5501/painelSubjects.html'}
+                ]
+
             }
         ]
     })
@@ -44,9 +50,9 @@ async function createUserDashboard(user_name, subjects) {
         title_text: 'Opções',
         content_items: [
             //passar as acoes aqui
-            {text: 'Alunos'},
-            {text: 'Professores'},
-            {text: 'Disciplinas'}
+            {text: 'Alunos', href:'http://127.0.0.1:5501/painelSubjects.html'},
+            {text: 'Professores', href:'http://127.0.0.1:5501/painelSubjects.html'},
+            {text: 'Disciplinas', href:'http://127.0.0.1:5501/painelSubjects.html'}
         ],
     })
     

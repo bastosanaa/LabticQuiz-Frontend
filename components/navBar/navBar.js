@@ -20,6 +20,7 @@ export function NavBar({items = []}) {
                 imgSrc: item.imgSrc,
                 title: item.title,
                 anchor: item.anchor,
+                selected: item.selected,
                 dropdownItems: item.dropdownItems
             })
             ul.appendChild(navItem)
@@ -71,8 +72,6 @@ export function NavBar({items = []}) {
     }) 
     footer.appendChild(signOut)
     footer.appendChild(signOut2)
-    
-    console.log(footer);
     navBar.appendChild(footer)
     
     return navBar 
