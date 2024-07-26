@@ -7,6 +7,7 @@
 @import url('../components/logo/logo.css');
 @import url('../components/navBar/navItem/navItem.css');
 @import url('../components/dialog/dialog.css');
+@import url('../components/input/input.css');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -40,4 +41,11 @@ time, mark, audio, video {
 
 .hidden {
     display: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 50px;
 }
