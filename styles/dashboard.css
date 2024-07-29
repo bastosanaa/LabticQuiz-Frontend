@@ -246,8 +246,8 @@ body {
 
 #section-table {
     width: 100%;
-    border-collapse: separate; /* Para permitir bordas arredondadas */
-    border-spacing: 0 10px; /* Espaçamento entre as linhas */
+    border-collapse: separate;
+    border-spacing: 0 10px; 
     margin: 2.5rem 0;
     font-size: 16px;
 }
@@ -258,13 +258,13 @@ body {
 
 #section-table td{
     padding: 1rem;
-    border: none; /* Remover bordas padrão */
+    border: none; 
 }
 
 tbody tr {
-    background-color: var(--secondary-beige); /* Cor de fundo das linhas */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    background-color: var(--secondary-beige); 
+    border-radius: 10px; 
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); 
 }
 
 #section-table th{

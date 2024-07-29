@@ -1,0 +1,55 @@
+:root {
+    --grey-color: #78716C
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; 
+    margin: 2.5rem 0;
+    font-size: 16px;
+}
+
+table th{
+    text-align: left;
+    color: var(--grey-color);
+    font-weight: normal;
+    padding: 0rem 1rem ;
+}
+
+table th:last-of-type {
+    width: 10vw;
+}
+
+table td {
+    padding: 1rem;
+    border: none; 
+}
+
+table td:last-of-type {
+    /* text-align: right; */
+    width: 10vw;
+}
+
+tbody tr {
+    background-color: var(--secondary-beige);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* .half-table-space {
+    width: 20vw;
+} */
+
+.full-table-space {
+    width: 30vw;
+}
+
+.crud-anchor {
+    text-decoration: none;
+    padding-right: 1rem;
+    font-size: 0.875rem;
+    color: var(--purple-color);
+    cursor: pointer;
+    text-align: right;
+}

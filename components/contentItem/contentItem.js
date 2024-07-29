@@ -1,14 +1,57 @@
 
 
-export function ContentItem({text, href=null, action = null}) {
+export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null}) {
     const item = document.createElement('li')
     item.id = 'content-item'
     const p = document.createElement('p')
     p.id = 'content-item-text'
     p.textContent = text
     
-
     item.appendChild(p)
+    
+    if (date) {
+        const p = document.createElement('p')
+        p.textContent = date
+        item.appendChild(p)
+    }
+
+    if (tag) {
+        const span = document.createElement('span')
+        span.textContent = tag
+        item.appendChild(span)
+    }
+
+    if (crud  || score) {
+        const div = document.createElement('div')
+        div.classList.add('item-actions')
+
+        if (crud) { 
+            const aRemoveBtn = document.createElement('a')
+            aRemoveBtn.textContent = 'Remover'
+            aRemoveBtn.href = crud.remove
+            div.appendChild(aRemoveBtn)
+
+            const aEditBtn = document.createElement('a')
+            aEditBtn.textContent = 'Editar'
+            aEditBtn.href = crud.edit
+            div.appendChild(aEditBtn)
+        }
+
+        if (score) {
+            const seeAnswers = document.createElement('a')
+            seeAnswers.textContent = 'Ver Respostas'
+            seeAnswers.href = score.href
+            div.appendChild(seeAnswers)
+
+            const grade = document.createElement('p')
+            grade.textContent = `${score.grade}/10`
+            div.appendChild(grade)
+
+        }
+
+        item.appendChild(div)
+    }
+    
 
     if (action) {
         const a = document.createElement('a')
