@@ -6,6 +6,7 @@
 }
 
 .size-large {
+    width: 100%;
     max-width: 320px;
     padding: 12px;
     line-height: 1.5rem;
@@ -13,7 +14,8 @@
 }
 
 .size-medium {
-    max-width: 110px;
+    width: 65%;
+    /* max-width: 260px; */
     padding: 12px ;
     line-height: 1.5rem;
     font-size: 1.125rem;

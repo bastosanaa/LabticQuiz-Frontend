@@ -25,14 +25,14 @@ body.appendChild(input2)
 const authCard = AuthCard({
     title: 'Login',
     buttonParams: Button({
-        text: 'butao'
+        text: 'butao',
+        size: 'medium'
     }),
     inputs: [Input({
         placeholder: 'placeholder',
         required: true,
         title: 'Input',
         errorMessage: 'mensagem de erro',
-        type: 'password'
     }),
     Input({
         placeholder: 'placeholder',
