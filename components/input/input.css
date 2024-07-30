@@ -3,7 +3,7 @@
     --secondary-white: #F5F5F5;
     --black-color: #1C1917;
     --red-color: #EF4444;
-    --blue-color: #6366F1;
+    --purple-color: #6366F1;
 }
 
 .input-container {
@@ -30,7 +30,7 @@ input {
 }
 
 input:focus {
-    outline: 1px solid var(--blue-color);
+    outline: 1px solid var(--purple-color);
 }
 
 .toggle-password {

@@ -2,6 +2,7 @@
     --border-color: #E5E5E5;
     --primary-white: #FAFAFA;
     --purple-color: #6366F1;
+    --underline-color: #D4D4D4;
 }
 
 .auth-card {
@@ -32,7 +33,7 @@
 .input-div {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
     width: 100%;
     align-items: center;
 }

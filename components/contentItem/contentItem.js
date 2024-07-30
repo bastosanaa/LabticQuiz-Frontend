@@ -48,7 +48,6 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
             div.appendChild(grade)
 
         }
-
         item.appendChild(div)
     }
     
@@ -68,6 +67,7 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
         item.addEventListener('click', () => {
             window.location.href = href
         })
-    }
+        item.style.cursor = 'pointer'
+        }
     return item
 }

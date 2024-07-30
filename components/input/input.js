@@ -1,4 +1,4 @@
-export function Input({placeholder,title, required = false, errorMessage = null, type = 'text'}) {
+export function Input({placeholder,title, required = false, errorMessage = null, type = 'text', inputClass = null}) {
 
     const inputContainer = document.createElement('div')
     inputContainer.classList.add('input-container')
@@ -10,6 +10,9 @@ export function Input({placeholder,title, required = false, errorMessage = null,
 
 
     const input = document.createElement('input')
+    if (inputClass) {
+        input.classList.add(inputClass)
+    }
     input.setAttribute('type', type)
     
     if (placeholder) {

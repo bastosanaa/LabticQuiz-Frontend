@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polvo - Login</title>
+    <link rel="icon" href="./assets/polvo.png">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div id="polvo-card" >
+        <img src="assets/polvo.svg" alt="polvo logo" id="polvo-card-img">
+        <p id="polvo-card-title">Polvo</p>
+    </div>
+    <div id="login-container">
+        <p id="login-title">Faça Login</p>
+        <form action="" id="login-form">
+            <div id="login-user">
+                <p id="login-label">Matrícula ou Email</p>
+                <input type="text" id="login-user-input" placeholder="usuario@gmail.com" required>
+                <div id="error-msg" class="hidden">
+                    <p id="error-msg-text"></p>
+                </div>
+            </div>
+            <div id="login-password">
+                <p id="login-label">Senha</p>
+                <input type="password" id="login-password-input" placeholder="••••••••••••" required>
+                <img src="assets/eye.png" alt="olho" id="toggle-password-icon">
+                <div id="error-msg" class="hidden">
+                    <p id="error-msg-text"></p>
+                </div>
+            </div>
+            <div id="login-footer">
+                <p id="login-password-help">Esqueceu a senha ou deseja trocar?</p>
+                <button type="submit" id="login-submit-button">Entrar</button>
+            </div>
+        </form>
+    </div>
+    <script src="scripts/login/loginValidation.js" type="module"></script>
+    <script src="scripts/login/togglePasswordStatus.js" type="module"></script>
+</body>
+</html>

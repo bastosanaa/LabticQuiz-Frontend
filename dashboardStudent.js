@@ -39,7 +39,14 @@ async function setPage() {
 async function setUserDashboard(user_name, subjects) {
     const main = document.getElementById('main')
     
-    const navBar = NavBar()
+    const navBar = NavBar(
+        {
+            imgSrc: '../assets/menu.svg',
+            title: 'Dashboard',
+            selected: true,
+            anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
+        },
+    )
     main.appendChild(navBar)
     
     const page = document.createElement('div')

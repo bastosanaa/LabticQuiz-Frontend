@@ -1,18 +1,16 @@
-/* 
-<div id="side-bar-header">
-    <div id="side-bar-polvo-img">
-        <img src="./assets/polvo-white.png" alt="icone do app" id="side-bar-polvo-icon">
-    </div>
-    <p id="side-bar-polvo-title">Polvo</p>
-</div>
- */
 
-export function Logo({text = true}) {
+export function Logo({text = true, mode= 'light'}) {
     const logo = document.createElement('div')
     logo.classList.add('logo')
 
     const img = document.createElement('img')
-    img.src = '../assets/polvo-white.svg'
+    if (mode === 'light'){
+        img.src = '../assets/polvo-white.svg'
+        logo.style.color = 'var(--logo-light-color)'
+    } else {
+        img.src = '../assets/polvo.svg'
+        logo.style.color = 'var(--logo-dark-color)'
+    }
     img.classList.add('logo-img')
     logo.appendChild(img)
     
