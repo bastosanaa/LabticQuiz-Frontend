@@ -25,7 +25,7 @@ export function LoginPage() {
     const loginCard = AuthCard({
         title: 'Faça Login',
         buttonParams: Button({
-            text: 'butao',
+            text: 'Entrar',
             size: 'medium',
             action: () => {
                 try {
@@ -53,7 +53,7 @@ export function LoginPage() {
 
         })],
         extraAnchor: {
-            text: 'anchora extra pra mudar senha',
+            text: 'Esqueceu a senha ou deseja trocar?',
             href: ''
         },
     })
@@ -87,13 +87,20 @@ async function tryLogin() {
 
 async function sendUserDataToFetch() {
     
+    console.log(document.getElementsByClassName('login-user-input'))
     const userInput = document.getElementsByClassName('login-user-input')[0].value
+    
     const passwordInput = document.getElementsByClassName('login-password-input')[0].value
 
-    const loginStatus = await userLogin(userInput, passwordInput)
-    return loginStatus
+    // const loginStatus = await userLogin(userInput, passwordInput)
+    // return loginStatus
 }
 
 
+async function sendLoginErrorMessage() {
+    const errorMessage = document.getElementsByClassName('error-message')
+    console.log(errorMessage);
+}
+sendLoginErrorMessage()
 
 LoginPage()
