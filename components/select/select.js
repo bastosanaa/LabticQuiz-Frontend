@@ -16,6 +16,7 @@ export function Select({title, tooltipText = null, options}) {
     selectContainer.append(label)
 
     const select = document.createElement('select')
+    console.log(options);
 
     options.forEach(option => {
         const newOption = document.createElement('option')
@@ -23,7 +24,6 @@ export function Select({title, tooltipText = null, options}) {
 
         if (option.value === '') {
             newOption.value = ''
-            newOption.disabled = 'true'
         }
 
         select.append(newOption)

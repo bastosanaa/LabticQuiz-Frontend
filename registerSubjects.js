@@ -8,6 +8,8 @@ import { getUserbyID } from "./scripts/service.js"
 import { getRoleByToken } from "../scripts/service.js"
 import { Button } from "./components/button/button.js";
 
+import { getAllTeachers } from "../scripts/service.js"
+
 
 async function registerSubject() {
     const main = document.getElementById('main')
@@ -70,9 +72,7 @@ async function registerSubject() {
     const select = Select({
         title: 'Professor',
         tooltipText: 'Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.',
-        options: [{
-            text: 'Selecione um professor'
-        }]
+        options: await setTeachersSelect()
     })
     console.log(input);
     inputDiv.append(input)
@@ -86,6 +86,30 @@ async function registerSubject() {
     page.append(registerForm)
 
     main.append(page)
+}
+
+async function setTeachersSelect() {
+    const token = localStorage.getItem('token')
+    const teachers = await getAllTeachers(token)
+    console.log(teachers);
+    const options = [
+        {
+            text: 'Selecione um professor',
+            value: ''
+        },
+        {
+            text: 'Nenhum professor',
+            value: ''
+        }
+    ]
+    teachers.forEach(teacher => {
+        const option = {
+            text: teacher.name,
+            value: teacher._id
+        }
+        options.push(option)
+    })
+    return options
 }
 
 async function setPage() {
