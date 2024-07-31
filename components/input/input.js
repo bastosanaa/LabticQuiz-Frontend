@@ -39,25 +39,23 @@ export function Input({placeholder,title, required = false, errorMessage = null,
     
     inputContainer.appendChild(input)
 
-    if (errorMessage) {
-        const p = document.createElement('p')
-        p.classList.add('error-message', 'hidden')
+    const errorParagraph = document.createElement('p')
+    p.classList.add('error-message', 'hidden')
 
-
-        p.textContent = errorMessage
-        inputContainer.appendChild(p)
-    }
+    inputContainer.appendChild(p)
+    
     return inputContainer
 }
 
 function checkIfEmpty(input) {
-    const errorMessage = input.parentNode.querySelector('.error-message')
+    const errorMessageParagraph = input.parentNode.querySelector('.error-message')
         if (input.value == "") {
             input.style.border = "1px solid red"
-            errorMessage.classList.remove('hidden')
+            errorMessageParagraph.textContent = 'este campo deve ser preenchido'
+            errorMessageParagraph.classList.remove('hidden')
         } else {
             input.style.border = ""
-            errorMessage.classList.add('hidden')
+            errorMessageParagraph.classList.add('hidden')
         }
 }
 

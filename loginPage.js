@@ -60,13 +60,18 @@ export function LoginPage() {
     body.appendChild(loginCard)
     
 }
+LoginPage()
+
+const userInput = document.querySelector('.login-user-input')
+console.log(userInput);
+const passwordInput = document.querySelector('.login-password-input')
 
 async function tryLogin() {
     const userData = await sendUserDataToFetch()
     console.log(userData);
         if (!userData.ok) {
             //enviar mensagem de erro de login
-            // sendLoginErrorMessage()
+            sendLoginErrorMessage()
             console.log('erro de login');
             
             return
@@ -87,20 +92,23 @@ async function tryLogin() {
 
 async function sendUserDataToFetch() {
     
-    console.log(document.getElementsByClassName('login-user-input'))
-    const userInput = document.getElementsByClassName('login-user-input')[0].value
-    
-    const passwordInput = document.getElementsByClassName('login-password-input')[0].value
+    const userValue =  userInput.value
+    const passwordValue = passwordInput.value
 
-    // const loginStatus = await userLogin(userInput, passwordInput)
-    // return loginStatus
+    if (userValue && passwordValue) {
+        const loginStatus = await userLogin(userValue, passwordValue)
+        return loginStatus
+    }
 }
 
 
 async function sendLoginErrorMessage() {
-    const errorMessage = document.getElementsByClassName('error-message')
-    console.log(errorMessage);
-}
-sendLoginErrorMessage()
 
-LoginPage()
+    const lastErrorMessage = document.getElementsByClassName('error-message')[1]
+    console.log(lastErrorMessage);
+    lastErrorMessage.innerHTML = 'senha e/ou usuário incorretos'
+    lastErrorMessage.classList.remove('hidden')
+
+    userInput.style.borderColor = '#EF4444'
+    passwordInput.style.borderColor = '#EF4444'
+}
