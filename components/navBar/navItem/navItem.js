@@ -19,6 +19,11 @@ export function NavItem({imgSrc, title, anchor = null, dropdownItems = [], actio
 
         navItem.appendChild(img)
         navItem.appendChild(p)
+        if (selected) {
+            const div = document.createElement('div')
+            div.classList.add('selected')
+            navItem.appendChild(div)
+        }
         navItem.appendChild(caret)
         navItem.appendChild(dropdown)
 
@@ -64,6 +69,9 @@ function createDropDown(items) {
         a.setAttribute('href', item.href )
         a.textContent = item.text
         ul.appendChild(a)
+        if (item.selected) {
+            a.style.color = '#FEF08A'
+        }
     })
     div.appendChild(ul)
 

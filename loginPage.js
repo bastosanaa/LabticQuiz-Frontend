@@ -41,7 +41,8 @@ export function LoginPage() {
             required: true,
             title: 'Matricula ou Email',
             errorMessage: 'este campo deve ser preenchido',
-            inputClass: 'login-user-input'
+            inputClass: 'login-user-input',
+            style: 'grey'
         }),
         Input({
             placeholder: 'placeholder',
@@ -49,7 +50,8 @@ export function LoginPage() {
             title: 'Senha',
             errorMessage: 'este campo deve ser preenchido',
             type: 'password',
-            inputClass: 'login-password-input'
+            inputClass: 'login-password-input',
+            style: 'grey'
 
         })],
         extraAnchor: {

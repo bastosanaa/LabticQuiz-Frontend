@@ -3,16 +3,9 @@ import { PageHeader } from "./components/pageHeader/pageHeader.js";
 import { ContentList } from "./components/contentList/contentList.js";
 
 import { getUserbyID } from "./scripts/service.js"
-import  { getSubjectsbyStudent } from "./scripts/service.js"
+import { getRoleByToken } from "../scripts/service.js"
 
-async function getUserName(token) {
-    const user = await getUserbyID(token)
-    const user_name = user.name
-    return user_name    
-}
-
-
-async function createUserDashboard(user_name, subjects) {
+async function createUserDashboard() {
     const main = document.getElementById('main')
     
     const navBar = NavBar({items:
@@ -64,10 +57,11 @@ async function createUserDashboard(user_name, subjects) {
 
 async function setPage() {
     const token = localStorage.getItem('token')
-    const user_name =  await getUserName(token)
-    const subjects = await getSubjectsbyStudent(token)
-    await createUserDashboard(user_name, subjects)
-
+    const user_role = await getRoleByToken(token)
+    console.log(user_role);
+    if (user_role === 'administrador') {
+        await createUserDashboard()
+    }
 }
 
 await setPage()

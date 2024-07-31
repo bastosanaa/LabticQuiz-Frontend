@@ -1,4 +1,4 @@
-export function Input({placeholder,title, required = false, errorMessage = null, type = 'text', inputClass = null}) {
+export function Input({placeholder,title, required = false, errorMessage = null, type = 'text', inputClass = null, style = 'default'}) {
 
     const inputContainer = document.createElement('div')
     inputContainer.classList.add('input-container')
@@ -6,10 +6,13 @@ export function Input({placeholder,title, required = false, errorMessage = null,
     const p = document.createElement('p')
     p.classList.add('input-label')
     p.textContent = title
+    console.log(p);
     inputContainer.appendChild(p)
 
-
     const input = document.createElement('input')
+    if (style === 'grey') {
+        input.style.backgroundColor = 'var(--secondary-white)'
+    }
     if (inputClass) {
         input.classList.add(inputClass)
     }
@@ -40,10 +43,11 @@ export function Input({placeholder,title, required = false, errorMessage = null,
     inputContainer.appendChild(input)
 
     const errorParagraph = document.createElement('p')
-    p.classList.add('error-message', 'hidden')
+    errorParagraph.classList.add('error-message', 'hidden')
 
-    inputContainer.appendChild(p)
+    inputContainer.appendChild(errorParagraph)
     
+    console.log(inputContainer);
     return inputContainer
 }
 
