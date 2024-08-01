@@ -6,7 +6,6 @@ export function Input({placeholder,title, required = false, errorMessage = null,
     const p = document.createElement('p')
     p.classList.add('input-label')
     p.textContent = title
-    console.log(p);
     inputContainer.appendChild(p)
 
     const input = document.createElement('input')
@@ -47,7 +46,6 @@ export function Input({placeholder,title, required = false, errorMessage = null,
 
     inputContainer.appendChild(errorParagraph)
     
-    console.log(inputContainer);
     return inputContainer
 }
 

@@ -9,6 +9,10 @@ import { getRoleByToken } from "../scripts/service.js"
 import { Button } from "./components/button/button.js";
 
 import { getAllTeachers } from "../scripts/service.js"
+import { createSubject } from "../scripts/service.js"
+
+const url = 'http://127.0.0.1:5501'
+
 
 
 async function registerSubject() {
@@ -34,8 +38,6 @@ async function registerSubject() {
             }
         ]
     })
-    console.log(navBar);
-    console.log(main);
     main.appendChild(navBar)
     
     const page = document.createElement('div')
@@ -74,12 +76,15 @@ async function registerSubject() {
         tooltipText: 'Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.',
         options: await setTeachersSelect()
     })
-    console.log(input);
     inputDiv.append(input)
     inputDiv.append(select)
 
     const button = Button({
-        text: 'Cadastrar'
+        text: 'Cadastrar',
+        action: () => {
+            postNewSubject()
+            window.location.href = `${url}/painelSubjects.html`
+        }
     })
     registerForm.append(button)
 
@@ -91,7 +96,6 @@ async function registerSubject() {
 async function setTeachersSelect() {
     const token = localStorage.getItem('token')
     const teachers = await getAllTeachers(token)
-    console.log(teachers);
     const options = [
         {
             text: 'Selecione um professor',
@@ -115,10 +119,23 @@ async function setTeachersSelect() {
 async function setPage() {
     const token = localStorage.getItem('token')
     const user_role = await getRoleByToken(token)
-    console.log(user_role);
     if (user_role === 'administrador') {
         await registerSubject()
     }
 }
 
 await setPage()
+
+async function postNewSubject() {
+    const token = localStorage.getItem('token')
+
+    const subjectName = document.querySelector('input').value
+    const selectedTeacher = document.querySelector('select').value
+
+    
+    await createSubject(token, subjectName, selectedTeacher)
+    console.log(subjectName)
+    console.log(selectedTeacher);
+}
+
+postNewSubject()
