@@ -5,10 +5,10 @@ export function Logo({text = true, mode= 'light'}) {
 
     const img = document.createElement('img')
     if (mode === 'light'){
-        img.src = '../assets/polvo-white.svg'
+        img.src = '/assets/polvo-white.svg'
         logo.style.color = 'var(--logo-light-color)'
     } else {
-        img.src = '../assets/polvo.svg'
+        img.src = '/assets/polvo.svg'
         logo.style.color = 'var(--logo-dark-color)'
     }
     img.classList.add('logo-img')

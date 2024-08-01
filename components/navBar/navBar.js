@@ -32,12 +32,12 @@ export function NavBar({items = []}) {
     const footer = document.createElement('div')
     footer.classList.add('nav-footer')
     const signOut = NavItem({
-        imgSrc: '../assets/password.svg',
+        imgSrc: '/assets/password.svg',
         title: 'Trocar senha',
 
     }) 
     const signOut2 = NavItem({
-        imgSrc: '../assets/sign-out.svg',
+        imgSrc: '/assets/sign-out.svg',
         title: 'Encerrar sessão',
         action: () => {
             const dialog = Dialog({

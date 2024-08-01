@@ -11,7 +11,7 @@ export function NavItem({imgSrc, title, anchor = null, dropdownItems = [], actio
         navItem.classList.add('nav-item')
         
         const caret = document.createElement('img')
-        caret.setAttribute('src', '../assets/caret-down.svg')
+        caret.setAttribute('src', '/assets/caret-down.svg')
 
         const dropdown = createDropDown(dropdownItems)
         dropdown.classList.add('hidden')

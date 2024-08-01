@@ -1,11 +1,11 @@
-import { Button } from "./components/button/button.js";
-import { ContentItem } from "./components/contentItem/contentItem.js";
-import { NavBar } from "./components/navBar/navBar.js";
-import { PageHeader } from "./components/pageHeader/pageHeader.js";
-import { ContentList } from "./components/contentList/contentList.js";
+import { Button } from "./../../../components/button/button.js";
+import { ContentItem } from "./../../../components/contentItem/contentItem.js";
+import { NavBar } from "./../../../components/navBar/navBar.js";
+import { PageHeader } from "./../../../components/pageHeader/pageHeader.js";
+import { ContentList } from "./../../../components/contentList/contentList.js";
 
-import { getUserbyID } from "./scripts/service.js"
-import  { getSubjectsbyStudent } from "./scripts/service.js"
+import { getUserbyID } from "/../../../scripts/service.js"
+import  { getSubjectsbyStudent } from "/../../scripts/service.js"
 
 async function getUserName(token) {
     const user = await getUserbyID(token)
@@ -41,7 +41,7 @@ async function setUserDashboard(user_name, subjects) {
     
     const navBar = NavBar(
         {
-            imgSrc: '../assets/menu.svg',
+            imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: true,
             anchor: 'http://127.0.0.1:5501/dashboardAdm.html',

@@ -1,9 +1,9 @@
-import { NavBar } from "./components/navBar/navBar.js";
-import { PageHeader } from "./components/pageHeader/pageHeader.js";
-import { ContentList } from "./components/contentList/contentList.js";
+import { NavBar } from "../../../components/navBar/navBar.js";
+import { PageHeader } from "../../../components/pageHeader/pageHeader.js";
+import { ContentList } from "../../../components/contentList/contentList.js";
 
-import { getUserbyID } from "./scripts/service.js"
-import { getRoleByToken } from "../scripts/service.js"
+import { getUserbyID } from "../../../scripts/service.js"
+import { getRoleByToken } from "../../../scripts/service.js"
 
 async function createUserDashboard() {
     const main = document.getElementById('main')
@@ -11,18 +11,18 @@ async function createUserDashboard() {
     const navBar = NavBar({items:
         [
             {
-                imgSrc: '../assets/menu.svg',
+                imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
+                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
             },
             {
-                imgSrc: '../assets/books.svg',
+                imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 dropdownItems: [
                     {text:'alunos', href:''},
                     {text:'professores', href:''},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/painelSubjects.html'}
+                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubjects.html'}
                 ]
 
             }

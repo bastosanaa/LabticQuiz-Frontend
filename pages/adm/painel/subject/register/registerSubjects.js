@@ -1,12 +1,12 @@
-import { NavBar } from "./components/navBar/navBar.js";
-import { PageHeader } from "./components/pageHeader/pageHeader.js";
-import { ContentList } from "./components/contentList/contentList.js";
-import { Input } from "./components/input/input.js"
-import { Select } from "./components/select/select.js";
+import { NavBar } from "../../../../../components/navBar/navBar.js";
+import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
+import { ContentList } from "../../../../../components/contentList/contentList.js";
+import { Input } from "../../../../../components/input/input.js"
+import { Select } from "../../../../../components/select/select.js";
 
-import { getUserbyID } from "./scripts/service.js"
+import { getUserbyID } from "../../../../../scripts/service.js"
 import { getRoleByToken } from "../scripts/service.js"
-import { Button } from "./components/button/button.js";
+import { Button } from "../../../../../components/button/button.js";
 
 import { getAllTeachers } from "../scripts/service.js"
 import { createSubject } from "../scripts/service.js"
@@ -21,12 +21,12 @@ async function registerSubject() {
     const navBar = NavBar({items:
         [
             {
-                imgSrc: '../assets/menu.svg',
+                imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
                 anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
             },
             {
-                imgSrc: '../assets/books.svg',
+                imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 dropdownItems: [
                     {text:'alunos', href:''},

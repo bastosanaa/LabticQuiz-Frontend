@@ -1,7 +1,7 @@
-import { AuthCard } from "./components/authCard/authCard.js"
-import { Input } from "./components/input/input.js"
-import { Button } from "./components/button/button.js"
-import { Logo } from "./components/logo/logo.js"
+import { AuthCard } from "../components/authCard/authCard.js"
+import { Input } from "../components/input/input.js"
+import { Button } from "../components/button/button.js"
+import { Logo } from "../components/logo/logo.js"
 
 import { userLogin } from "../scripts/service.js";
 import { getRoleByToken } from "../scripts/service.js"
@@ -62,6 +62,7 @@ export function LoginPage() {
     body.appendChild(loginCard)
     
 }
+
 LoginPage()
 
 const userInput = document.querySelector('.login-user-input')
@@ -70,26 +71,28 @@ const passwordInput = document.querySelector('.login-password-input')
 
 async function tryLogin() {
     const userData = await sendUserDataToFetch()
-    console.log(userData);
+
         if (!userData.ok) {
-            //enviar mensagem de erro de login
+            //mostrar mensagem de erro de login na tela
             sendLoginErrorMessage()
             console.log('erro de login');
-            
             return
         }
         const data = await userData.json()
         const token = data.token
-        console.log(token);
         localStorage.setItem('token', token)
-        // verifica qual a role do usuario pelo token
-        const user_role = await getRoleByToken(token)
-        if (user_role == "estudante") {
-            window.location.href = `${url}/dashboardStudent.html`
-        }
-        if (user_role == "administrador") {
-            window.location.href = `${url}/dashboardAdm.html`
-        }
+        await redirectUserPage(token)
+        
+}
+
+async function redirectUserPage(token) {
+    const user_role = await getRoleByToken(token)
+    if (user_role == "estudante") {
+        window.location.href = `${url}/pages/student/dashboard/dashboardStudent.html`
+    }
+    if (user_role == "administrador") {
+        window.location.href = `${url}/pages/adm/dashboard/dashboardAdm.html`
+    }
 }
 
 async function sendUserDataToFetch() {
