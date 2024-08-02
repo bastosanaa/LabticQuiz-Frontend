@@ -1,11 +1,4 @@
 
-const userInput = document.getElementById("user-input");
-const submitBtn = document.getElementById("submit")
-const studentName = document.getElementById("user-name")
-const subjectsList = document.getElementById("section-content-list")
-const sectionContent = document.querySelector(".section-subject-content")
-const notFoundMessage = document.getElementById("no-data-found-wrapper")
-
 const url = "http://localhost:3333/api"
 
 //User

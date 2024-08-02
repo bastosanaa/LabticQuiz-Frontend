@@ -25,11 +25,11 @@ async function setNumberOfSubjects(subjects) {
 }
 //navigation
 backBtn.addEventListener('click', () => {
-    window.location.href = `${url}/dashboardAdm.html`
+    window.location.href = `${url}/pages/adm/dashboard/dashboardAdm.html`
 })
 
 createSubjectBtn.addEventListener('click', () => {
-    window.location.href = `${url}/cadastroSubjects.html`
+    window.location.href = `${url}/pages/adm/painel/subject/register/registerSubjetc.html`
 })
 
 //setPainel
@@ -85,7 +85,7 @@ async function createRow(subject) {
     const aEditBtn = document.createElement('a')
     aEditBtn.textContent = 'Editar'
     aEditBtn.id = 'edit-btn'
-    aEditBtn.href = `${url}/edicaoSubjects.html?id=${subject._id}`
+    aEditBtn.href = `${url}/pages/adm/painel/subject/edit/editSubject.html?id=${subject._id}`
     aEditBtn.classList.add('crud-anchor')
 
     tdActions.appendChild(aEditBtn)

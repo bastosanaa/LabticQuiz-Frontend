@@ -6,6 +6,7 @@ import { Select } from "../../../../../components/select/select.js";
 
 import { createSubject,getAllTeachers, getRoleByToken, getUserbyID } from "../../../../../scripts/service.js"
 import { Button } from "../../../../../components/button/button.js";
+import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
 
 // import { getAllTeachers } from "../../scripts/service.js"
 // import { createSubject } from "../../scripts/service.js"
@@ -94,30 +95,6 @@ async function registerSubject() {
     main.append(page)
 }
 
-async function setTeachersSelect() {
-    const token = localStorage.getItem('token')
-    const teachers = await getAllTeachers(token)
-    const options = [
-        {
-            text: 'Selecione um professor',
-            value: ''
-        },
-        {
-            text: 'Nenhum professor',
-            value: ''
-        }
-    ]
-    teachers.forEach(teacher => {
-        const option = {
-            text: teacher.name,
-            value: teacher._id
-        }
-        options.push(option)
-    })
-    console.log(options);
-    
-    return options
-}
 
 async function setPage() {
     const token = localStorage.getItem('token')
@@ -127,16 +104,16 @@ async function setPage() {
     }
 }
 
-await setPage()
-
 async function postNewSubject() {
     const token = localStorage.getItem('token')
-
+    
     const subjectName = document.querySelector('input').value
     const selectedTeacher = document.querySelector('select').value
-
+    
     
     console.log(subjectName)
     console.log(selectedTeacher);
     await createSubject(token, subjectName, selectedTeacher)
 }
+
+await setPage()

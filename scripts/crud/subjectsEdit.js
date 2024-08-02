@@ -24,8 +24,6 @@ async function setEditPage() {
     } else {
         console.log(subject.subject_teacher);
         subjectSelectTeacher.value = ''
-        
-        
     }
     
 }
@@ -37,8 +35,6 @@ saveChangesButton.addEventListener('click', async () => {
     await sendNewSubjectData()
     window.location.href = `${url}/painelSubjects.html`
 })
-
-    
 
 async function sendNewSubjectData() {
     const token = localStorage.getItem('token')
