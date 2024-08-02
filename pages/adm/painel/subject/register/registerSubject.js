@@ -4,12 +4,11 @@ import { ContentList } from "../../../../../components/contentList/contentList.j
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 
-import { getUserbyID } from "../../../../../scripts/service.js"
-import { getRoleByToken } from "../scripts/service.js"
+import { createSubject,getAllTeachers, getRoleByToken, getUserbyID } from "../../../../../scripts/service.js"
 import { Button } from "../../../../../components/button/button.js";
 
-import { getAllTeachers } from "../scripts/service.js"
-import { createSubject } from "../scripts/service.js"
+// import { getAllTeachers } from "../../scripts/service.js"
+// import { createSubject } from "../../scripts/service.js"
 
 const url = 'http://127.0.0.1:5501'
 
@@ -76,13 +75,15 @@ async function registerSubject() {
         tooltipText: 'Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.',
         options: await setTeachersSelect()
     })
+
+    
     inputDiv.append(input)
     inputDiv.append(select)
 
     const button = Button({
         text: 'Cadastrar',
-        action: () => {
-            postNewSubject()
+        action: async () => {
+            await postNewSubject()
             window.location.href = `${url}/painelSubjects.html`
         }
     })
@@ -113,6 +114,8 @@ async function setTeachersSelect() {
         }
         options.push(option)
     })
+    console.log(options);
+    
     return options
 }
 
@@ -133,9 +136,7 @@ async function postNewSubject() {
     const selectedTeacher = document.querySelector('select').value
 
     
-    await createSubject(token, subjectName, selectedTeacher)
     console.log(subjectName)
     console.log(selectedTeacher);
+    await createSubject(token, subjectName, selectedTeacher)
 }
-
-postNewSubject()

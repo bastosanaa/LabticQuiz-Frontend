@@ -8,7 +8,7 @@ export function Select({title, tooltipText = null, options}) {
 
     if (tooltipText) {
         const tooltip = document.createElement('img')
-        tooltip.setAttribute('src', './assets/question.svg' )
+        tooltip.setAttribute('src', '/assets/question.svg' )
         tooltip.setAttribute('alt', 'interrogação')
         tooltip.setAttribute('title', tooltipText)
         label.appendChild(tooltip)
@@ -25,6 +25,8 @@ export function Select({title, tooltipText = null, options}) {
         if (option.value === '') {
             newOption.value = ''
         }
+
+        newOption.value = option.value
 
         select.append(newOption)
     })

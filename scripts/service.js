@@ -122,6 +122,8 @@ export async function getAllTeachers(token) {
 }
 
 export async function createSubject(token, name, teacher_id) {
+    console.log('entrou no create');
+    
     let newSubject = {}
     if (!teacher_id) {
         newSubject = {name: name}
