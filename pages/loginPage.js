@@ -85,6 +85,7 @@ async function tryLogin() {
         
 }
 
+//refatorar utilizando dicionario
 async function redirectUserPage(token) {
     const user_role = await getRoleByToken(token)
     if (user_role == "estudante") {

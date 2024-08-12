@@ -22,7 +22,7 @@ async function createUserDashboard() {
                 dropdownItems: [
                     {text:'alunos', href:''},
                     {text:'professores', href:''},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubjects.html'}
+                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
                 ]
 
             }

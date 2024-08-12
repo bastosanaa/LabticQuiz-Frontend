@@ -28,11 +28,21 @@ export function Table({columns = [], rows=[]}) {
     const tbody = document.createElement('tbody')
     table.appendChild(tbody)
 
+    console.log(rows);
+    
+
     rows.forEach(row => {
+        console.log(row.name);
+        
         const bodyTr = document.createElement('tr')
-        row.forEach(data => {
+        var colums_counter = 0
+        Object.values(row).forEach(data => {
+            // if (colums_counter == columns.length) {
+            //     return
+            // }
             const td = document.createElement('td')
             td.textContent = data
+            colums_counter += 1
             bodyTr.appendChild(td)
 
         })

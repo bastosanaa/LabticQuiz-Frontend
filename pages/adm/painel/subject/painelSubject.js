@@ -1,0 +1,66 @@
+import { NavBar } from "../../../../components/navBar/navBar.js";
+import { PageHeader } from "../../../../components/pageHeader/pageHeader.js";
+import { ContentList } from "../../../../components/contentList/contentList.js";
+import { Table } from "../../../../components/table/table.js";
+
+
+
+import { getAllSubjects, getUserbyID } from "../../../../scripts/service.js"
+import { getRoleByToken } from "../../../../scripts/service.js"
+
+const token = localStorage.getItem('token')
+
+async function createPainelSubject() {
+    const body = document.querySelector('body')
+
+    const navBar = NavBar({items:
+        [
+            {
+                imgSrc: '/assets/menu.svg',
+                title: 'Dashboard',
+                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+            },
+            {
+                imgSrc: '/assets/books.svg',
+                title: 'Painel',
+                selected: true,
+                dropdownItems: [
+                    {text:'alunos', href:''},
+                    {text:'professores', href:''},
+                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected: true}
+                ]
+
+            }
+        ]
+    })
+
+    body.append(navBar)
+
+    const page = document.createElement('div')
+    page.classList.add('page')
+
+    const header = PageHeader({
+        title_text: 'Disciplinas',
+        back_btn: true,
+        back_btn_address: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+        subtitle_text: `numero personalizado de disciplinas`
+    })
+
+    page.append(header)
+
+    const table = Table({
+        columns: ['Nome', 'Professor', 'Quiz'],
+        rows: await getAllSubjects(token)
+    })
+
+    page.append(table)
+
+    body.append(page)
+}
+
+await createPainelSubject()
+
+const subjects = await getAllSubjects(token)
+console.log((subjects));
+
+
