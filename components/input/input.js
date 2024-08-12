@@ -30,7 +30,7 @@ export function Input({placeholder,title, required = false, errorMessage = null,
     if (type === 'password') {
         const togglePassword = document.createElement('img')
         togglePassword.classList.add('toggle-password')
-        togglePassword.setAttribute('src', 'assets/eye.svg' )
+        togglePassword.setAttribute('src', '/assets/eye.svg' )
 
         togglePassword.addEventListener('click', () => {
             togglePasswordStatus(togglePassword)}
@@ -65,12 +65,12 @@ function togglePasswordStatus(togglePassword) {
     let currentSrc = togglePassword.getAttribute('src')
     const input = togglePassword.parentNode.querySelector('input')
 
-    if (currentSrc === "assets/eye.svg") {
-        togglePassword.setAttribute('src', 'assets/crossed-eye.svg' )
+    if (currentSrc === "/assets/eye.svg") {
+        togglePassword.setAttribute('src', '/assets/crossed-eye.svg' )
 
         input.setAttribute('type', 'text')
         return
     }
-    togglePassword.setAttribute('src', 'assets/eye.svg' )
+    togglePassword.setAttribute('src', '/assets/eye.svg' )
     input.setAttribute('type', 'password')
 }
