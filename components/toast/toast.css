@@ -1,0 +1,47 @@
+:root {
+    --success-primary-color: #D1FAE5;
+    --success-secondary-color: #34D399;
+}
+
+.toast {
+    visibility: hidden;
+    z-index: 1;
+    right: 40px ;
+    bottom: 30px;
+    width: 360px;
+    padding: 12px 20px;
+    background-color: var(--success-primary-color);
+    display: flex;
+    line-height: 1.5rem;
+    border-radius: 6px;
+    border-left: 5px solid var(--success-secondary-color);
+    gap: 0.5rem;
+    position: fixed;
+    align-items: flex-start;
+}
+
+.toast h1 {
+    font-weight: 600;
+}
+
+.toast .close-icon {
+    position: absolute;
+    right: 20px;
+    opacity: 30%;
+    cursor: pointer;
+}
+
+.toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

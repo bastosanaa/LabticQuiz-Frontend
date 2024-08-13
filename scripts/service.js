@@ -135,6 +135,8 @@ export async function createSubject(token, name, teacher_id) {
 }
 
 export async function deleteSubject(token, subject_id) {
+    console.log(subject_id);
+    
     const response = await fetch(`${url}/subjects`, {
         method: 'DELETE',
         headers: {

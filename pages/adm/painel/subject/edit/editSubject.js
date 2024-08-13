@@ -24,7 +24,7 @@ async function editSubject() {
                 dropdownItems: [
                     {text:'alunos', href:''},
                     {text:'professores', href:''},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/painelSubjects.html', selected:true}
+                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected:true}
                 ],
                 selected: true
 
@@ -39,6 +39,7 @@ async function editSubject() {
     const header = PageHeader({
         title_text: 'Edição da disciplina',
         back_btn: true,
+        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
     })
     page.append(header)
 
@@ -81,7 +82,7 @@ async function editSubject() {
         text: 'Salvar alterações',
         action: async () => {
             await sendNewSubjectData()
-            window.location.href = `http://127.0.0.1:5501//painelSubjects.html`
+            window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
         }
     })
 

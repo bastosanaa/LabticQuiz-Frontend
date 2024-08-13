@@ -1,4 +1,7 @@
-export function Table({columns = [], rows=[], parser}) {
+
+import { Dialog } from "../dialog/dialog.js"
+
+export function Table({columns = [], rows=[], parser, removeAction}) {
     const table = document.createElement('table')
 
     //table head
@@ -48,10 +51,44 @@ export function Table({columns = [], rows=[], parser}) {
         const aRemoveBtn = document.createElement('a')
         aRemoveBtn.textContent = 'Remover'
         aRemoveBtn.classList.add('crud-anchor')
+        aRemoveBtn.addEventListener('click', () => {
+            const token = localStorage.getItem('token')
+            const dialog = Dialog({
+                header: 'Tem certeza?',
+                description: 'um texto qualquer que vou ter que arrumar depois',
+                buttons: [
+                    {
+                        type: 'outline',
+                        size: 'small',
+                        text: 'Cancelar',
+                        action: () => {
+                            dialog.close()
+                        }
+                    },
+                    {
+                        type: 'destructive',
+                        size: 'small',
+                        text: 'Excluir',
+                        action: () => {
+                            removeAction(token,row._id)
+                            dialog.close()
+                            window.location.reload(true)
+                        }
+                    }
+                ]
+                
+            })
+            const body = document.querySelector('body')
+            body.append(dialog)
+            dialog.showModal()
+        })
         tdAnchor.appendChild(aRemoveBtn)
 
+
         const aEditBtn = document.createElement('a')
+        const id = row._id
         aEditBtn.textContent = 'Editar'
+        aEditBtn.setAttribute('href', `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html?id=${id}`)
         aEditBtn.classList.add('crud-anchor')
         tdAnchor.appendChild(aEditBtn)
         bodyTr.appendChild(tdAnchor)

@@ -11,6 +11,7 @@
 @import url('../components/authCard/authCard.css');
 @import url('../components/table/table.css');
 @import url('../components/select/select.css');
+@import url('../components/toast/toast.css');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

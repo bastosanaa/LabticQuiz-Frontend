@@ -5,10 +5,11 @@ import { Table } from "../../../../components/table/table.js";
 
 
 
-import { getAllSubjects, getUserbyID } from "../../../../scripts/service.js"
+import { deleteSubject, getAllSubjects, getUserbyID } from "../../../../scripts/service.js"
 import { getRoleByToken } from "../../../../scripts/service.js"
 import { subjectTableParser } from "./subjectTableParser.js";
 import { Button } from "../../../../components/button/button.js";
+import { Toast } from "../../../../components/toast/toast.js";
 
 const token = localStorage.getItem('token')
 
@@ -73,10 +74,17 @@ async function createPainelSubject() {
     const table = Table({
         columns: ['Nome', 'Professor', 'Quiz'],
         rows: subjects,
-        parser: subjectTableParser
+        parser: subjectTableParser,
+        removeAction: deleteSubject
+    })
+    
+    page.append(table)
+
+    const toast = Toast({
+        message: 'Disciplina removida com sucesso'
     })
 
-    page.append(table)
+    page.append(toast)
 
     body.append(page)
 }
