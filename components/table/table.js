@@ -1,4 +1,4 @@
-export function Table({columns = [], rows=[]}) {
+export function Table({columns = [], rows=[], parser}) {
     const table = document.createElement('table')
 
     //table head
@@ -32,20 +32,17 @@ export function Table({columns = [], rows=[]}) {
     
 
     rows.forEach(row => {
-        console.log(row.name);
+        const parsedRowObj = parser(row)
+        // console.log(parsedRowObj)
         
         const bodyTr = document.createElement('tr')
-        var colums_counter = 0
-        Object.values(row).forEach(data => {
-            // if (colums_counter == columns.length) {
-            //     return
-            // }
+        columns.forEach(column  => {
+            const data = parsedRowObj[column.toLowerCase()]
             const td = document.createElement('td')
             td.textContent = data
-            colums_counter += 1
             bodyTr.appendChild(td)
-
         })
+
         const tdAnchor = document.createElement('td')
 
         const aRemoveBtn = document.createElement('a')

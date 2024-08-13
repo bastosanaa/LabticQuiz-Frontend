@@ -7,6 +7,8 @@ import { Table } from "../../../../components/table/table.js";
 
 import { getAllSubjects, getUserbyID } from "../../../../scripts/service.js"
 import { getRoleByToken } from "../../../../scripts/service.js"
+import { subjectTableParser } from "./subjectTableParser.js";
+import { Button } from "../../../../components/button/button.js";
 
 const token = localStorage.getItem('token')
 
@@ -39,18 +41,39 @@ async function createPainelSubject() {
     const page = document.createElement('div')
     page.classList.add('page')
 
+    const subjects = await getAllSubjects(token)
+
+    const pageHeader = document.createElement('div')
+    pageHeader.classList.add('page-header')
+
     const header = PageHeader({
         title_text: 'Disciplinas',
         back_btn: true,
         back_btn_address: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
-        subtitle_text: `numero personalizado de disciplinas`
+        subtitle_text: `${subjects.length} disciplinas cadastradas`
     })
 
-    page.append(header)
+    const button = Button({
+        type: 'default',
+        size: 'medium',
+        text: 'Cadastrar',
+        imgSrc: '/assets/register.svg',
+        action: () => {
+            window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/subject/register/registerSubjetc.html'
+        }
+
+    })
+
+    pageHeader.append(header)
+    pageHeader.append(button)
+
+    page.append(pageHeader)
+
 
     const table = Table({
         columns: ['Nome', 'Professor', 'Quiz'],
-        rows: await getAllSubjects(token)
+        rows: subjects,
+        parser: subjectTableParser
     })
 
     page.append(table)

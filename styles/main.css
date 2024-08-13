@@ -38,6 +38,11 @@ time, mark, audio, video,select {
     width: calc(100vw - 250px);
 }
 
+.page-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 #main {
     display: flex;
 }

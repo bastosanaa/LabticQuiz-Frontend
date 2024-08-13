@@ -31,7 +31,7 @@ async function registerSubject() {
                 dropdownItems: [
                     {text:'alunos', href:''},
                     {text:'professores', href:''},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/painelSubjects.html', selected:true}
+                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected:true}
                 ],
                 selected: true
 
@@ -46,6 +46,7 @@ async function registerSubject() {
     const header = PageHeader({
         title_text: 'Cadastro da disciplina',
         back_btn: true,
+        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
     })
     page.append(header)
     
@@ -85,7 +86,7 @@ async function registerSubject() {
         text: 'Cadastrar',
         action: async () => {
             await postNewSubject()
-            window.location.href = `${url}/painelSubjects.html`
+            window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html`
         }
     })
     registerForm.append(button)

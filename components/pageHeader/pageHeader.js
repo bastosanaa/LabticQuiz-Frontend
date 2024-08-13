@@ -11,6 +11,9 @@ export function PageHeader({title_text, subtitle_text = null, subtitle_size = 'n
         img.classList.add('back-btn')
         img.src = '/assets/caret-back.svg'
         title_div.appendChild(img)
+        img.addEventListener('click', () => {
+            window.location.href = back_btn_address
+        })
     }
 
     const title = document.createElement('p')
