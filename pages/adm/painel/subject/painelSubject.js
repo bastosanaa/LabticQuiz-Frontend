@@ -75,16 +75,22 @@ async function createPainelSubject() {
         columns: ['Nome', 'Professor', 'Quiz'],
         rows: subjects,
         parser: subjectTableParser,
-        removeAction: deleteSubject
+        removeAction: async (token,id) => {
+            await deleteSubject(token,id)
+            const toast = Toast({
+                message: 'Disciplina removida com sucesso'
+            })
+            body.append(toast)
+        }
     })
     
     page.append(table)
 
-    const toast = Toast({
-        message: 'Disciplina removida com sucesso'
-    })
+    // const toast = Toast({
+    //     message: 'Disciplina removida com sucesso'
+    // })
 
-    page.append(toast)
+    // page.append(toast)
 
     body.append(page)
 }
@@ -93,5 +99,6 @@ await createPainelSubject()
 
 const subjects = await getAllSubjects(token)
 console.log((subjects));
+
 
 

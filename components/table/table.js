@@ -1,7 +1,9 @@
 
 import { Dialog } from "../dialog/dialog.js"
+import { Toast } from "../toast/toast.js"
 
 export function Table({columns = [], rows=[], parser, removeAction}) {
+    const body = document.querySelector('body')
     const table = document.createElement('table')
 
     //table head
@@ -72,13 +74,18 @@ export function Table({columns = [], rows=[], parser, removeAction}) {
                         action: () => {
                             removeAction(token,row._id)
                             dialog.close()
-                            window.location.reload(true)
+                            const toast = Toast({
+                                message: 'Disciplina removida com sucesso',
+                                reloadPage: true
+                            })
+                            body.append(toast)
+                                
                         }
                     }
                 ]
                 
             })
-            const body = document.querySelector('body')
+            
             body.append(dialog)
             dialog.showModal()
         })

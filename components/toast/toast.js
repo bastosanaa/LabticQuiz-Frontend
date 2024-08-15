@@ -1,6 +1,6 @@
 
 
-export function Toast({type= 'success', message}) {
+export function Toast({type= 'success', message, reloadPage=false}) {
 
     const toast = document.createElement('div')
     toast.classList.add('toast', 'show')
@@ -28,9 +28,20 @@ export function Toast({type= 'success', message}) {
     toast.append(toastText)
     toast.append(closeIcon)
     
-    setTimeout(() => {
-        toast.className = toast.className.replace("show", "");
-    }, 3000);
+    const toastTimeOut = setTimeout(hideToast, 3000);
+    
+    closeIcon.addEventListener('click', () => {
+        clearTimeout(toastTimeOut);
+        hideToast()
+    });
+
+    function hideToast() {
+        toast.classList.remove("show");
+        console.log(toast.classList);
+        if (reloadPage) {
+            window.location.reload(true)
+        }
+    }
     
     console.log(toast);
     
