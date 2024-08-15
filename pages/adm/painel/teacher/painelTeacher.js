@@ -76,9 +76,10 @@ async function createPainelTeacher() {
         rows: teachers,
         parser: teacherTableParser,
         removeAction: async (token,id) => {
-            // await deleteUserByID(token,id)
+            await deleteUserByID(token,id)
             const toast = Toast({
-                message: 'Professor removido com sucesso'
+                message: 'Professor removido com sucesso',
+                reloadPage:true
             })
             body.append(toast)
         }

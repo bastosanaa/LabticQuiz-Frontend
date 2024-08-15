@@ -75,7 +75,8 @@ async function createPainelStudent() {
         removeAction: async (token,id) => {
             await deleteUserByID(token,id)
             const toast = Toast({
-                message: 'Aluno desmatriculado com sucesso'
+                message: 'Aluno desmatriculado com sucesso',
+                reloadPage: true
             })
             body.append(toast)
         }

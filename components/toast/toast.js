@@ -37,13 +37,10 @@ export function Toast({type= 'success', message, reloadPage=false}) {
 
     function hideToast() {
         toast.classList.remove("show");
-        console.log(toast.classList);
         if (reloadPage) {
             window.location.reload(true)
         }
     }
-    
-    console.log(toast);
     
     return toast
 }

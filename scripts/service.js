@@ -23,8 +23,8 @@ async function getAllUsers() {
 }
 
 export async function deleteUserByID(token, user_id) {
-    const response = await fetch(`${url}/users
-    `, {
+    console.log(user_id);
+    const response = await fetch(`${url}/users`, {
         method: "DELETE",
         mode: "cors",
         headers: {
