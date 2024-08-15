@@ -20,8 +20,8 @@ async function createUserDashboard() {
                 imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 dropdownItems: [
-                    {text:'alunos', href:''},
-                    {text:'professores', href:''},
+                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
+                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
                     {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
                 ]
 
@@ -43,8 +43,8 @@ async function createUserDashboard() {
         title_text: 'Opções',
         content_items: [
             //passar as acoes aqui
-            {text: 'Alunos', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'},
-            {text: 'Professores', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'},
+            {text: 'Alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
+            {text: 'Professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
             {text: 'Disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
         ],
     })

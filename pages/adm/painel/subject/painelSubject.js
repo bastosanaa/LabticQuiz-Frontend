@@ -25,7 +25,7 @@ async function createPainelSubject() {
                 selected: true,
                 dropdownItems: [
                     {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-                    {text:'professores', href:''},
+                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
                     {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected: true}
                 ]
 

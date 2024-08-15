@@ -1,6 +1,5 @@
 import { NavBar } from "../../../../components/navBar/navBar.js";
 import { PageHeader } from "../../../../components/pageHeader/pageHeader.js";
-import { ContentList } from "../../../../components/contentList/contentList.js";
 import { Table } from "../../../../components/table/table.js";
 import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
@@ -26,7 +25,7 @@ async function createPainelStudent() {
                 selected: true,
                 dropdownItems: [
                     {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html', selected:true},
-                    {text:'professores', href:''},
+                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
                     {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
                 ]
 
