@@ -75,7 +75,8 @@ async function createPainelSubject() {
         removeAction: async (token,id) => {
             await deleteSubject(token,id)
             const toast = Toast({
-                message: 'Disciplina removida com sucesso'
+                message: 'Disciplina removida com sucesso',
+                reloadPage: true
             })
             body.append(toast)
         }

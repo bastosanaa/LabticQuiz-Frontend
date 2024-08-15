@@ -74,11 +74,6 @@ export function Table({columns = [], rows=[], parser, removeAction}) {
                         action: () => {
                             removeAction(token,row._id)
                             dialog.close()
-                            const toast = Toast({
-                                message: 'Disciplina removida com sucesso',
-                                reloadPage: true
-                            })
-                            body.append(toast)
                                 
                         }
                     }
