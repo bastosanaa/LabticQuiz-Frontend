@@ -22,16 +22,16 @@ async function getAllUsers() {
     return users
 }
 
-async function deleteUserByID(token) {
+export async function deleteUserByID(token, user_id) {
     const response = await fetch(`${url}/users
     `, {
-        method: "delete",
+        method: "DELETE",
         mode: "cors",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token
-
         },
+        body: JSON.stringify({id: user_id})
 
     })
     const deletedUser = await response.json()
@@ -99,7 +99,7 @@ export async function getAllSubjects(token) {
     return subjects
 }
 
-//create - Subjects
+//create - Subjects and Painel - Teachers
 export async function getAllTeachers(token) {
     const response = await fetch (`${url}/users/teachers`, {
         method: "GET",
@@ -112,6 +112,20 @@ export async function getAllTeachers(token) {
 
     const teachers = await response.json()
     return teachers
+}
+
+//Painel - students
+export async function getAllStudents(token){
+    const response = await fetch(`${url}/users/students`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        }
+    })
+    const students = await response.json()
+    return students
 }
 
 export async function createSubject(token, name, teacher_id) {

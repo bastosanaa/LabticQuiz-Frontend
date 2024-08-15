@@ -42,7 +42,7 @@ export function Table({columns = [], rows=[], parser, removeAction}) {
         
         const bodyTr = document.createElement('tr')
         columns.forEach(column  => {
-            const data = parsedRowObj[column.toLowerCase()]
+            const data = parsedRowObj[removeAccentsAndCapitalLetters(column)]
             const td = document.createElement('td')
             td.textContent = data
             bodyTr.appendChild(td)
@@ -102,6 +102,10 @@ export function Table({columns = [], rows=[], parser, removeAction}) {
         tbody.appendChild(bodyTr)
     })
 
+    function removeAccentsAndCapitalLetters(str) {
+        const lowerCasedStr = str.toLowerCase()
+        return lowerCasedStr.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
     
 
 
