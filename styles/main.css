@@ -60,5 +60,27 @@ time, mark, audio, video,select {
     justify-content: center;
     background-size: cover;
     background-repeat: no-repeat;
-    
+}
+
+.register-form {
+    margin-left: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.crud-input-div {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.crud-input {
+    flex: 1 0 48%;
+    margin-bottom: 1rem;
+
 }

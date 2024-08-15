@@ -1,6 +1,5 @@
 import { NavBar } from "../../../../../components/navBar/navBar.js";
 import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
-import { ContentList } from "../../../../../components/contentList/contentList.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 
