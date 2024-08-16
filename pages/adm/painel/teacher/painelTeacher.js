@@ -62,7 +62,7 @@ async function createPainelTeacher() {
         text: 'Cadastrar',
         imgSrc: '/assets/register.svg',
         action: () => {
-            window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/register/registerStudent.html'
+            window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/teacher/register/registerTeacher.html'
         }
     
     })

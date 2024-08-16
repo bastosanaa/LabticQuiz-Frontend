@@ -6,6 +6,8 @@ import { Select } from "../../../../../components/select/select.js";
 import { createSubject,getAllTeachers, getRoleByToken, getUserbyID } from "../../../../../scripts/service.js"
 import { Button } from "../../../../../components/button/button.js";
 import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
+import { checkIfAllInputsFiled } from "../../../../utils/api.js";
+import { Toast } from "../../../../../components/toast/toast.js";
 
 // import { getAllTeachers } from "../../scripts/service.js"
 // import { createSubject } from "../../scripts/service.js"
@@ -67,9 +69,9 @@ async function registerSubject() {
     const input = Input({
         placeholder: 'Disciplina 1',
         title: 'Nome',
-        inputClass: 'subject-name'
+        inputClass: 'subject-name',
+        required:true
     })
-
 
     const select = Select({
         title: 'Professor',
@@ -84,10 +86,17 @@ async function registerSubject() {
     const button = Button({
         text: 'Cadastrar',
         action: async () => {
-            await postNewSubject()
-            window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html`
+            if (checkIfAllInputsFiled()) {
+                await postNewSubject()
+                window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html`
+            }
         }
     })
+
+    button.addEventListener('click', () => {
+        console.log('clicando');
+    })
+
     registerForm.append(button)
 
     page.append(registerForm)

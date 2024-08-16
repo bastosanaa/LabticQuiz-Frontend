@@ -1,5 +1,5 @@
-import { getRoleByToken } from "../scripts/service.js"
 
+import { getRoleByToken } from "../../scripts/service.js"
 
 const url = "http://localhost:3333/api"
 
@@ -26,3 +26,29 @@ async function getAllTeachers(token) {
     return teachers
 }
 
+export function checkIfEmpty(input) {
+    const errorMessageParagraph = input.parentNode.querySelector('.error-message')
+    if (input.value == "") {
+        input.style.border = "1px solid red"
+        errorMessageParagraph.textContent = 'este campo deve ser preenchido'
+        errorMessageParagraph.classList.remove('hidden')
+    } else {
+        input.style.border = ""
+        errorMessageParagraph.classList.add('hidden')
+    }
+}
+
+export function checkIfAllInputsFiled() {
+    const inputs = document.querySelectorAll('input')
+    let emptyInputs = 0
+    inputs.forEach(input => {
+        if (!input.value) {
+            checkIfEmpty(input)
+            emptyInputs++
+        }
+    })
+    if (emptyInputs > 0) {
+        return false
+    }
+    return true
+}

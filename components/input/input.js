@@ -1,3 +1,5 @@
+import { checkIfEmpty } from "../../pages/utils/api.js"
+
 export function Input({placeholder,title, required = false, errorMessage = null, type = 'text', inputClass = null, style = 'default'}) {
 
     const inputContainer = document.createElement('div')
@@ -47,18 +49,6 @@ export function Input({placeholder,title, required = false, errorMessage = null,
     inputContainer.appendChild(errorParagraph)
     
     return inputContainer
-}
-
-function checkIfEmpty(input) {
-    const errorMessageParagraph = input.parentNode.querySelector('.error-message')
-        if (input.value == "") {
-            input.style.border = "1px solid red"
-            errorMessageParagraph.textContent = 'este campo deve ser preenchido'
-            errorMessageParagraph.classList.remove('hidden')
-        } else {
-            input.style.border = ""
-            errorMessageParagraph.classList.add('hidden')
-        }
 }
 
 function togglePasswordStatus(togglePassword) {
