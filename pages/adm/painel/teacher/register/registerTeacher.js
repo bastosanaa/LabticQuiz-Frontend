@@ -4,6 +4,9 @@ import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 
+import { checkIfAllInputsFiled } from "../../../../utils/api.js";
+
+
 export async function registerStudent() {
     const body = document.querySelector('body')
 
@@ -89,8 +92,9 @@ export async function registerStudent() {
     const button = Button({
         text: 'Cadastrar',
         action: async () => {
-            await postNewSubject()
-            window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html`
+            if (checkIfAllInputsFiled()) {
+                return
+            }
         }
     })
     registerForm.append(button)

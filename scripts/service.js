@@ -2,6 +2,21 @@
 const url = "http://localhost:3333/api"
 
 //User
+export async function createUser(token, name, registration, email,password, role) {
+    
+    const response = await fetch(`${url}/users`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({name: name, registration:registration, email:email, password:password, role:role})
+    })
+    return response
+}
+
+
 export async function getUserbyID(token) {
     const response = await fetch(`${url}/users`, {
         method: "GET",

@@ -3,6 +3,10 @@ import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
+import { checkIfAllInputsFiled } from "../../../../utils/api.js";
+import { createUser } from "../../../../../scripts/service.js";
+
+const token = localStorage.getItem('token')
 
 export async function registerStudent() {
     const body = document.querySelector('body')
@@ -89,8 +93,13 @@ export async function registerStudent() {
     const button = Button({
         text: 'Cadastrar',
         action: async () => {
-            await postNewSubject()
-            window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html`
+            if (checkIfAllInputsFiled()) {
+                const nameField = inputName.querySelector('input')
+                const registrationField = inputRegistration.querySelector('input')
+                const emailField = inputEmail.querySelector('input')
+                await postNewStudent(nameField, registrationField, emailField)
+                window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+            }
         }
     })
 
@@ -103,4 +112,13 @@ export async function registerStudent() {
 
 }
 await registerStudent()
+
+async function postNewStudent(nameField, registrationField, emailField, ) {
+    const name = nameField.value
+    const registration = registrationField.value
+    const email = emailField.value
+    const role = 'aluno'
+    const password = '123'
+    await createUser(token,name,registration,email,password,role)
+}
 
