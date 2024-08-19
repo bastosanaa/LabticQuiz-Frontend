@@ -1,5 +1,5 @@
 
-import { getRoleByToken, createUser } from "../../scripts/service.js"
+import { getRoleByToken, createUser, getUserbyToken, getUserByID, updateSubjectChanges, updateUserChanges } from "../../scripts/service.js"
 
 const url = "http://localhost:3333/api"
 
@@ -59,4 +59,33 @@ export async function postNewUser(token, nameField, registrationField, emailFiel
     const email = emailField.value
     const password = '123'
     await createUser(token,name,registration,email,password,role)
+}
+
+export async function patchUserUpdates(token, nameField, registrationField, emailField, role) {
+    const id = getEntityID()
+    const name = nameField.value
+    const registration = registrationField.value
+    const email = emailField.value
+    await updateUserChanges(token,id,name,registration,email)
+}
+
+export function getEntityID() {
+    const url = window.location.search
+    const params = new URLSearchParams(url)
+    const id = params.get('id')
+    return id
+}
+
+export async function setUserEditPage(token, nameField, registrationField, emailField){
+    const id = getEntityID()
+    const user = await getUserByID(token, id)
+    console.log(user);
+    
+
+    nameField.value = user.name
+    registrationField.value = user.registration
+    emailField.value = user.email
+
+    //🚧 - setar disciplinas
+
 }

@@ -4,7 +4,6 @@ import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
-import { createUser } from "../../../../../scripts/service.js";
 
 const token = localStorage.getItem('token')
 

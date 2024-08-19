@@ -2,7 +2,7 @@
 import { Dialog } from "../dialog/dialog.js"
 import { Toast } from "../toast/toast.js"
 
-export function Table({columns = [], rows=[], parser, removeAction}) {
+export function Table({columns = [], rows=[], parser, removeAction, editPageHref}) {
     const body = document.querySelector('body')
     const table = document.createElement('table')
 
@@ -90,7 +90,7 @@ export function Table({columns = [], rows=[], parser, removeAction}) {
         const aEditBtn = document.createElement('a')
         const id = row._id
         aEditBtn.textContent = 'Editar'
-        aEditBtn.setAttribute('href', `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html?id=${id}`)
+        aEditBtn.setAttribute('href', `${editPageHref}?id=${id}`)
         aEditBtn.classList.add('crud-anchor')
         tdAnchor.appendChild(aEditBtn)
         bodyTr.appendChild(tdAnchor)

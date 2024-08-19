@@ -4,7 +4,7 @@ export function studentTableParser(studentObj) {
     console.log(studentObj);
     
     const parsedStudentObj = {
-        'matricula': studentObj.registration,
+        'matricula': studentObj._id,
         'nome': studentObj.name,
         'disciplinas': '0'
     }

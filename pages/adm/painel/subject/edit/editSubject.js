@@ -7,6 +7,7 @@ import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelec
 
 import { getSubjectByID } from "../../../../../scripts//service.js"
 import { updateSubjectChanges } from "../../../../../scripts//service.js"
+import { getEntityID } from "../../../../utils/api.js";
 
 async function editSubject() {
     const main = document.getElementById('main')
@@ -44,18 +45,11 @@ async function editSubject() {
     page.append(header)
 
     const registerForm = document.createElement('div')
-    registerForm.style.marginLeft = '46px';
-    registerForm.style.display = 'flex'
-    registerForm.style.flexDirection = 'column'
-    registerForm.style.justifyContent = 'space-between'
-    registerForm.style.height = '100%'
-    registerForm.style.alignItems = "center"
-    
+    registerForm.classList.add('register-form')
 
     const inputDiv = document.createElement('div')
-    inputDiv.style.width = '100%'
-    inputDiv.style.display = 'flex'
-    inputDiv.style.gap = '2rem'
+    inputDiv.classList.add('crud-input-div')
+
     registerForm.append(inputDiv)
 
     const input = Input({
@@ -63,17 +57,19 @@ async function editSubject() {
         title: 'Nome',
         inputClass: 'subject-name'
     })
+    input.classList.add('crud-input')
 
     const select = Select({
         title: 'Professor',
         tooltipText: 'Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.',
         options: await setTeachersSelect()
     })
+    select.classList.add('crud-input')
 
     const subjectNameInput = input.querySelector('input')
     const subjectTeacherSelect = select.querySelector('select')
 
-    setEditPage(subjectNameInput, subjectTeacherSelect)
+    setSubjectEditPage(subjectNameInput, subjectTeacherSelect)
 
     inputDiv.append(input)
     inputDiv.append(select)
@@ -92,16 +88,10 @@ async function editSubject() {
 
     main.append(page)
 
-    function getSubjectID() {
-        const url = window.location.search
-        const params = new URLSearchParams(url)
-        const subject_id = params.get('id')
-        return subject_id
-    }
     
-    async function setEditPage(input, select) {
+    async function setSubjectEditPage(input, select) {
         const token = localStorage.getItem('token')
-        const id = getSubjectID()
+        const id = getEntityID()
         const subject = await getSubjectByID(token,id)
         console.log(subject);
         
@@ -122,7 +112,7 @@ async function editSubject() {
     }
     async function sendNewSubjectData() {
         const token = localStorage.getItem('token')
-        const id = getSubjectID()
+        const id = getEntityID()
         const new_name = subjectNameInput.value
         const new_teacher = subjectTeacherSelect.value
         await updateSubjectChanges(token, id, new_name, new_teacher)

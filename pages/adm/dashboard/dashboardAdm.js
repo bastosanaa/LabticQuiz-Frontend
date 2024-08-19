@@ -2,7 +2,6 @@ import { NavBar } from "../../../components/navBar/navBar.js";
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js";
 import { ContentList } from "../../../components/contentList/contentList.js";
 
-import { getUserbyID } from "../../../scripts/service.js"
 import { getRoleByToken } from "../../../scripts/service.js"
 
 async function createUserDashboard() {

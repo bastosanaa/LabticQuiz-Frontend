@@ -78,7 +78,9 @@ async function createPainelStudent() {
                 reloadPage: true
             })
             body.append(toast)
-        }
+        },
+        editPageHref: 'http://127.0.0.1:5501/pages/adm/painel/student/edit/editStudent.html'
+
     })
 
     page.append(table)

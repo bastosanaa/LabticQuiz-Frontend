@@ -4,7 +4,7 @@ import { Table } from "../../../../components/table/table.js";
 import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
 
-import { deleteSubject, getAllSubjects, getUserbyID } from "../../../../scripts/service.js"
+import { deleteSubject, getAllSubjects } from "../../../../scripts/service.js"
 import { subjectTableParser } from "./subjectTableParser.js";
 
 const token = localStorage.getItem('token')
@@ -79,7 +79,8 @@ async function createPainelSubject() {
                 reloadPage: true
             })
             body.append(toast)
-        }
+        },
+        editPageHref: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html`
     })
     
     page.append(table)

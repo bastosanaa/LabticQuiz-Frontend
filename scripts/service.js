@@ -17,8 +17,8 @@ export async function createUser(token, name, registration, email,password, role
 }
 
 
-export async function getUserbyID(token) {
-    const response = await fetch(`${url}/users`, {
+export async function getUserbyToken(token) {
+    const response = await fetch(`${url}/users/token`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -26,6 +26,21 @@ export async function getUserbyID(token) {
             'Authorization': token
 
         },
+
+    })
+    const user = await response.json()
+    return user
+}
+
+export async function getUserByID(token, id) {
+    const response = await fetch(`${url}/users/${id}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        }
     })
     const user = await response.json()
     return user
@@ -51,6 +66,21 @@ export async function deleteUserByID(token, user_id) {
     })
     const deletedUser = await response.json()
     return deletedUser
+}
+
+export async function updateUserChanges(token,id, name,registration, email) {
+    const response = await fetch(`${url}/users/${id}`, {
+        method: "PATCH",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        },
+        body: JSON.stringify({name, registration, email})
+    })
+    console.log(response)
+    return response
 }
 // fazer para matricula tambem
 export async function userLogin(user, password) {
