@@ -117,7 +117,7 @@ async function postNewStudent(nameField, registrationField, emailField, ) {
     const name = nameField.value
     const registration = registrationField.value
     const email = emailField.value
-    const role = 'aluno'
+    const role = 'estudante'
     const password = '123'
     await createUser(token,name,registration,email,password,role)
 }

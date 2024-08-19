@@ -39,7 +39,6 @@ async function createPainelStudent() {
     page.classList.add('page')
 
     const students = await getAllStudents(token)
-    console.log(students);
 
     const pageHeader = document.createElement('div')
     pageHeader.classList.add('page-header')
