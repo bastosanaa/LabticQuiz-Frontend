@@ -1,5 +1,5 @@
 
-import { getRoleByToken } from "../../scripts/service.js"
+import { getRoleByToken, createUser } from "../../scripts/service.js"
 
 const url = "http://localhost:3333/api"
 
@@ -51,4 +51,12 @@ export function checkIfAllInputsFiled() {
         return false
     }
     return true
+}
+
+export async function postNewUser(token, nameField, registrationField, emailField, role) {
+    const name = nameField.value
+    const registration = registrationField.value
+    const email = emailField.value
+    const password = '123'
+    await createUser(token,name,registration,email,password,role)
 }

@@ -4,8 +4,9 @@ import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 
-import { checkIfAllInputsFiled } from "../../../../utils/api.js";
+import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 
+const token = localStorage.getItem('token')
 
 export async function registerStudent() {
     const body = document.querySelector('body')
@@ -93,7 +94,11 @@ export async function registerStudent() {
         text: 'Cadastrar',
         action: async () => {
             if (checkIfAllInputsFiled()) {
-                return
+                const nameField = inputName.querySelector('input')
+                const registrationField = inputRegistration.querySelector('input')
+                const emailField = inputEmail.querySelector('input')
+                await postNewUser(token, nameField, registrationField, emailField, "professor")
+                window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'
             }
         }
     })

@@ -3,7 +3,6 @@ import { PageHeader } from "../../../../components/pageHeader/pageHeader.js";
 import { Table } from "../../../../components/table/table.js";
 import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
-import { Logo } from "../../../../components/logo/logo.js";
 
 import { deleteUserByID, getAllTeachers } from "../../../../scripts/service.js"
 import { teacherTableParser } from "../teacher/teacherTableParser.js";
