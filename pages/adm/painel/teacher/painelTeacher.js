@@ -82,7 +82,8 @@ async function createPainelTeacher() {
             })
             body.append(toast)
         },
-        editPageHref: 'http://127.0.0.1:5501/pages/adm/painel/teacher/edit/editTeacher.html'
+        editPageHref: 'http://127.0.0.1:5501/pages/adm/painel/teacher/edit/editTeacher.html',
+        removeWarning: 'Você irá eliminar o professor "entidade". Esta ação não pode ser desfeita'
     })
 
     page.append(table)

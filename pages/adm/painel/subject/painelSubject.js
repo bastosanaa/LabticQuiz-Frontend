@@ -80,7 +80,8 @@ async function createPainelSubject() {
             })
             body.append(toast)
         },
-        editPageHref: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html`
+        editPageHref: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html`,
+        removeWarning: 'Você irá eliminar a disciplina "entidade". Esta ação não pode ser desfeita'
     })
     
     page.append(table)

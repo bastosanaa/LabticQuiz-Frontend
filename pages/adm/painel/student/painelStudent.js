@@ -79,7 +79,8 @@ async function createPainelStudent() {
             })
             body.append(toast)
         },
-        editPageHref: 'http://127.0.0.1:5501/pages/adm/painel/student/edit/editStudent.html'
+        editPageHref: 'http://127.0.0.1:5501/pages/adm/painel/student/edit/editStudent.html',
+        removeWarning: 'Você irá eliminar o aluno "entidade". Esta ação não pode ser desfeita'
 
     })
 

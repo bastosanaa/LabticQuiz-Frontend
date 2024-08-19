@@ -2,7 +2,7 @@
 import { Dialog } from "../dialog/dialog.js"
 import { Toast } from "../toast/toast.js"
 
-export function Table({columns = [], rows=[], parser, removeAction, editPageHref}) {
+export function Table({columns = [], rows=[], parser, removeAction, removeWarning, editPageHref}) {
     const body = document.querySelector('body')
     const table = document.createElement('table')
 
@@ -57,7 +57,7 @@ export function Table({columns = [], rows=[], parser, removeAction, editPageHref
             const token = localStorage.getItem('token')
             const dialog = Dialog({
                 header: 'Tem certeza?',
-                description: 'um texto qualquer que vou ter que arrumar depois',
+                description: removeWarning.replace("entidade", row.name),
                 buttons: [
                     {
                         type: 'outline',
