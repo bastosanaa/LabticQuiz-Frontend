@@ -1,12 +1,18 @@
-export function Multiselect(options) {
+export function Multiselect(options, title) {
 
     //mudar logica de itens iniciais quando puxar os dados do back
     let itemsSelected = []
     let itemsAvailable = options
 
     // DOM structure
+
     const multiselect = document.createElement('div')
     multiselect.classList.add('multiselect')
+
+    const p = document.createElement('p')
+    p.classList.add('input-label')
+    p.textContent = title
+    multiselect.appendChild(p)
 
     const selected = document.createElement('div')
     selected.classList.add('container-selected')
@@ -48,7 +54,7 @@ export function Multiselect(options) {
             const li = document.createElement('li')
             li.classList.add('item-selected')
             const p = document.createElement('p')
-            p.textContent = option
+            p.textContent = option.name
             li.appendChild(p)
             selectionSelectedUl.appendChild(li)
 
@@ -64,7 +70,7 @@ export function Multiselect(options) {
         itemsAvailable.forEach(option => {
             const li = document.createElement('li')
             const p = document.createElement('p')
-            p.textContent = option
+            p.textContent = option.name
             li.appendChild(p)
             selectionUnselectedUl.appendChild(li)
     
@@ -84,7 +90,7 @@ export function Multiselect(options) {
             
             const p = document.createElement('p')
             li.appendChild(p)
-            p.textContent = item
+            p.textContent = item.name
 
             selectedUl.appendChild(li)
         })
@@ -92,13 +98,11 @@ export function Multiselect(options) {
 
     loadSelection()
 
-    return multiselect
+    return {multiselect, itemsSelected}
 
 }
 
-function switchLists(item, fromList, toList) {
-    console.log(fromList);
-    
+function switchLists(item, fromList, toList) {    
     let itemIndex = fromList.indexOf(item)
     fromList.splice(itemIndex, 1)
     toList.push(item)

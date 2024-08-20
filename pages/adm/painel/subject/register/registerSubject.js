@@ -3,14 +3,11 @@ import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 
-import { createSubject,getAllTeachers, getRoleByToken, getUserbyID } from "../../../../../scripts/service.js"
+import { createSubject,getAllTeachers, getRoleByToken, getUserbyToken } from "../../../../../scripts/service.js"
 import { Button } from "../../../../../components/button/button.js";
 import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
 import { checkIfAllInputsFiled } from "../../../../utils/api.js";
 import { Toast } from "../../../../../components/toast/toast.js";
-
-// import { getAllTeachers } from "../../scripts/service.js"
-// import { createSubject } from "../../scripts/service.js"
 
 const url = 'http://127.0.0.1:5501'
 

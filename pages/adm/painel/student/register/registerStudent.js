@@ -4,6 +4,8 @@ import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
+import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
+import { getAllSubjects } from "../../../../../scripts/service.js";
 
 const token = localStorage.getItem('token')
 
@@ -76,18 +78,16 @@ export async function registerStudent() {
     inputEmail.classList.add('crud-input')
 
     //WIP: multiselect
-    const subjectsMultiSelect = Select({
-        title: 'Disciplinas',
-        tooltipText: 'Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.',
-        options: ['disciplinas do usuário']
-    })
-    subjectsMultiSelect.classList.add('crud-input')
+    const subjects = await getAllSubjects(token)
+
+    const subjectsMultiSelect = Multiselect(subjects, 'Disciplinas')
+    subjectsMultiSelect.multiselect.classList.add('crud-input')
 
     
     inputDiv.append(inputName)
     inputDiv.append(inputRegistration)
     inputDiv.append(inputEmail)
-    inputDiv.append(subjectsMultiSelect)
+    inputDiv.append(subjectsMultiSelect.multiselect)
 
     const button = Button({
         text: 'Cadastrar',
@@ -96,8 +96,12 @@ export async function registerStudent() {
                 const nameField = inputName.querySelector('input')
                 const registrationField = inputRegistration.querySelector('input')
                 const emailField = inputEmail.querySelector('input')
-                await postNewUser(token, nameField, registrationField, emailField, "estudante")
-                window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+                const student = await postNewUser(token, nameField, registrationField, emailField, "estudante")
+                console.log(student);
+                
+                console.log(subjectsMultiSelect.itemsSelected);
+                
+                // window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
             }
         }
     })

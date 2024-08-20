@@ -3,13 +3,11 @@
 }
 
 .multiselect {
-    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 .container-selected {
-    width: 500px;
     height: 50px;
     border-bottom: 1px solid var(--light-grey-color);
     position: relative;

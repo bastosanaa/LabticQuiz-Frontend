@@ -3,6 +3,9 @@ import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
+import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
+import { getAllSubjects } from "../../../../../scripts/service.js";
+
 
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 
@@ -77,18 +80,16 @@ export async function registerStudent() {
     inputEmail.classList.add('crud-input')
 
     //WIP: multiselect
-    const subjectsMultiSelect = Select({
-        title: 'Disciplinas',
-        tooltipText: 'Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.',
-        options: ['disciplinas do usuário']
-    })
-    subjectsMultiSelect.classList.add('crud-input')
+    const subjects = await getAllSubjects(token) 
+
+    const subjectsMultiSelect = Multiselect(subjects, 'Disciplinas')
+    subjectsMultiSelect.multiselect.classList.add('crud-input')
 
     
     inputDiv.append(inputName)
     inputDiv.append(inputRegistration)
     inputDiv.append(inputEmail)
-    inputDiv.append(subjectsMultiSelect)
+    inputDiv.append(subjectsMultiSelect.multiselect)
 
     const button = Button({
         text: 'Cadastrar',

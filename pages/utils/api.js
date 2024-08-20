@@ -58,7 +58,7 @@ export async function postNewUser(token, nameField, registrationField, emailFiel
     const registration = registrationField.value
     const email = emailField.value
     const password = '123'
-    await createUser(token,name,registration,email,password,role)
+    return await createUser(token,name,registration,email,password,role)
 }
 
 export async function patchUserUpdates(token, nameField, registrationField, emailField, role) {

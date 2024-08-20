@@ -251,3 +251,18 @@ export async function updateSubjectChanges(token, id, new_name, new_teacher) {
     console.log(response)
     return response
 }
+
+//studentsSubjects
+
+export async function registerStudentToSubjetc(token, user_id, subject_id) {
+    const response = await fetch(`${url}/studentsSubjects/`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({user_id:user_id, subject_id:subject_id})
+    })
+    return response
+}
