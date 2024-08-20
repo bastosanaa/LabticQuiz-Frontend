@@ -1,0 +1,56 @@
+:root {
+    --light-blue: #E0E7FF
+}
+
+.multiselect {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.container-selected {
+    width: 500px;
+    height: 50px;
+    border-bottom: 1px solid var(--light-grey-color);
+    position: relative;
+}
+
+.container-selected ul {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    line-height: 2rem;
+}
+
+.container-selected ul li {
+    background-color: var(--light-blue);
+    box-sizing: border-box;
+    padding: 4px 8px;
+    border-radius: 0.5rem;
+}
+
+.container-selection {
+    border: 1px solid var(--light-grey-color);
+    border-radius: 0.5rem;
+
+}
+
+.container-selection ul {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.container-selection ul li {
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.item-selected {
+    background-color: var(--light-blue);
+}
+
+#paddinzao {
+    padding: 100px;
+}
