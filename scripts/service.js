@@ -252,9 +252,9 @@ export async function updateSubjectChanges(token, id, new_name, new_teacher) {
     return response
 }
 
-//studentsSubjects
+//🚧🚧 studentsSubjects
 
-export async function registerStudentToSubjetc(token, user_id, subject_id) {
+export async function registerStudentToSubject(token, user_id, subject_id) {
     const response = await fetch(`${url}/studentsSubjects/`, {
         method: "POST",
         mode: "cors",
@@ -265,4 +265,13 @@ export async function registerStudentToSubjetc(token, user_id, subject_id) {
         body: JSON.stringify({user_id:user_id, subject_id:subject_id})
     })
     return response
+    
+}
+
+export async function getStudentsSubjects(params) {
+    
+}
+
+export async function getTeachersSubjects(params) {
+    
 }

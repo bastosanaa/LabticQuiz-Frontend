@@ -5,7 +5,7 @@ import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
-import { getAllSubjects } from "../../../../../scripts/service.js";
+import { getAllSubjects, registerStudentToSubject } from "../../../../../scripts/service.js";
 
 const token = localStorage.getItem('token')
 
@@ -80,14 +80,14 @@ export async function registerStudent() {
     //WIP: multiselect
     const subjects = await getAllSubjects(token)
 
-    const subjectsMultiSelect = Multiselect(subjects, 'Disciplinas')
-    subjectsMultiSelect.multiselect.classList.add('crud-input')
+    const {multiselect, getSelectedIDs} = Multiselect(subjects, 'Disciplinas')
+    multiselect.classList.add('crud-input')
 
     
     inputDiv.append(inputName)
     inputDiv.append(inputRegistration)
     inputDiv.append(inputEmail)
-    inputDiv.append(subjectsMultiSelect.multiselect)
+    inputDiv.append(multiselect)
 
     const button = Button({
         text: 'Cadastrar',
@@ -96,12 +96,18 @@ export async function registerStudent() {
                 const nameField = inputName.querySelector('input')
                 const registrationField = inputRegistration.querySelector('input')
                 const emailField = inputEmail.querySelector('input')
-                const student = await postNewUser(token, nameField, registrationField, emailField, "estudante")
-                console.log(student);
+                const studentReq = await postNewUser(token, nameField, registrationField, emailField, "estudante")
+                if (studentReq.ok) {
+                    
+                    const studentID = (await studentReq.json())._id
+                    const selectedSubjectsIDs = getSelectedIDs();
+
+                    registerStudentToSubjectsSelected(studentID, selectedSubjectsIDs)
+                    
+
+                    // window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+                }
                 
-                console.log(subjectsMultiSelect.itemsSelected);
-                
-                // window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
             }
         }
     })
@@ -115,3 +121,9 @@ export async function registerStudent() {
 
 }
 await registerStudent()
+
+async function registerStudentToSubjectsSelected(studentID, subjectsSelected) {
+    subjectsSelected.forEach(async(subjectID) => {
+        await registerStudentToSubject(token,studentID, subjectID)
+    })
+}

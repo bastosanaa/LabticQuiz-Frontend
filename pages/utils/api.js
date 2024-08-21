@@ -89,3 +89,8 @@ export async function setUserEditPage(token, nameField, registrationField, email
     //🚧 - setar disciplinas
 
 }
+
+export function mapToOnlyEntityID(objects) {
+    return objects.map(object => object._id)
+    
+}

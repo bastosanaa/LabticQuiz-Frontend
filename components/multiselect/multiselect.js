@@ -1,6 +1,9 @@
+import { mapToOnlyEntityID } from "../../pages/utils/api.js"
+
 export function Multiselect(options, title) {
 
     //mudar logica de itens iniciais quando puxar os dados do back
+    let itemsSelectedIDs = []
     let itemsSelected = []
     let itemsAvailable = options
 
@@ -61,6 +64,7 @@ export function Multiselect(options, title) {
             li.addEventListener('click', () => {
                 
                 switchLists(option, itemsSelected, itemsAvailable)
+
                 loadSelection()
                 loadSelected()
             })
@@ -77,8 +81,10 @@ export function Multiselect(options, title) {
             li.addEventListener('click', () => {
                 
                 switchLists(option, itemsAvailable, itemsSelected)
+                itemsSelectedIDs = mapToOnlyEntityID(itemsSelected)
                 loadSelection()
                 loadSelected()
+                
             })
         })
     }
@@ -98,7 +104,11 @@ export function Multiselect(options, title) {
 
     loadSelection()
 
-    return {multiselect, itemsSelected}
+    function getSelectedIDs() {
+        return itemsSelectedIDs
+    }
+    
+    return {multiselect, getSelectedIDs}
 
 }
 
