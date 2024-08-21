@@ -4,7 +4,7 @@ import { Table } from "../../../../components/table/table.js";
 import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
 
-import { deleteUserByID, getAllStudents } from "../../../../scripts/service.js"
+import { deleteUserByID, getAllStudents } from "../../../../scripts/service/userService.js"
 import { studentTableParser } from "./studentTableParser.js";
 
 const token = localStorage.getItem('token')

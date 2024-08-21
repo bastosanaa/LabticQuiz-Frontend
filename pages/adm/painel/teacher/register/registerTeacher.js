@@ -4,7 +4,7 @@ import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
-import { getAllSubjects } from "../../../../../scripts/service.js";
+import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
 
 
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";

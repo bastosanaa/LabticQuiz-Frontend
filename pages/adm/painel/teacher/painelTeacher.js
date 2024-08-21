@@ -4,7 +4,7 @@ import { Table } from "../../../../components/table/table.js";
 import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
 
-import { deleteUserByID, getAllTeachers } from "../../../../scripts/service.js"
+import { deleteUserByID, getAllTeachers } from "../../../../scripts/service/userService.js"
 import { teacherTableParser } from "../teacher/teacherTableParser.js";
 
 

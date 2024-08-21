@@ -1,4 +1,4 @@
-import { getAllTeachers } from "../service.js"
+import { getAllTeachers } from "../service/userService.js"
 
 export async function setTeachersSelect() {
     const token = localStorage.getItem('token')

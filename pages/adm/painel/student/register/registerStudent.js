@@ -5,7 +5,9 @@ import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
-import { getAllSubjects, registerStudentToSubject } from "../../../../../scripts/service.js";
+import { registerStudentToSubject } from "../../../../../scripts/service/studentSubjecService.js";
+import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
+
 
 const token = localStorage.getItem('token')
 

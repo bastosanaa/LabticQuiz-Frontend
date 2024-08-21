@@ -5,8 +5,7 @@ import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
 
-import { getSubjectByID } from "../../../../../scripts//service.js"
-import { updateSubjectChanges } from "../../../../../scripts//service.js"
+import { updateSubjectChanges,getSubjectByID } from "../../../../../scripts/service/subjectService.js"
 import { getEntityID } from "../../../../utils/api.js";
 
 async function editSubject() {

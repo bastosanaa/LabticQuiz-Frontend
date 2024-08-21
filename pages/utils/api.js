@@ -1,5 +1,7 @@
 
-import { getRoleByToken, createUser, getUserbyToken, getUserByID, updateSubjectChanges, updateUserChanges } from "../../scripts/service.js"
+import { registerStudentToSubject, deleteStudentSubject, getSubjectsbyStudent } from '../../scripts/service/studentSubjecService.js';
+import {createSubject, updateSubjectChanges, deleteSubject, getSubjectByID, getAllSubjects} from '../../scripts/service/subjectService.js'
+import {userLogin, createUser, deleteUserByID, updateUserChanges, getUserbyToken, getUserByID, getRoleByToken, getAllTeachers, getAllStudents} from '../../scripts/service/userService.js'
 
 const url = "http://localhost:3333/api"
 
@@ -12,19 +14,7 @@ async function AuthUser(role_access) {
     return
 }
 
-async function getAllTeachers(token) {
-    const response = await fetch (`${url}/users/teachers`, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
 
-        }
-    })
-
-    const teachers = await response.json()
-    return teachers
-}
 
 export function checkIfEmpty(input) {
     const errorMessageParagraph = input.parentNode.querySelector('.error-message')

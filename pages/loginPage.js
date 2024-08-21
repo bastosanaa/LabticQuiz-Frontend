@@ -3,8 +3,7 @@ import { Input } from "../components/input/input.js"
 import { Button } from "../components/button/button.js"
 import { Logo } from "../components/logo/logo.js"
 
-import { userLogin } from "../scripts/service.js";
-import { getRoleByToken } from "../scripts/service.js"
+import { getRoleByToken, userLogin } from "../scripts/service/userService.js"
 
 const url = 'http://127.0.0.1:5501'
 export function LoginPage() {
