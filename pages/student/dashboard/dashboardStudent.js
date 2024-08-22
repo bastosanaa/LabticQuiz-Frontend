@@ -4,11 +4,11 @@ import { NavBar } from "./../../../components/navBar/navBar.js";
 import { PageHeader } from "./../../../components/pageHeader/pageHeader.js";
 import { ContentList } from "./../../../components/contentList/contentList.js";
 
-import { getUserbyToken } from "/../../../scripts/service.js"
+import { getUserIDbyToken } from "/../../../scripts/service.js"
 import  { getSubjectsbyStudent } from "/../../scripts/service.js"
 
 async function getUserName(token) {
-    const user = await getUserbyToken(token)
+    const user = await getUserIDbyToken(token)
     const user_name = user.name
     return user_name    
 }

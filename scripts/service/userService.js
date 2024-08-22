@@ -60,7 +60,8 @@ export async function updateUserChanges(token,id, name,registration, email) {
     return response
 }
 
-export async function getUserbyToken(token) {
+//mudei de pegar o usuario todo para pegar so o id e entao usar a funcao de pegar pelo id
+export async function getUserIDbyToken(token) {
     const response = await fetch(`${url}/users/token`, {
         method: "GET",
         mode: "cors",
@@ -71,8 +72,8 @@ export async function getUserbyToken(token) {
         },
 
     })
-    const user = await response.json()
-    return user
+    const user_id = await response.json()
+    return user_id
 }
 
 export async function getUserByID(token, id) {

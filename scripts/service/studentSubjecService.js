@@ -30,15 +30,15 @@ export async function deleteStudentSubject(token, subject_id) {
 
 //By Student
 
-export async function getSubjectsbyStudent(token){
-    const response = await fetch(`${url}/studentsSubjects`, {
+export async function getSubjectsbyStudent(token, user_id){
+    const response = await fetch(`${url}/studentsSubjects/${user_id}`, {
         method: "GET",
         mode: "cors",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token
 
-        }
+        },
     })
     const subjects = await response.json()
     return subjects

@@ -1,11 +1,15 @@
-import { mapToOnlyEntityID } from "../../pages/utils/api.js"
+import { mapToOnlyEntityID, subjectParser } from "../../pages/utils/api.js"
 
-export function Multiselect(options, title) {
+export function Multiselect(options, title, preSelectedItems) {
 
     //mudar logica de itens iniciais quando puxar os dados do back
     let itemsSelectedIDs = []
-    let itemsSelected = []
-    let itemsAvailable = options
+    let itemsSelected = subjectParser(preSelectedItems)
+    let itemsAvailable = (subjectParser(options)).filter(item =>
+        !itemsSelected.some(selectedItem => selectedItem._id === item._id))
+
+    // console.log(itemsSelected, itemsAvailable);
+    
 
     // DOM structure
 

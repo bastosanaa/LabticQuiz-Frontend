@@ -1,7 +1,7 @@
 
 import { registerStudentToSubject, deleteStudentSubject, getSubjectsbyStudent } from '../../scripts/service/studentSubjecService.js';
 import {createSubject, updateSubjectChanges, deleteSubject, getSubjectByID, getAllSubjects} from '../../scripts/service/subjectService.js'
-import {userLogin, createUser, deleteUserByID, updateUserChanges, getUserbyToken, getUserByID, getRoleByToken, getAllTeachers, getAllStudents} from '../../scripts/service/userService.js'
+import {userLogin, createUser, deleteUserByID, updateUserChanges, getUserIDbyToken, getUserByID, getRoleByToken, getAllTeachers, getAllStudents} from '../../scripts/service/userService.js'
 
 const url = "http://localhost:3333/api"
 
@@ -13,8 +13,6 @@ async function AuthUser(role_access) {
     }
     return
 }
-
-
 
 export function checkIfEmpty(input) {
     const errorMessageParagraph = input.parentNode.querySelector('.error-message')
@@ -69,7 +67,7 @@ export function getEntityID() {
 export async function setUserEditPage(token, nameField, registrationField, emailField){
     const id = getEntityID()
     const user = await getUserByID(token, id)
-    console.log(user);
+    const subjectsRegistered = await getSubjectsbyStudent(token, id)
     
 
     nameField.value = user.name
@@ -77,10 +75,40 @@ export async function setUserEditPage(token, nameField, registrationField, email
     emailField.value = user.email
 
     //🚧 - setar disciplinas
+}
 
+export async function getSubjectsRegistered(token) {
+    const id = getEntityID()
+    return await getSubjectsbyStudent(token, id)
 }
 
 export function mapToOnlyEntityID(objects) {
     return objects.map(object => object._id)
     
+}
+
+function compareArrays(arrayOriginal, arrayNovo) {
+    const removidos = arrayOriginal.filter(item => !arrayNovo.includes(item));
+    const adicionados = arrayNovo.filter(item => !arrayOriginal.includes(item));
+    
+    return {
+        removidos,
+        adicionados
+    };
+}
+
+export function subjectParser(subjectList) {
+    
+    const parsedSubjectList = []
+    subjectList.forEach(subject => {
+        const parsedSubject = {
+            _id: subject._id? subject._id : subject.subject_id ,
+            name: subject.name? subject.name : subject.subject_name
+        }
+        parsedSubjectList.push(parsedSubject)
+    })
+
+    console.log(parsedSubjectList);
+    
+    return parsedSubjectList
 }
