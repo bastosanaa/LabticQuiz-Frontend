@@ -3,9 +3,10 @@ import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
-import { checkIfAllInputsFiled, patchUserUpdates, setUserEditPage, getSubjectsRegistered } from "../../../../utils/api.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
+import { checkIfAllInputsFiled, patchUserUpdates, setUserEditPage, getSubjectsRegistered, compareItemsSelected, subjectParser, getEntityID } from "../../../../utils/api.js";
+import { registerStudentToSubjects, deleteStudentFromSubjects } from "../../crudUtils.js"
 
 
 const token = localStorage.getItem('token')
@@ -83,7 +84,7 @@ export async function editStudent() {
 
     const preSelectedItems = await getSubjectsRegistered(token)
     
-    const {multiselect, getSelectedIDs} = Multiselect(subjects, 'Disciplinas', preSelectedItems)
+    const {multiselect, getSelecteds} = Multiselect(subjects, 'Disciplinas', preSelectedItems)
     multiselect.classList.add('crud-input')
     
     multiselect.classList.add('crud-input')
@@ -105,7 +106,21 @@ export async function editStudent() {
             if (checkIfAllInputsFiled()) {
                 
                 await patchUserUpdates(token, nameField, registrationField, emailField)
-                window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+
+                const selectedItems = getSelecteds()
+                const parsedPreSelectedItems = subjectParser(preSelectedItems)
+
+                const { removedItems, addedItems } = compareItemsSelected(parsedPreSelectedItems, selectedItems)
+
+                const student_id = getEntityID()
+
+
+                registerStudentToSubjects(token,student_id, addedItems)
+                deleteStudentFromSubjects(token,student_id, removedItems)
+
+
+
+                // window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
             }
         }
     })

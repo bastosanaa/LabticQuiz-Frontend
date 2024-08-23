@@ -84,16 +84,21 @@ export async function getSubjectsRegistered(token) {
 
 export function mapToOnlyEntityID(objects) {
     return objects.map(object => object._id)
-    
+
 }
 
-function compareArrays(arrayOriginal, arrayNovo) {
-    const removidos = arrayOriginal.filter(item => !arrayNovo.includes(item));
-    const adicionados = arrayNovo.filter(item => !arrayOriginal.includes(item));
-    
+export function compareItemsSelected(preSelected, selected) {
+
+    const removedItems = preSelected.filter(item =>
+        !(selected.some(selectedItem => selectedItem._id === item._id)));
+    const addedItems = selected.filter(item =>
+        !preSelected.some(preSelectedItem => preSelectedItem._id === item._id));
+
+
     return {
-        removidos,
-        adicionados
+        removedItems,
+        
+        addedItems
     };
 }
 
@@ -107,8 +112,6 @@ export function subjectParser(subjectList) {
         }
         parsedSubjectList.push(parsedSubject)
     })
-
-    console.log(parsedSubjectList);
     
     return parsedSubjectList
 }

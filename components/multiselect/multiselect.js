@@ -1,6 +1,6 @@
 import { mapToOnlyEntityID, subjectParser } from "../../pages/utils/api.js"
 
-export function Multiselect(options, title, preSelectedItems) {
+export function Multiselect(options, title, preSelectedItems = []) {
 
     //mudar logica de itens iniciais quando puxar os dados do back
     let itemsSelectedIDs = []
@@ -49,7 +49,10 @@ export function Multiselect(options, title, preSelectedItems) {
     })
     
     const selectionSelectedUl = document.createElement('ul')
+    loadSelected()
+
     const selectionUnselectedUl = document.createElement('ul')
+
 
     selection.appendChild(selectionSelectedUl)
     selection.appendChild(selectionUnselectedUl)
@@ -108,11 +111,11 @@ export function Multiselect(options, title, preSelectedItems) {
 
     loadSelection()
 
-    function getSelectedIDs() {
-        return itemsSelectedIDs
+    function getSelecteds() {
+        return itemsSelected
     }
     
-    return {multiselect, getSelectedIDs}
+    return {multiselect, getSelecteds}
 
 }
 

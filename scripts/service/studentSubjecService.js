@@ -14,7 +14,7 @@ export async function registerStudentToSubject(token, user_id, subject_id) {
     
 }
 
-export async function deleteStudentSubject(token, subject_id) {
+export async function deleteStudentSubject(token,user_id, subject_id) {
     console.log("requisicao pro back")
     const response = await fetch(`${url}/studentsSubjects`, {
         method: 'DELETE',
@@ -22,7 +22,7 @@ export async function deleteStudentSubject(token, subject_id) {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        body: JSON.stringify({id: subject_id})
+        body: JSON.stringify({user_id:user_id, subject_id:subject_id})
     })
     console.log(response)
     return response

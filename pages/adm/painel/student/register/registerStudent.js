@@ -3,11 +3,12 @@ import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
-import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
-import { registerStudentToSubject } from "../../../../../scripts/service/studentSubjecService.js";
-import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
 
+
+import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
+import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
+import { registerStudentToSubjectsSelected } from "../../crudUtils.js"
 
 const token = localStorage.getItem('token')
 
@@ -124,8 +125,3 @@ export async function registerStudent() {
 }
 await registerStudent()
 
-async function registerStudentToSubjectsSelected(studentID, subjectsSelected) {
-    subjectsSelected.forEach(async(subjectID) => {
-        await registerStudentToSubject(token,studentID, subjectID)
-    })
-}
