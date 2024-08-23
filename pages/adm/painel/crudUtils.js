@@ -19,6 +19,10 @@ export async function patchUserUpdates(token, nameField, registrationField, emai
     await updateUserChanges(token,id,name,registration,email)
 }
 
+export async function getAllStudentsAndEachOnesSubjects(params) {
+    
+}
+
 //SubjectUtils
 
 export function subjectParser(subjectList) {

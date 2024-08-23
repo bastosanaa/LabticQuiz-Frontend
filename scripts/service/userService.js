@@ -30,7 +30,6 @@ export async function createUser(token, name, registration, email,password, role
 }
 
 export async function deleteUserByID(token, user_id) {
-    console.log(user_id);
     const response = await fetch(`${url}/users`, {
         method: "DELETE",
         mode: "cors",

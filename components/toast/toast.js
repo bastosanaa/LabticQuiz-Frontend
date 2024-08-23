@@ -37,9 +37,9 @@ export function Toast({type= 'success', message, reloadPage=false}) {
 
     function hideToast() {
         toast.classList.remove("show");
-        if (reloadPage) {
-            window.location.reload(true)
-        }
+        // if (reloadPage) {
+        //     window.location.reload(true)
+        // }
     }
     
     return toast

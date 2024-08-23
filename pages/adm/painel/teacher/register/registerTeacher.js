@@ -4,7 +4,7 @@ import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
-import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
+import { getSubjectsWithoutTeacher } from "../../../../../scripts/service/subjectService.js";
 
 
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
@@ -80,7 +80,7 @@ export async function registerStudent() {
     inputEmail.classList.add('crud-input')
 
     //WIP: multiselect
-    const subjects = await getAllSubjects(token) 
+    const subjects = await getSubjectsWithoutTeacher(token) 
 
     const subjectsMultiSelect = Multiselect(subjects, 'Disciplinas')
     subjectsMultiSelect.multiselect.classList.add('crud-input')

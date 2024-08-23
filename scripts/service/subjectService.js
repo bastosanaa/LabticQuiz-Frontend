@@ -76,3 +76,33 @@ export async function getAllSubjects(token) {
     return subjects
 }
 
+//subjects - teacher crud 
+
+export async function getSubjectsWithoutTeacher(token) {
+    const response = await fetch (`${url}/subjects/teacher/`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+
+        }
+    })
+
+    const subjects = await response.json()
+    return subjects
+}
+
+// export async function getAllTeachersSubjects(token, teacher_id) {
+//     const response = await fetch (`${url}/subjects/teacher/${id}`, {
+//         method: "GET",
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': token
+
+//         }
+//     })
+
+//     const subjects = await response.json()
+//     return subjects
+// }
+

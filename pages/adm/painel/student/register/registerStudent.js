@@ -8,7 +8,7 @@ import { Multiselect } from "../../../../../components/multiselect/multiselect.j
 
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
-import { registerStudentToSubjectsSelected } from "../../crudUtils.js"
+import { registerStudentToSubjects } from "../../crudUtils.js"
 
 const token = localStorage.getItem('token')
 
@@ -83,7 +83,7 @@ export async function registerStudent() {
     //WIP: multiselect
     const subjects = await getAllSubjects(token)
 
-    const {multiselect, getSelectedIDs} = Multiselect(subjects, 'Disciplinas')
+    const {multiselect, getSelecteds} = Multiselect(subjects, 'Disciplinas')
     multiselect.classList.add('crud-input')
 
     
@@ -103,9 +103,9 @@ export async function registerStudent() {
                 if (studentReq.ok) {
                     
                     const studentID = (await studentReq.json())._id
-                    const selectedSubjectsIDs = getSelectedIDs();
+                    const selectedSubjectsIDs = getSelecteds();
 
-                    registerStudentToSubjectsSelected(studentID, selectedSubjectsIDs)
+                    registerStudentToSubjects(studentID, selectedSubjectsIDs)
                     
 
                     // window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
