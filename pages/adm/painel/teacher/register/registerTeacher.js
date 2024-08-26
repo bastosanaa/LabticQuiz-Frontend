@@ -82,14 +82,14 @@ export async function registerStudent() {
     //WIP: multiselect
     const subjects = await getSubjectsWithoutTeacher(token) 
 
-    const subjectsMultiSelect = Multiselect(subjects, 'Disciplinas')
-    subjectsMultiSelect.multiselect.classList.add('crud-input')
+    const {multiselect, getSelecteds} = Multiselect(subjects, 'Disciplinas')
+    multiselect.classList.add('crud-input')
 
     
     inputDiv.append(inputName)
     inputDiv.append(inputRegistration)
     inputDiv.append(inputEmail)
-    inputDiv.append(subjectsMultiSelect.multiselect)
+    inputDiv.append(multiselect)
 
     const button = Button({
         text: 'Cadastrar',

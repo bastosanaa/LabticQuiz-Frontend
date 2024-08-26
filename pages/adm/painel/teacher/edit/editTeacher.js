@@ -3,7 +3,10 @@ import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
-import { checkIfAllInputsFiled, patchUserUpdates, setUserEditPage } from "../../../../utils/api.js";
+import { checkIfAllInputsFiled, compareItemsSelected, getEntityID, patchUserUpdates, setUserEditPage } from "../../../../utils/api.js";
+import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
+import { getSubjectsByTeacher, getSubjectsWithoutTeacher } from "../../../../../scripts/service/subjectService.js";
+import { deleteTeacherFromSubjetcs, getSubjectsRegistered, registerTeacherToSubjects, subjectParser } from "../../crudUtils.js";
 
 const token = localStorage.getItem('token')
 
@@ -39,7 +42,7 @@ export async function registerStudent() {
     const header = PageHeader({
         title_text: 'Edição do Professor',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'
     })
     page.append(header)
 
@@ -77,13 +80,15 @@ export async function registerStudent() {
 
     
     //WIP: multiselect
-    const subjectsMultiSelect = Select({
-        title: 'Disciplinas',
-        tooltipText: 'Devem existir professores cadastrados para adicionar na disciplina, logo o campo é opcional.',
-        options: ['disciplinas do usuário']
-    })
-    subjectsMultiSelect.classList.add('crud-input')
+    const teacher_id = getEntityID()
+
+    const subjects = await getSubjectsWithoutTeacher(token) 
+
+    const preSelectedItems = await getSubjectsByTeacher(token, teacher_id)
     
+    const {multiselect, getSelecteds} = Multiselect(subjects, 'Disciplinas', preSelectedItems)
+    multiselect.classList.add('crud-input')
+
     const nameField = inputName.querySelector('input')
     const registrationField = inputRegistration.querySelector('input')
     const emailField = inputEmail.querySelector('input')
@@ -93,13 +98,25 @@ export async function registerStudent() {
     inputDiv.append(inputName)
     inputDiv.append(inputRegistration)
     inputDiv.append(inputEmail)
-    inputDiv.append(subjectsMultiSelect)
+    inputDiv.append(multiselect)
 
     const button = Button({
         text: 'Cadastrar',
         action: async () => {
             if (checkIfAllInputsFiled()) {
                 await patchUserUpdates(token, nameField, registrationField, emailField)
+
+                const selectedItems = getSelecteds()
+                const parsedPreSelectedItems = subjectParser(preSelectedItems)
+
+                const { removedItems, addedItems } = compareItemsSelected(parsedPreSelectedItems, selectedItems)
+
+                console.log(addedItems);
+                
+                await registerTeacherToSubjects(token, teacher_id,addedItems)
+                await deleteTeacherFromSubjetcs(token, removedItems)
+
+
                 window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'
             }
         }

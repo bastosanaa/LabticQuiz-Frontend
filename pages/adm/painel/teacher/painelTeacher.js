@@ -6,7 +6,7 @@ import { Toast } from "../../../../components/toast/toast.js";
 
 import { deleteUserByID, getAllTeachers } from "../../../../scripts/service/userService.js"
 import { teacherTableParser } from "../teacher/teacherTableParser.js";
-import { setSubjectsTeacher } from "../../../../scripts/service/subjectService.js";
+import { setSubjectsTeacherToNull } from "../../../../scripts/service/subjectService.js";
 
 
 const token = localStorage.getItem('token')
@@ -77,7 +77,7 @@ async function createPainelTeacher() {
         parser: teacherTableParser,
         removeAction: async (token,id) => {
             const deleteduser = await deleteUserByID(token,id)
-            await setSubjectsTeacher(token, id, null)
+            await setSubjectsTeacherToNull(token, id)
             console.log("deletado",deleteduser);
             
             const toast = Toast({

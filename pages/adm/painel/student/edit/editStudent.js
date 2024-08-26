@@ -114,9 +114,8 @@ export async function editStudent() {
 
                 const student_id = getEntityID()
 
-
-                registerStudentToSubjects(token,student_id, addedItems)
-                deleteStudentFromSubjects(token,student_id, removedItems)
+                await registerStudentToSubjects(token,student_id, addedItems)
+                await deleteStudentFromSubjects(token,student_id, removedItems)
 
                 window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
             }

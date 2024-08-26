@@ -1,4 +1,6 @@
-import { registerStudentToSubject, deleteStudentSubject } from "../../../scripts/service/studentSubjecService.js"
+import { registerStudentToSubject, deleteStudentSubject,getSubjectsbyStudent } from "../../../scripts/service/studentSubjecService.js"
+import { updateSubjectChanges } from "../../../scripts/service/subjectService.js"
+import { getEntityID } from "../../utils/api.js"
 
 
 //🚧 - ARRUMAR IMPORTACOES DESTE ARQUIVO - 🚧
@@ -39,8 +41,7 @@ export function subjectParser(subjectList) {
     return parsedSubjectList
 }
 
-//StudentSubjectUtils
-
+// Functions used in editStudent Page
 export async function getSubjectsRegistered(token) {
     const id = getEntityID()
     return await getSubjectsbyStudent(token, id)
@@ -61,5 +62,18 @@ export async function deleteStudentFromSubjects(token, studentID, subjects) {
     
     subjects.forEach(async subject => {
         await deleteStudentSubject(token, studentID, subject._id)
+    })
+}
+
+//functions used in editTeacher Page
+export async function registerTeacherToSubjects(token, teacher_id, subjects) {
+    subjects.forEach(async subject => {
+        await updateSubjectChanges(token, subject._id, subject.name, teacher_id)        
+    })
+}
+
+export async function deleteTeacherFromSubjetcs(token, subjects) {
+    subjects.forEach(async subject => {
+        await updateSubjectChanges(token, subject._id, subject.name, null)        
     })
 }

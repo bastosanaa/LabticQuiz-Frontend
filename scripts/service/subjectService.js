@@ -92,14 +92,14 @@ export async function getSubjectsWithoutTeacher(token) {
     return subjects
 }
 
-export async function setSubjectsTeacher(token, teacher_id, new_teacher_id) {
+export async function setSubjectsTeacherToNull(token, teacher_id) {
     const response = await fetch (`${url}/subjects/teacher/`, {
         method: "PATCH",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        body: JSON.stringify({teacher_id: teacher_id, new_teacher_id:new_teacher_id})
+        body: JSON.stringify({teacher_id: teacher_id})
     })
 
     const subjects = await response.json()
@@ -107,17 +107,17 @@ export async function setSubjectsTeacher(token, teacher_id, new_teacher_id) {
 
 }
 
-// export async function getAllTeachersSubjects(token, teacher_id) {
-//     const response = await fetch (`${url}/subjects/teacher/${id}`, {
-//         method: "GET",
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': token
+export async function getSubjectsByTeacher(token, teacher_id) {
+    const response = await fetch (`${url}/subjects/teacher/${teacher_id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
 
-//         }
-//     })
+    const subjects = await response.json()
+    return subjects
 
-//     const subjects = await response.json()
-//     return subjects
-// }
+}
 
