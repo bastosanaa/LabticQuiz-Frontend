@@ -6,6 +6,7 @@ import { Toast } from "../../../../components/toast/toast.js";
 
 import { deleteUserByID, getAllTeachers } from "../../../../scripts/service/userService.js"
 import { teacherTableParser } from "../teacher/teacherTableParser.js";
+import { setSubjectsTeacher } from "../../../../scripts/service/subjectService.js";
 
 
 const token = localStorage.getItem('token')
@@ -39,7 +40,7 @@ async function createPainelTeacher() {
     const page = document.createElement('div')
     page.classList.add('page')
 
-    const teachers = await getAllTeachers(token)
+    const teachers = await getAllTeachers(token)    
 
     console.log(teachers);
 
@@ -76,6 +77,7 @@ async function createPainelTeacher() {
         parser: teacherTableParser,
         removeAction: async (token,id) => {
             const deleteduser = await deleteUserByID(token,id)
+            await setSubjectsTeacher(token, id, null)
             console.log("deletado",deleteduser);
             
             const toast = Toast({

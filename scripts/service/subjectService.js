@@ -92,6 +92,21 @@ export async function getSubjectsWithoutTeacher(token) {
     return subjects
 }
 
+export async function setSubjectsTeacher(token, teacher_id, new_teacher_id) {
+    const response = await fetch (`${url}/subjects/teacher/`, {
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({teacher_id: teacher_id, new_teacher_id:new_teacher_id})
+    })
+
+    const subjects = await response.json()
+    return subjects
+
+}
+
 // export async function getAllTeachersSubjects(token, teacher_id) {
 //     const response = await fetch (`${url}/subjects/teacher/${id}`, {
 //         method: "GET",

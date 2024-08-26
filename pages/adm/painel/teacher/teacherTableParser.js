@@ -1,7 +1,7 @@
-export function teacherTableParser(teacherObj) {
+export function teacherTableParser(teacherObj) {    
 
     const parsedTeacherObj = {
-        'identificador': teacherObj._id,
+        'identificador': teacherObj.registration,
         'nome': teacherObj.name,
         'disciplinas': '0'
     }
