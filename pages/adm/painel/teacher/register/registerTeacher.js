@@ -7,7 +7,8 @@ import { Multiselect } from "../../../../../components/multiselect/multiselect.j
 import { getSubjectsWithoutTeacher } from "../../../../../scripts/service/subjectService.js";
 
 
-import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
+import { checkIfAllInputsFiled, getEntityID, postNewUser } from "../../../../utils/api.js";
+import { registerTeacherToSubjects } from "../../crudUtils.js";
 
 const token = localStorage.getItem('token')
 
@@ -98,10 +99,18 @@ export async function registerStudent() {
                 const nameField = inputName.querySelector('input')
                 const registrationField = inputRegistration.querySelector('input')
                 const emailField = inputEmail.querySelector('input')
-                await postNewUser(token, nameField, registrationField, emailField, "professor")
+                const registratioResponse = await postNewUser(token, nameField, registrationField, emailField, "professor")
+                
+                const teacher_id = (await registratioResponse.json())._id
+
+                const addedItems = getSelecteds()
+
+                await registerTeacherToSubjects(token, teacher_id,addedItems)
                 window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'
             }
         }
+
+        
     })
     registerForm.append(button)
 
