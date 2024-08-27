@@ -1,10 +1,13 @@
-export function Select({title, tooltipText = null, options}) {
+export function Select({title=null, tooltipText = null, options}) {
     
     const selectContainer = document.createElement('div')
     selectContainer.classList.add('select-container')
 
-    const label = document.createElement('label')
-    label.textContent = title
+    if (title) {
+        const label = document.createElement('label')
+        label.textContent = title
+        selectContainer.append(label)
+    }
 
     if (tooltipText) {
         const tooltip = document.createElement('img')
@@ -13,10 +16,15 @@ export function Select({title, tooltipText = null, options}) {
         tooltip.setAttribute('title', tooltipText)
         label.appendChild(tooltip)
     }
-    selectContainer.append(label)
 
     const select = document.createElement('select')
     console.log(options);
+
+    // options input format 
+    // {
+    //     text: 'Avaliação',
+    //     value: 'avaliacao'
+    // }
 
     options.forEach(option => {
         const newOption = document.createElement('option')

@@ -108,7 +108,7 @@ export async function registerStudent() {
                     registerStudentToSubjects(studentID, selectedSubjectsIDs)
                     
 
-                    // window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+                    window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
                 }
                 
             }

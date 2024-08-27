@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css');
+@import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css');
 @import url('../components/button/button.css');
 @import url('../components/contentItem/contentItem.css');
 @import url('../components/contentList/contentList.css');
@@ -13,6 +15,7 @@
 @import url('../components/select/select.css');
 @import url('../components/toast/toast.css');
 @import url('../components/multiselect/multiselect.css');
+@import url('../components/alternatives/alternatives.css');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -20,7 +23,7 @@ a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
-dl, dt, dd, ol, ul, li,
+dl, dt, dd, ol, ul, li, textarea,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
@@ -37,6 +40,7 @@ time, mark, audio, video,select {
     background-color: var(--white-color);
     flex-direction: column;
     font-family: arial;
+    padding-bottom: 70px;
     width: calc(100vw - 250px);
 }
 
@@ -84,4 +88,12 @@ time, mark, audio, video,select {
     flex: 1 0 48%;
     margin-bottom: 1rem;
 
+}
+
+.button-div {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
 }

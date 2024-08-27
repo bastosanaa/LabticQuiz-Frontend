@@ -1,14 +1,16 @@
 import { checkIfEmpty } from "../../pages/utils/api.js"
 
-export function Input({placeholder,title, required = false, errorMessage = null, type = 'text', inputClass = null, style = 'default'}) {
+export function Input({placeholder,title = null, required = false, errorMessage = null, type = 'text', inputClass = null, style = 'default'}) {
 
     const inputContainer = document.createElement('div')
     inputContainer.classList.add('input-container')
 
-    const p = document.createElement('p')
-    p.classList.add('input-label')
-    p.textContent = title
-    inputContainer.appendChild(p)
+    if (title) {
+        const p = document.createElement('p')
+        p.classList.add('input-label')
+        p.textContent = title
+        inputContainer.appendChild(p)
+    }
 
     const input = document.createElement('input')
     if (style === 'grey') {

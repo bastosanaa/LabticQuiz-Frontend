@@ -58,7 +58,7 @@ export function NavBar({items = []}) {
                         text: 'Encerrar',
                         action: () => {
                             localStorage.removeItem('token')
-                            window.location.href = 'http://127.0.0.1:5501/login.html'
+                            window.location.href = 'http://127.0.0.1:5501/pages/login.html'
                         }
                     }
                 ]
