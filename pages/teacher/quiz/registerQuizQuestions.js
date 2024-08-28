@@ -42,20 +42,23 @@ async function setRegisterQuizQuestionsPage() {
     inputDiv.classList.add('crud-input-div')
     registerForm.appendChild(inputDiv)
 
-    const question = Input({
-        placeholder: 'Digite aqui a pergunta...',
-        title: 'Pergunta 1',
-
-    })
-    inputDiv.append(question)
-
-    const alternatives = Alternatives()
-    inputDiv.append(alternatives)
-
+    for (let i = 1; i < 11; i++) {
+        const question = Input({
+            placeholder: 'Digite aqui a pergunta...',
+            title: `Pergunta ${i}`,
+    
+        })
+        inputDiv.append(question)
+    
+        const alternatives = Alternatives()
+        inputDiv.append(alternatives)
+    
+        
+    }
     const buttonDiv = document.createElement('div')
     buttonDiv.classList.add('button-div')
     registerForm.append(buttonDiv)
-
+    
     const draftButton = Button({
         type: 'outline',
         text: 'Guardar Rascunho',
@@ -69,6 +72,7 @@ async function setRegisterQuizQuestionsPage() {
     })
     buttonDiv.append(postButton)
 
+    
     main.append(page)
 
 }

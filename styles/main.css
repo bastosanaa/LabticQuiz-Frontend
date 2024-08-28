@@ -42,6 +42,8 @@ time, mark, audio, video,select {
     font-family: arial;
     /* padding-bottom: 70px; */
     width: calc(100vw - 250px);
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .page-header {
