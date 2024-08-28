@@ -27,6 +27,7 @@ async function setRegisterQuizPage() {
     const header = PageHeader({
         title_text: 'Informações do Quiz',
         back_btn: true,
+        back_btn_address: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
     })
 
     page.append(header)
@@ -118,7 +119,9 @@ async function setRegisterQuizPage() {
     const submitButton = Button({
         size: 'medium',
         text: 'Criar Perguntas',
-        action: ''
+        action: () => {
+            window.location.href = 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuizQuestions.html'
+        }
     })
     buttonDiv.append(submitButton)
 

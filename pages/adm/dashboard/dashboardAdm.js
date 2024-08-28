@@ -42,9 +42,9 @@ async function createUserDashboard() {
         title_text: 'Opções',
         content_items: [
             //passar as acoes aqui
-            {text: 'Alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-            {text: 'Professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
-            {text: 'Disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
+            {name: 'Alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
+            {name: 'Professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
+            {name: 'Disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
         ],
     })
     

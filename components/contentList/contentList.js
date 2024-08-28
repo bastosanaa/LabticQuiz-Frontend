@@ -13,8 +13,10 @@ export function ContentList({title_text, content_items = []}) {
     const ul = document.createElement('ul')
     ul.classList.add('content-list')
     content_items.forEach(item => {
+        console.log(item);
+        
         const new_item = ContentItem({
-            text: item.text,
+            text: item.name,
             href: item.href,
             action: item.action
         })

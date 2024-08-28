@@ -4,34 +4,26 @@ import { NavBar } from "./../../../components/navBar/navBar.js";
 import { PageHeader } from "./../../../components/pageHeader/pageHeader.js";
 import { ContentList } from "./../../../components/contentList/contentList.js";
 
-import { getUserIDbyToken } from "/../../../scripts/service/userService.js"
-import  { getSubjectsbyStudent } from "/../../scripts/service/studentSubjecService.js"
+import { getUserIDbyToken, getUserByID } from "/../../../scripts/service/userService.js"
+import { getAllSubjects } from "../../../scripts/service/subjectService.js";
 
 async function getUserName(token) {
-    const user = await getUserIDbyToken(token)
+    const user_id = (await getUserIDbyToken(token))._id
+    const user = await getUserByID(token, user_id)
+    console.log(user);
+    
     const user_name = user.name
     return user_name    
 }
 
-async function getUserSubjects(token) {
-    const subjects = await getSubjectsbyStudent(token)
-    const subjects_items = []
-    if (subjects.length > 0) {
-        subjects.forEach(subject => {
-            const item = {text: subject.subject_name} 
-            subjects_items.push(item)
-        })
-        console.log(subjects_items);
-        return subjects_items
-    } else {
-        console.log('nada');
-    }
-}
+
 
 async function setPage() {
     const token = localStorage.getItem('token')
     const user_name =  await getUserName(token)
-    const subjects = await getUserSubjects(token)
+    const subjects = await getAllSubjects(token)
+    console.log(subjects);
+    
     await setUserDashboard(user_name, subjects)
 
 }
@@ -60,13 +52,27 @@ async function setUserDashboard(user_name, subjects) {
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',
-        content_items: subjects,
+        content_items: parseSubjectToList(subjects)
     })
     
     page.append(header)
     page.append(subjectList)
+    
     main.append(page)
 
+}
+
+function parseSubjectToList(subjects) {
+    let parsedSubjects = []
+    subjects.forEach(subject => {
+        const id = subject._id
+        const parsedSubject = {
+            name: subject.name,
+            href: `http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html`
+        }
+        parsedSubjects.push(parsedSubject)
+    })    
+    return parsedSubjects
 }
 
 await setPage()

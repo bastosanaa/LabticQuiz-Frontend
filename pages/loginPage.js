@@ -93,6 +93,9 @@ async function redirectUserPage(token) {
     if (user_role == "administrador") {
         window.location.href = `${url}/pages/adm/dashboard/dashboardAdm.html`
     }
+    if (user_role == "professor"){
+        window.location.href = `${url}/pages/teacher/dashboard/dashboardTeacher.html`
+    }
 }
 
 async function sendUserDataToFetch() {

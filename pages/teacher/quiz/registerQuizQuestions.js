@@ -30,6 +30,7 @@ async function setRegisterQuizQuestionsPage() {
         subtitle_text: 'Nome da disciplina',
         // subtitle_size: 'small',
         back_btn: true,
+        back_btn_address: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
     })
     page.append(header)
 
