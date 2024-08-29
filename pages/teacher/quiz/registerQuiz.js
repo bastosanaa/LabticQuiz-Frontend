@@ -135,7 +135,11 @@ async function setRegisterQuizPage() {
         type:'outline',
         size: 'medium',
         text: 'Salvar Rascunho',
-        action: ''
+        action: async () => {
+            const quiz_id = await SaveQuizDraft()
+
+            window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+        }
     })
     buttonDiv.append(draftButton)
     
@@ -144,26 +148,41 @@ async function setRegisterQuizPage() {
         text: 'Criar Perguntas',
         action: async () => {
 
-            const quizName = nameField.value
-            const quizSubject = subjectField.value
-            const quizType = typeField.value
-            const quizAttempts = attemptsField.value
-            const quizTimeLimit = timeLimitField.value
-            const quizInstructions = instructionsTextArea.value
-            const quizStartDate = timeStartInput.value
-            const quizEndDate = timeEndInput.value
+            const quiz_id = await SaveQuizDraft()
+            console.log(quiz_id);
+            
 
-            await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType)
+            if (quiz_id) {
+                window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/registerQuizQuestions.html?id=${quiz_id}`
+            }
 
-            //enviar para o back os dados
-
-            // window.location.href = 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuizQuestions.html'
         }
     })
     buttonDiv.append(submitButton)
 
 
     main.append(page)
+
+    async function SaveQuizDraft() {
+        const quizName = nameField.value
+        const quizSubject = subjectField.value
+        const quizType = typeField.value
+        const quizAttempts = attemptsField.value
+        const quizTimeLimit = timeLimitField.value
+        const quizInstructions = instructionsTextArea.value
+        const quizStartDate = timeStartInput.value
+        const quizEndDate = timeEndInput.value
+        const questions = []
+        const isDraft = true
+    
+        if (quizName && quizSubject && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {            
+            const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
+            const quiz_id = (await response.json())._id
+            return quiz_id
+        }
+        return none
+    }
+    
 
 }
 

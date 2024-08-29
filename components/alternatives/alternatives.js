@@ -17,7 +17,7 @@ export function Alternatives() {
     correctTextArea.placeholder = 'Digite aqui a resposta correta...'
     alternative.appendChild(correctTextArea)
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 1; i < 4; i++) {
         const wrongAlternative = document.createElement('div')
         wrongAlternative.classList.add('alternative-item')
 

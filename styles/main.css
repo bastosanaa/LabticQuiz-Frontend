@@ -76,6 +76,7 @@ time, mark, audio, video,select {
     justify-content: space-between;
     height: 100%;
     align-items: center;
+    padding-bottom: 5rem;
 }
 
 .crud-input-div {
@@ -83,6 +84,7 @@ time, mark, audio, video,select {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
 
 .crud-input {
@@ -97,4 +99,6 @@ time, mark, audio, video,select {
     flex-direction: row;
     width: 100%;
     justify-content: end;
+    padding-bottom: 3rem;
+    box-sizing: border-box;
 }

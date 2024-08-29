@@ -43,18 +43,30 @@ async function setRegisterQuizQuestionsPage() {
     registerForm.appendChild(inputDiv)
 
     for (let i = 1; i < 11; i++) {
+        const questionDiv = document.createElement('div')
+        questionDiv.classList.add('question-div')
+        questionDiv.style.width = '100%'
+        questionDiv.style.display = 'flex'
+        questionDiv.style.flexDirection = 'column'
+        questionDiv.style.gap = '1rem'
+        //criar div aqui e percorrer as divs transformando em obejtos
         const question = Input({
             placeholder: 'Digite aqui a pergunta...',
             title: `Pergunta ${i}`,
     
         })
-        inputDiv.append(question)
+        question.classList.add('question')
+        questionDiv.append(question)
     
         const alternatives = Alternatives()
-        inputDiv.append(alternatives)
-    
+        questionDiv.append(alternatives)
+
+        inputDiv.append(questionDiv)
         
     }
+
+    
+
     const buttonDiv = document.createElement('div')
     buttonDiv.classList.add('button-div')
     registerForm.append(buttonDiv)
@@ -79,3 +91,43 @@ async function setRegisterQuizQuestionsPage() {
 
 
 setRegisterQuizQuestionsPage()
+
+// [{
+    //     title: {
+    //         type: String,
+    //     },
+    //     alternatives: [
+    //         {   
+    //             correct: {
+    //                 type: Boolean
+    //             },
+                
+    //             content: {
+    //                 type:String
+    //             }
+
+    //         }
+    //     ]
+    // }]
+
+const questionDivs = document.querySelectorAll('.question-div')
+console.log(questionDivs);
+
+questionDivs.forEach(questionDiv => {
+    const questionInputContainer = questionDiv.querySelector('.question')
+    const questionInput = questionInputContainer.querySelector('input').value
+    console.log(questionInput);
+
+    const correctAlt = document.querySelector('#correct-alt').value
+    
+    const wrongAlt1 = document.querySelector('#wrong-alt1')
+    const wrongAlt2 = document.querySelector('#wrong-alt2')
+    const wrongAlt3 = document.querySelector('#wrong-alt3')
+
+    console.log(wrongAlt1);
+    
+
+    
+    
+    
+})
