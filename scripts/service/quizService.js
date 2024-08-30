@@ -23,9 +23,9 @@ export async function createQuiz(token, title, subject_id, time, attempts, dateS
     return response
 }
 
-export async function createQuiz(token, new_quiz_info, id) {
+export async function updateQuiz(token, new_quiz_info, id) {
     const response = await fetch(`${url}/quizzes/${id}`, {
-        method: "POST",
+        method: "PUT",
         mode: "cors",
         headers: {
             'Content-Type': 'application/json',

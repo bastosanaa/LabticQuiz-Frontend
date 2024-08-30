@@ -52,10 +52,7 @@ async function setRegisterQuizPage() {
     inputDiv.append(nameInput)
 
     const subjects = await getAllSubjects(token)
-    console.log(subjects);
-    
-    console.log(parseSubjectsToSelect(subjects));
-    
+        
     
     const subjectSelect = Select({
         options: [{

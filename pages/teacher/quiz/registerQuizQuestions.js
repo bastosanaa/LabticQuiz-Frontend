@@ -4,6 +4,10 @@ import { Input } from "../../../components/input/input.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
+import { updateQuiz } from "../../../scripts/service/quizService.js"
+import { getEntityID } from "../../utils/api.js"
+
+const token = localStorage.getItem('token')
 
 async function setRegisterQuizQuestionsPage() {
     const main = document.getElementById('main')
@@ -80,7 +84,50 @@ async function setRegisterQuizQuestionsPage() {
 
     const postButton = Button({
         text: 'Postar',
-        size: 'medium'
+        size: 'medium',
+        action: async () => {
+            const questionDivs = document.querySelectorAll('.question-div')
+            console.log(questionDivs);
+
+            const questions = []
+
+            questionDivs.forEach(questionDiv => {
+                const questionInputContainer = questionDiv.querySelector('.question')
+                const questionInput = questionInputContainer.querySelector('input')
+
+                const correctAlt = document.querySelector('#correct-alt')
+
+                const wrongAlt1 = document.querySelector('#wrong-alt1')
+                const wrongAlt2 = document.querySelector('#wrong-alt2')
+                const wrongAlt3 = document.querySelector('#wrong-alt3')
+
+                questions.push({
+                    title: questionInput.value,
+                    alternatives: [
+                        {
+                            correct: true,
+                            content: correctAlt.value
+                        },
+                        {
+                            correct: false,
+                            content: wrongAlt1.value
+                        },
+                        {
+                            correct: false,
+                            content: wrongAlt2.value
+                        },
+                        {
+                            correct: false,
+                            content: wrongAlt3.value
+                        }
+                    ]
+                })
+            })
+            const quiz_id = getEntityID()
+            await updateQuiz(token,{questions: questions, is_draft: false},quiz_id)
+            console.log(questions);
+            
+        }
     })
     buttonDiv.append(postButton)
 
@@ -92,42 +139,4 @@ async function setRegisterQuizQuestionsPage() {
 
 setRegisterQuizQuestionsPage()
 
-// [{
-    //     title: {
-    //         type: String,
-    //     },
-    //     alternatives: [
-    //         {   
-    //             correct: {
-    //                 type: Boolean
-    //             },
-                
-    //             content: {
-    //                 type:String
-    //             }
 
-    //         }
-    //     ]
-    // }]
-
-const questionDivs = document.querySelectorAll('.question-div')
-console.log(questionDivs);
-
-questionDivs.forEach(questionDiv => {
-    const questionInputContainer = questionDiv.querySelector('.question')
-    const questionInput = questionInputContainer.querySelector('input').value
-    console.log(questionInput);
-
-    const correctAlt = document.querySelector('#correct-alt').value
-    
-    const wrongAlt1 = document.querySelector('#wrong-alt1')
-    const wrongAlt2 = document.querySelector('#wrong-alt2')
-    const wrongAlt3 = document.querySelector('#wrong-alt3')
-
-    console.log(wrongAlt1);
-    
-
-    
-    
-    
-})

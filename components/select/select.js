@@ -18,7 +18,6 @@ export function Select({title=null, tooltipText = null, options}) {
     }
 
     const select = document.createElement('select')
-    console.log(options);
 
     // options input format 
     // {
