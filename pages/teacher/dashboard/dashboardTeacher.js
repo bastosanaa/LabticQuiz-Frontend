@@ -6,6 +6,8 @@ import { ContentList } from "./../../../components/contentList/contentList.js";
 
 import { getUserIDbyToken, getUserByID } from "/../../../scripts/service/userService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js";
+import { parseSubjectToList } from "../../utils/api.js";
+
 
 async function getUserName(token) {
     const user_id = (await getUserIDbyToken(token))._id
@@ -52,7 +54,7 @@ async function setUserDashboard(user_name, subjects) {
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',
-        content_items: parseSubjectToList(subjects)
+        content_items: parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html')
     })
     
     page.append(header)

@@ -6,15 +6,20 @@ import { ContentList } from "./../../../components/contentList/contentList.js";
 
 import { getUserIDbyToken } from "/../../../scripts/service/userService.js"
 import  { getSubjectsbyStudent } from "/../../scripts/service/studentSubjecService.js"
+import { parseSubjectToList } from "../../utils/api.js";
+import { getUserByID } from "../../../scripts/service/userService.js";
+
 
 async function getUserName(token) {
     const user = await getUserIDbyToken(token)
-    const user_name = user.name
+    const user_data = await getUserByID(token, user._id)    
+    const user_name = user_data.name
     return user_name    
 }
 
 async function getUserSubjects(token) {
-    const subjects = await getSubjectsbyStudent(token)
+    const user = await getUserIDbyToken(token)
+    const subjects = await getSubjectsbyStudent(token,user._id)
     const subjects_items = []
     if (subjects.length > 0) {
         subjects.forEach(subject => {
@@ -31,7 +36,11 @@ async function getUserSubjects(token) {
 async function setPage() {
     const token = localStorage.getItem('token')
     const user_name =  await getUserName(token)
+    console.log(user_name);
+    
     const subjects = await getUserSubjects(token)
+    console.log(subjects);
+    
     await setUserDashboard(user_name, subjects)
 
 }
@@ -39,15 +48,15 @@ async function setPage() {
 async function setUserDashboard(user_name, subjects) {
     const main = document.getElementById('main')
     
-    const navBar = NavBar(
-        {
+    const navBar = NavBar({
+        items: [{
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: true,
             anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
-        },
-    )
-    main.appendChild(navBar)
+        }],
+    })
+    main.append(navBar)
     
     const page = document.createElement('div')
     page.classList.add('page')

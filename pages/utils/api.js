@@ -115,3 +115,16 @@ export function subjectParser(subjectList) {
     
     return parsedSubjectList
 }
+
+export function parseSubjectToList(subjects, href) {
+    let parsedSubjects = []
+    subjects.forEach(subject => {
+        const id = subject._id
+        const parsedSubject = {
+            name: subject.name,
+            href: href
+        }
+        parsedSubjects.push(parsedSubject)
+    })    
+    return parsedSubjects
+}

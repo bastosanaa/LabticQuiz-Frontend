@@ -36,3 +36,14 @@ export async function updateQuiz(token, new_quiz_info, id) {
     return response
 }
 
+export async function getQuizByID(token, quiz_id) {
+    const response = await fetch(`${url}/quizzes/${quiz_id}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    return response
+}

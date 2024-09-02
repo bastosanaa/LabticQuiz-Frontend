@@ -1,8 +1,18 @@
+import { AnswersChart } from "../../../components/answersChart/answersChart.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
+import { getQuizByID } from "../../../scripts/service/quizService.js"
 
-function setQuizPage() {
+const token = localStorage.getItem('token')
+
+async function setQuizPage() {
+
+    const quiz_id = '66d1d681d29e8bf3c259bd22';
+    const quiz_data = await (await getQuizByID(token,quiz_id)).json()
+    console.log(quiz_data);
+    
+
     const main = document.getElementById('main')
     
     const navBar = NavBar({
@@ -18,24 +28,44 @@ function setQuizPage() {
     const page = document.createElement('div')
     page.classList.add('page')
 
+    
     const pageHeader = PageHeader({
-        title_text: 'Nome do quiz',
-        subtitle_text: 'disciplina',
+        title_text: quiz_data.title,
+        subtitle_text: quiz_data.subject_id.name,
         subtitle_size: 'small',
         back_btn: true
     })
-
-    const quiz = quizQuestion({
-        question_number: 1,
-        description: 'qual o numero?'
-    })
     page.append(pageHeader)
+    
+    const pageContent = document.createElement('div')
+    pageContent.classList.add('page-content')
+    
+    const quizQuestionsData = quiz_data.questions
 
-    page.append(quiz)
+    let questionNumber = 1
+    quizQuestionsData.forEach(questionData => {
+        const question = quizQuestion({
+            question_number: questionNumber,
+            description: questionData.title,
+            alternatives: questionData.alternatives
+        })
+        questionNumber++
+        pageContent.append(question)
+    });
+        
+    const answersChart = AnswersChart({
+        numAnswers: quizQuestionsData.length
+    })
+    pageContent.append(answersChart)
+    
+    page.appendChild(pageContent)
+    
+
+
 
 
     main.append(page)
 
 }
 
-setQuizPage()
+await setQuizPage()

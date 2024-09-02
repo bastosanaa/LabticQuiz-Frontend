@@ -1,0 +1,36 @@
+.answers-chart {
+    max-width: 320px;
+    padding: 3rem 5rem;
+    box-sizing: border-box;
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    box-shadow: 2px 2px 2px var(--border-color) ;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.answers-chart p:first-of-type {
+    font-size: 1.125rem;
+    
+}
+
+.question-answer-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    
+}
+
+.chart-questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.chart-question-number {
+    font-weight: 600;
+}
