@@ -27,7 +27,7 @@ async function setQuizPage() {
 
     const page = document.createElement('div')
     page.classList.add('page')
-
+    
     
     const pageHeader = PageHeader({
         title_text: quiz_data.title,
@@ -35,10 +35,12 @@ async function setQuizPage() {
         subtitle_size: 'small',
         back_btn: true
     })
+    
     page.append(pageHeader)
     
     const pageContent = document.createElement('div')
     pageContent.classList.add('page-content')
+    page.appendChild(pageContent)
     
     const quizQuestionsData = quiz_data.questions
 
@@ -52,13 +54,13 @@ async function setQuizPage() {
         questionNumber++
         pageContent.append(question)
     });
-        
+
     const answersChart = AnswersChart({
-        numAnswers: quizQuestionsData.length
+        numAnswers: quizQuestionsData.length,
+        timer: quiz_data.time
     })
     pageContent.append(answersChart)
     
-    page.appendChild(pageContent)
     
 
 

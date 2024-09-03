@@ -1,3 +1,5 @@
+
+
 .answers-chart {
     max-width: 320px;
     padding: 3rem 5rem;
@@ -10,6 +12,17 @@
     flex-direction: column;
     gap: 1.5rem;
     align-items: center;
+    
+}
+
+.answer-chart-wrapper {
+    position: absolute;
+    right: 3.5rem;
+    top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 .answers-chart p:first-of-type {
@@ -33,4 +46,11 @@
 
 .chart-question-number {
     font-weight: 600;
+}
+
+.timer-box {
+    border: 1px solid var(--outline-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1.25rem;
 }

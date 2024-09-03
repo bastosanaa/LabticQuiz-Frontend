@@ -61,15 +61,20 @@ async function setUserDashboard(user_name, subjects) {
     const page = document.createElement('div')
     page.classList.add('page')
     
+    
+
     const header = PageHeader({
         title_text: 'Dashboard',
         back_btn: true,
         subtitle_text: `Bem-vindo(a), ${user_name}`
     })
+    
+    const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizPage.html')
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',
-        content_items: subjects,
+        content_items: parsedSubjects,
+        
     })
     
     page.append(header)
