@@ -9,9 +9,7 @@ const token = localStorage.getItem('token')
 async function setQuizPage() {
 
     const quiz_id = '66d1d681d29e8bf3c259bd22';
-    const quiz_data = await (await getQuizByID(token,quiz_id)).json()
-    console.log(quiz_data);
-    
+    const quiz_data = await (await getQuizByID(token,quiz_id)).json()    
 
     const main = document.getElementById('main')
     
@@ -51,10 +49,13 @@ async function setQuizPage() {
 
     let questionNumber = 1
     quizQuestionsData.forEach(questionData => {
+        console.log(questionData);
+        
         const question = quizQuestion({
             question_number: questionNumber,
             description: questionData.title,
-            alternatives: questionData.alternatives
+            alternatives: questionData.alternatives,
+            question_id: questionData._id
         })
         questionNumber++
         pageContent.append(question)

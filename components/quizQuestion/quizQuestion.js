@@ -1,7 +1,8 @@
-export function quizQuestion({question_number, description, alternatives}) {
+export function quizQuestion({question_number, description, alternatives, question_id}) {
 
     const questionContainer = document.createElement('div')
     questionContainer.classList.add('question-container')
+    questionContainer.id =  question_id
     
     const question = document.createElement('div')
     question.classList.add('quiz-question')
@@ -23,12 +24,14 @@ export function quizQuestion({question_number, description, alternatives}) {
 
 
     for (let i = 0; i < alternatives.length; i++) {
+        
         const alternative = document.createElement('div')
+        alternative.id = alternatives[i]._id
         alternative.classList.add('alternative-item')
         alternativesContainer.append(alternative)
         
         let letter = String.fromCharCode(97 + i)
-        alternative.id = letter
+        alternative.setAttribute('letter', letter)
 
         const altLetter = document.createElement('div')
         altLetter.classList.add('alternative_letter')
@@ -52,19 +55,25 @@ export function quizQuestion({question_number, description, alternatives}) {
                 
             })
             alternative.classList.add('selected-alt')
-            let alternativeSelectedLetter = alternative.id
+            let alternativeSelectedLetter = alternative.getAttribute('letter')
+            
             
             let chartQuestionID = `#chart-question-${question_number}`
             const chartQuestion = document.querySelector(chartQuestionID)
 
             let QuestionLetterSelected = chartQuestion.querySelector('.letter-selected')
             QuestionLetterSelected.textContent = alternativeSelectedLetter.toUpperCase()
-
-            console.log(chartQuestion);
             
         })
     }
 
 
+
+
     return questionContainer
+}
+
+
+function getUserQuizAnswers(){
+    
 }
