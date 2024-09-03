@@ -43,6 +43,11 @@ async function setQuizPage() {
     page.appendChild(pageContent)
     
     const quizQuestionsData = quiz_data.questions
+    const answersChart = AnswersChart({
+        numAnswers: quizQuestionsData.length,
+        timer: quiz_data.time
+    })
+    pageContent.append(answersChart)
 
     let questionNumber = 1
     quizQuestionsData.forEach(questionData => {
@@ -55,11 +60,6 @@ async function setQuizPage() {
         pageContent.append(question)
     });
 
-    const answersChart = AnswersChart({
-        numAnswers: quizQuestionsData.length,
-        timer: quiz_data.time
-    })
-    pageContent.append(answersChart)
     
     
 

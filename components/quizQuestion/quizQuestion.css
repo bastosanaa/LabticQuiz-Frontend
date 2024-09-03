@@ -1,3 +1,11 @@
+:root {
+    --selected-yellow-color: #FEF9C3
+}
+
+.selected-alt {
+    background-color: var(--selected-yellow-color);
+}
+
 .question-container {
     display: flex;
     flex-direction: column;
@@ -25,4 +33,12 @@
 .question-number {
     font-weight: bold;
     font-size: 1.125rem;
+}
+
+.alternative-item {
+    cursor: pointer;
+}
+
+.alternative-item:hover {
+    background-color: var(--selected-yellow-color);
 }

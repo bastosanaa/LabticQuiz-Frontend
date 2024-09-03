@@ -28,6 +28,7 @@ export function quizQuestion({question_number, description, alternatives}) {
         alternativesContainer.append(alternative)
         
         let letter = String.fromCharCode(97 + i)
+        alternative.id = letter
 
         const altLetter = document.createElement('div')
         altLetter.classList.add('alternative_letter')
@@ -37,6 +38,31 @@ export function quizQuestion({question_number, description, alternatives}) {
         const altDescription = document.createElement('p')
         altDescription.textContent = alternatives[i].content        
         alternative.append(altDescription)
+
+
+        alternative.addEventListener('click', () => {
+            
+            //Select alternative and show it in the alternatives selecteds chart
+            const allQuestionAlts = questionContainer.querySelectorAll('.alternative-item')
+            allQuestionAlts.forEach(alt => {
+                if (alt.classList.contains('selected-alt')) {
+                    alt.classList.remove('selected-alt')
+                    return
+                }
+                
+            })
+            alternative.classList.add('selected-alt')
+            let alternativeSelectedLetter = alternative.id
+            
+            let chartQuestionID = `#chart-question-${question_number}`
+            const chartQuestion = document.querySelector(chartQuestionID)
+
+            let QuestionLetterSelected = chartQuestion.querySelector('.letter-selected')
+            QuestionLetterSelected.textContent = alternativeSelectedLetter.toUpperCase()
+
+            console.log(chartQuestion);
+            
+        })
     }
 
 

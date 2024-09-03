@@ -19,6 +19,7 @@ export function AnswersChart({numAnswers, timer = null}) {
 
     for ( let i = 1; i < numAnswers+1; i++ ) {        
         const questionAnswerBox = document.createElement('div')
+        questionAnswerBox.id = `chart-question-${i}`
         questionAnswerBox.classList.add('question-answer-box')
         chartQuestionsContainer.appendChild(questionAnswerBox)
 
