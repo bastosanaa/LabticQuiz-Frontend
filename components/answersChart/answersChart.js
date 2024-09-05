@@ -1,3 +1,5 @@
+import { getEntityID } from "../../pages/utils/api.js"
+import { createAnswer } from "../../scripts/service/quizService.js"
 import { Button } from "../button/button.js"
 
 export function AnswersChart({numAnswers, timer = null}) {
@@ -30,14 +32,19 @@ export function AnswersChart({numAnswers, timer = null}) {
 
         const letterSelected = document.createElement('p');
         letterSelected.classList.add('letter-selected');
-        letterSelected.textContent = 'X'; 
+        letterSelected.textContent = ''; 
         questionAnswerBox.appendChild(letterSelected);
 
     }
 
     const button = Button({
         size: 'small',
-        text: 'Entregar'
+        text: 'Entregar',
+        action: () => {
+            sendUserQuizAnswers()
+            window.location.href = 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
+        }
+
     })
     answersChart.appendChild(button)
 
@@ -64,7 +71,9 @@ export function AnswersChart({numAnswers, timer = null}) {
     
                 if (time <= 0) {
                     clearInterval(timerInterval);
-                    alert("O tempo acabou!");
+                    sendUserQuizAnswers()
+                    window.location.href = 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
+                    
                 } else {
                     time--;
                 }
@@ -83,4 +92,30 @@ export function AnswersChart({numAnswers, timer = null}) {
     
 
     return answerChartWrapper
+}
+
+//send answers 
+
+const token = localStorage.getItem('token')
+
+function getQuizAnswers() {
+    const questionsContainers = document.querySelectorAll('.question-container')
+    let question_answer = []
+    questionsContainers.forEach(question => {
+        let questionId = question.id
+        let selectedAlt = question.querySelector('.selected-alt')
+        
+        question_answer.push({
+            question_id: questionId,
+            alternative: selectedAlt ? selectedAlt.id : null
+        })
+    })
+    
+    return question_answer    
+}
+
+async function sendUserQuizAnswers() {
+    const quiz_id = getEntityID()
+    const question_answer = getQuizAnswers()
+    await createAnswer(token, quiz_id, question_answer )
 }

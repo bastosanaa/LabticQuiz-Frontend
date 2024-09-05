@@ -69,7 +69,7 @@ async function setUserDashboard(user_name, subjects) {
         subtitle_text: `Bem-vindo(a), ${user_name}`
     })
     
-    const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizPage.html')
+    const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=66d1d681d29e8bf3c259bd22')
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',

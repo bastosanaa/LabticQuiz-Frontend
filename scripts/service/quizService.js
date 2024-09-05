@@ -49,7 +49,7 @@ export async function getQuizByID(token, quiz_id) {
 }
 
 //Answer
-export async function createAnswer(token, title, student_id, quiz_id, question_answer ) {
+export async function createAnswer(token, quiz_id, question_answer ) {
     const response = await fetch(`${url}/answers`, {
         method: "POST",
         mode: "cors",
@@ -58,8 +58,6 @@ export async function createAnswer(token, title, student_id, quiz_id, question_a
             'Authorization': token
         },
         body: JSON.stringify({
-            title:title,
-            student_id:student_id,
             quiz_id:quiz_id,
             question_answer: question_answer
         })

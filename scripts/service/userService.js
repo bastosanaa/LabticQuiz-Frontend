@@ -59,7 +59,6 @@ export async function updateUserChanges(token,id, name,registration, email) {
     return response
 }
 
-//mudei de pegar o usuario todo para pegar so o id e entao usar a funcao de pegar pelo id
 export async function getUserIDbyToken(token) {
     const response = await fetch(`${url}/users/token`, {
         method: "GET",

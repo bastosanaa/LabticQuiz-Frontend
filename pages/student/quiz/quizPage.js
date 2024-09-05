@@ -31,7 +31,8 @@ async function setQuizPage() {
         title_text: quiz_data.title,
         subtitle_text: quiz_data.subject_id.name,
         subtitle_size: 'small',
-        back_btn: true
+        back_btn: true,
+        back_btn_address: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
     })
     
     page.append(pageHeader)
@@ -49,8 +50,7 @@ async function setQuizPage() {
 
     let questionNumber = 1
     quizQuestionsData.forEach(questionData => {
-        console.log(questionData);
-        
+
         const question = quizQuestion({
             question_number: questionNumber,
             description: questionData.title,
@@ -60,13 +60,6 @@ async function setQuizPage() {
         questionNumber++
         pageContent.append(question)
     });
-
-    
-    
-
-
-
-
     main.append(page)
 
 }
