@@ -41,5 +41,6 @@ export async function getSubjectsbyStudent(token, user_id){
         },
     })
     const subjects = await response.json()
+    
     return subjects
 }

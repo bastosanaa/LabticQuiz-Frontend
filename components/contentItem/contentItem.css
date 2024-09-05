@@ -10,7 +10,7 @@
     --stone-color: #57534E;
 }
 
-#content-item {
+.content-item {
     height: 60px;
     border-radius: 12px;
     border: 1px solid var(--primary-beige);
@@ -27,22 +27,22 @@
 }
 
 
-#content-item #content-item-text {
+.content-item .content-item-text {
     color: var(--black-color);
     opacity: 1;
 }
 
-#content-item a {
+.content-item a {
     color:var(--purple-color) ;
     text-decoration: none;
     font-size: 1rem;
 }
 
-#content-item p {
+.content-item p {
     color: var(--stone-color);
 } 
 
-#content-item span {
+.content-item span {
     background-color: var(--purple-color);
     padding: 0.2rem 1.25rem;
     color: var(--white-color);

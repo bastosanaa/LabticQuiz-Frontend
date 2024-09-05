@@ -1,10 +1,13 @@
 
 
-export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null}) {
+export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {
     const item = document.createElement('li')
-    item.id = 'content-item'
+    console.log(id);
+    
+    item.id = id
+    item.classList.add('content-item')
     const p = document.createElement('p')
-    p.id = 'content-item-text'
+    p.classList.add('content-item-text')
     p.textContent = text
     
     item.appendChild(p)

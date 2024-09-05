@@ -1,6 +1,7 @@
 import { ContentItem } from "../contentItem/contentItem.js"
 
-export function ContentList({title_text, content_items = []}) {
+export function ContentList({title_text, content_items = [], href = null}) {
+    console.log(content_items);
 
     const content = document.createElement('div')
     content.classList.add('content')
@@ -13,11 +14,17 @@ export function ContentList({title_text, content_items = []}) {
     const ul = document.createElement('ul')
     ul.classList.add('content-list')
     content_items.forEach(item => {
+        console.log(item);
         
+        const item_id = item.id? item.id : item._id
         const new_item = ContentItem({
-            text: item.name? item.name : item.text,
-            href: item.href,
-            action: item.action
+            text: item.name? item.name : item.title,
+            href: item.href? item.href : `${href}?id=${item_id}`,
+            action: item.action,
+            id: item_id,
+            tag: item.type,
+            date: item.date_end
+
         })
         ul.appendChild(new_item)
     })

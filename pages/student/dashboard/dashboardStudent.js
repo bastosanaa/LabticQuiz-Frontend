@@ -20,13 +20,15 @@ async function getUserName(token) {
 async function getUserSubjects(token) {
     const user = await getUserIDbyToken(token)
     const subjects = await getSubjectsbyStudent(token,user._id)
+    
     const subjects_items = []
     if (subjects.length > 0) {
         subjects.forEach(subject => {
-            const item = {text: subject.subject_name} 
+            const item = {text: subject.subject_name,
+                id: subject.subject_id
+            } 
             subjects_items.push(item)
         })
-        console.log(subjects_items);
         return subjects_items
     } else {
         console.log('nada');
@@ -36,10 +38,8 @@ async function getUserSubjects(token) {
 async function setPage() {
     const token = localStorage.getItem('token')
     const user_name =  await getUserName(token)
-    console.log(user_name);
     
     const subjects = await getUserSubjects(token)
-    console.log(subjects);
     
     await setUserDashboard(user_name, subjects)
 
@@ -53,7 +53,7 @@ async function setUserDashboard(user_name, subjects) {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: true,
-            anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
+            anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
         }],
     })
     main.append(navBar)
@@ -66,10 +66,11 @@ async function setUserDashboard(user_name, subjects) {
     const header = PageHeader({
         title_text: 'Dashboard',
         back_btn: true,
-        subtitle_text: `Bem-vindo(a), ${user_name}`
+        subtitle_text: `Bem-vindo(a), ${user_name}`,
+        back_btn: false
     })
-    
-    const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=66d1d681d29e8bf3c259bd22')
+        
+    const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',
