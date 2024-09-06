@@ -32,13 +32,13 @@
 .subtitle {
     padding-left: 45px;
     color: var(--secondary-text-color);
-    line-height: 2rem;
+    /* line-height: 2rem; */
 }
 
-.size-normal {
+.title-size-normal {
     font-size: 1.5rem;
 }
 
-.size-small {
+.title-size-small {
     font-size: 1.125rem;
 }

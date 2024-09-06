@@ -64,17 +64,4 @@ async function setUserDashboard(user_name, subjects) {
 
 }
 
-function parseSubjectToList(subjects) {
-    let parsedSubjects = []
-    subjects.forEach(subject => {
-        const id = subject._id
-        const parsedSubject = {
-            name: subject.name,
-            href: `http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html`
-        }
-        parsedSubjects.push(parsedSubject)
-    })    
-    return parsedSubjects
-}
-
 await setPage()

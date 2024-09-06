@@ -9,6 +9,11 @@ import  { getSubjectsbyStudent } from "/../../scripts/service/studentSubjecServi
 import { parseSubjectToList } from "../../utils/api.js";
 import { getUserByID } from "../../../scripts/service/userService.js";
 
+const token = localStorage.getItem('token')
+const subjects = await getUserSubjects(token)
+const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
+console.log(parsedSubjects);
+
 
 async function getUserName(token) {
     const user = await getUserIDbyToken(token)
@@ -35,18 +40,11 @@ async function getUserSubjects(token) {
     }
 }
 
-async function setPage() {
-    const token = localStorage.getItem('token')
+async function setUserDashboard() {
     const user_name =  await getUserName(token)
-    
-    const subjects = await getUserSubjects(token)
-    
-    await setUserDashboard(user_name, subjects)
-
-}
-
-async function setUserDashboard(user_name, subjects) {
     const main = document.getElementById('main')
+    
+    console.log(subjects);
     
     const navBar = NavBar({
         items: [{
@@ -54,7 +52,14 @@ async function setUserDashboard(user_name, subjects) {
             title: 'Dashboard',
             selected: true,
             anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
-        }],
+        },
+        {
+            imgSrc: '/assets/books.svg',
+                title: 'Painel',
+                dropdownItems: parsedSubjects
+                    
+        }
+    ],
     })
     main.append(navBar)
     
@@ -70,7 +75,6 @@ async function setUserDashboard(user_name, subjects) {
         back_btn: false
     })
         
-    const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',
@@ -84,4 +88,4 @@ async function setUserDashboard(user_name, subjects) {
 
 }
 
-await setPage()
+await setUserDashboard()

@@ -5,11 +5,25 @@ export function ContentList({title_text, content_items = [], href = null}) {
 
     const content = document.createElement('div')
     content.classList.add('content')
-
-    const title = document.createElement('p')
-    title.classList.add('content-title')
-    title.textContent = title_text
-    content.append(title)
+    
+    if (typeof title_text === 'string'){
+        const title = document.createElement('p')
+        title.classList.add('content-title')
+        title.textContent = title_text
+        content.append(title)
+    } else {
+        const listHeader = document.createElement('div')
+        listHeader.classList.add('content-titles-container')
+        title_text.forEach(title => {
+            const titleWrapper = document.createElement('div')
+            titleWrapper.classList.add('title-wrapper')
+            const listTitle = document.createElement('p')
+            listTitle.textContent = title
+            titleWrapper.appendChild(listTitle)
+            listHeader.append(titleWrapper)
+            content.append(listHeader)
+        }) 
+    }
 
     const ul = document.createElement('ul')
     ul.classList.add('content-list')

@@ -29,8 +29,8 @@ export function PageHeader({title_text, subtitle_text = null, subtitle_size = 'n
         subtitle.textContent = subtitle_text
         subtitle.classList.add('subtitle')
         const subtitleSizes = {
-            'normal': 'size-normal',
-            'small': 'size-small'
+            'normal': 'title-size-normal',
+            'small': 'title-size-small'
         }
     
         const subtitleSizeClass = subtitleSizes[subtitle_size]

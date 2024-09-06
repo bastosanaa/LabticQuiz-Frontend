@@ -5,10 +5,10 @@ import { Button } from "../button/button.js"
 export function AnswersChart({numAnswers, timer = null}) {
 
     const answerChartWrapper = document.createElement('div')
-    answerChartWrapper.classList.add('answer-chart-wrapper')
+    answerChartWrapper.classList.add('chart-wrapper')
 
     const answersChart = document.createElement('div')
-    answersChart.classList.add('answers-chart')
+    answersChart.classList.add('chart')
     answerChartWrapper.appendChild(answersChart)
     
     const chartTitle = document.createElement('p')
@@ -16,7 +16,7 @@ export function AnswersChart({numAnswers, timer = null}) {
     chartTitle.textContent = 'Respostas'
 
     const chartQuestionsContainer = document.createElement('div')
-    chartQuestionsContainer.classList.add('chart-questions-container')
+    chartQuestionsContainer.classList.add('chart-container')
     answersChart.appendChild(chartQuestionsContainer)
 
     for ( let i = 1; i < numAnswers+1; i++ ) {        

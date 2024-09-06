@@ -14,6 +14,22 @@
     line-height: 2.125rem;
 }
 
+.content-titles-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    color: var(--stone-color);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.title-wrapper {
+    width: 115px;
+}
+
 .content-list {
     display: flex;
     flex-direction: column;

@@ -31,8 +31,6 @@ async function setQuizPage() {
         title_text: quiz_data.title,
         subtitle_text: quiz_data.subject_id.name,
         subtitle_size: 'small',
-        back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
     })
     
     page.append(pageHeader)

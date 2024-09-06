@@ -1,3 +1,4 @@
+import { formatDate } from "../../pages/utils/api.js";
 
 
 export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {
@@ -14,7 +15,8 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
     
     if (date) {
         const p = document.createElement('p')
-        p.textContent = date
+        const formattedDate = formatDate(date)
+        p.textContent = formattedDate
         item.appendChild(p)
     }
 

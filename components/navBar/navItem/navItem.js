@@ -67,7 +67,7 @@ function createDropDown(items) {
     items.forEach(item => {
         const a = document.createElement('a')
         a.setAttribute('href', item.href )
-        a.textContent = item.text
+        a.textContent = item.text ? item.text : item.name
         ul.appendChild(a)
         if (item.selected) {
             a.style.color = '#FEF08A'

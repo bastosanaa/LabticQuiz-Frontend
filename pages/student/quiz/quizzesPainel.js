@@ -42,9 +42,9 @@ async function setQuizzesPainelPage() {
     const quizzes = await (await getQuizzesBySubject(token,subject_id )).json()
     
     const quizzesList = ContentList({
-        title_text: 'Nome',
+        title_text: ["Nome", "Entrega", "Tipo"],
         content_items: quizzes,
-        href: 'http://127.0.0.1:5501/pages/student/quiz/quizPage.html'
+        href: 'http://127.0.0.1:5501/pages/student/quiz/quizInfoPage.html'
     })
 
     page.appendChild(quizzesList)

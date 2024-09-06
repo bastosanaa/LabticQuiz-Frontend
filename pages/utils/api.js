@@ -131,3 +131,12 @@ export function parseSubjectToList(subjects, href) {
     })    
     return parsedSubjects
 }
+
+export function formatDate(date){
+    const formattedDate = new Date(date).toLocaleDateString('pt-BR', {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit'
+    });
+    return formattedDate
+}
