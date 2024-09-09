@@ -1,15 +1,19 @@
-import { AnswersChart } from "../../../components/answersChart/answersChart.js"
+import { AttemptsChart } from "../../../components/attemptsChart/attemptsChart.js"
 import { Button } from "../../../components/button/button.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { QuizInfo } from "../../../components/quizInfo/quizInfo.js"
-import { getQuizByID } from "../../../scripts/service/quizService.js"
+import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
 import { formatDate, getEntityID } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID() 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
 console.log(quiz);
+const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).json()
+
+const attemptsRemaining =  quiz.attempts - studentAttempts.length
+
 
 
 
@@ -43,7 +47,7 @@ async function setQuizInfoPage() {
         instructions: quiz.instructions,
         infos: [{
             topic: 'Tentativas',
-            content: quiz.attempts
+            content: attemptsRemaining
         },
         {
             topic: 'Tempo de realização',
@@ -59,24 +63,27 @@ async function setQuizInfoPage() {
         }
     ]
     })
-    page.append(quizInfoChart)
+    page.append(quizInfoChart)    
+    if (attemptsRemaining > 0 ) {
+        const startButton =  Button({
+            text: 'Começar',
+            size: 'small',
+            action: () => {
+                
+                    window.location.href = `http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=${quiz_id}`
+                //diminuir o numero de tentativas
+            }
+        })
+        startButton.style.marginLeft = '45px'
+        page.append(startButton)
+    }
 
-    const startButton =  Button({
-        text: 'Começar',
-        size: 'small',
-        action: () => {
-            window.location.href = `http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=${quiz_id}`
-            //diminuir o numero de tentativas
-        }
-    })
-    startButton.style.marginLeft = '45px'
-    page.append(startButton)
 
-    // const chart = AnswersChart({
-    //     numAnswers: [],
+    const chart = AttemptsChart({
+        attempts: studentAttempts
         
-    // })
-    // page.append(chart)
+    })
+    page.append(chart)
 
     
 }

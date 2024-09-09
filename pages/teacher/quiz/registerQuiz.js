@@ -191,7 +191,7 @@ function generateTimeOptions() {
 
     while (time <= 240) {  
         const hours = Math.floor(time / 60);  
-        const minutes = time % 60;  // Calcula os minutos restantes
+        const minutes = time % 60;  
 
         let text;
         if (hours > 0 && minutes > 0) {
@@ -207,7 +207,7 @@ function generateTimeOptions() {
             value: time
         });
 
-        time += 30;  // Incrementa em 30 minutos
+        time += 30; 
     }
 
     return options;
