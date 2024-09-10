@@ -3,6 +3,7 @@ import { Button } from "../../../components/button/button.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { QuizInfo } from "../../../components/quizInfo/quizInfo.js"
+import { Dialog } from "../../../components/dialog/dialog.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
 import { formatDate, getEntityID } from "../../utils/api.js"
 
@@ -69,16 +70,38 @@ async function setQuizInfoPage() {
             text: 'Começar',
             size: 'small',
             action: () => {
-                
-                    window.location.href = `http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=${quiz_id}`
-                //diminuir o numero de tentativas
-            }
-        })
-        startButton.style.marginLeft = '45px'
-        page.append(startButton)
+                const dialog = Dialog({
+                    header: 'Deseja começar agora?',
+                    description: 'Ao clicar no botão o quiz começará imediatamente e deve ser entregue para poder sair',
+                    buttons: [{
+                        type: 'outline',
+                        size: 'small',
+                        text: 'Cancelar',
+                        action: () => {
+                            dialog.close()
+                        }
+                    },
+                    {
+                        type: 'default',
+                        size:'small',
+                        text: 'Começar',
+                        action: () => {
+                            window.location.href = `http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=${quiz_id}`
+                        }
+                    }
+                ]
+            })
+            const body = document.querySelector('body')
+            body.append(dialog)
+            dialog.showModal()
+        }
+    })
+    startButton.style.marginLeft = '45px'
+    page.append(startButton)
     }
 
-
+    console.log(studentAttempts);
+    
     const chart = AttemptsChart({
         attempts: studentAttempts
         

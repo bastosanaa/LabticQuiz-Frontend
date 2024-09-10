@@ -14,13 +14,18 @@ export function AttemptsChart({attempts}) {
     let count = 1
     attempts.forEach(attempt => {        
         const attemptContainer = document.createElement('div')
+        attemptContainer.classList.add('attempt-chart-line')
+        attemptContainer.style.display = 'flex'
+        attemptContainer.style.gap = '1rem'
         answersChart.append(attemptContainer)
 
         const attemptNumber = document.createElement('p')
         attemptContainer.append(attemptNumber)
-        attemptNumber.textContent = `${count} Tentativa`
+        attemptNumber.textContent = `${count}°Tentativa`
 
         const attemptScore = document.createElement('p')
+        attemptScore.style.fontWeight = 600
+        attemptScore.textContent = `${attempt.score}/10`
         attemptContainer.append(attemptScore)
 
         const answersLink = document.createElement('a')

@@ -1,1 +1,10 @@
 @import url('../answersChart/answersChart.css');
+
+.chart a {
+    color: var(--purple-color);
+    cursor: pointer
+}
+
+.chart a:hover {
+    text-decoration: underline;
+}
