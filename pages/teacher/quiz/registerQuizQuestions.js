@@ -18,7 +18,18 @@ async function setRegisterQuizQuestionsPage() {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+            },
+            {
+                imgSrc: '/assets/books.svg',
+                title: 'Disciplinas',
+                selected: true,
+                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+            },
+            {
+                imgSrc: '/assets/register.svg',
+                title: 'Criar Quiz',
+                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
             }
         ]
     }

@@ -57,7 +57,6 @@ async function setUserDashboard() {
             imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 dropdownItems: parsedSubjects
-                    
         }
     ],
     })

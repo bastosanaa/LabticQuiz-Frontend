@@ -3,7 +3,7 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { ContentList } from "../../../components/contentList/contentList.js"
 import { createQuiz, getQuizzesBySubject } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
-import { getEntityID } from "../../utils/api.js"
+import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 import { Button } from "../../../components/button/button.js"
 
 const token = localStorage.getItem('token')
@@ -12,6 +12,8 @@ const subject = getEntityID()
 const quizzes = await (await getQuizzesBySubject(token, subject)).json()
 const postedQuizzes = quizzes.filter(quiz => !quiz.is_draft)
 const draftQuizzes = quizzes.filter(quiz => quiz.is_draft)
+const subjects = await getAllSubjects(token)
+
 
 console.log(quizzes);
 
@@ -24,8 +26,19 @@ async function setQuizzesPainel() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
+                selected: false,
+                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+            },
+            {
+                imgSrc: '/assets/books.svg',
+                title: 'Disciplinas',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+            },
+            {
+                imgSrc: '/assets/register.svg',
+                title: 'Criar Quiz',
+                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
             }
         ]
     }

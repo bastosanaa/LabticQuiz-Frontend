@@ -32,16 +32,29 @@ async function setUserDashboard(user_name, subjects) {
     const main = document.getElementById('main')
     
     const navBar = NavBar({
-        items: {
-            imgSrc: '/assets/menu.svg',
-            title: 'Dashboard',
-            selected: true,
-            anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
-        }
+        items: [
+            {
+                imgSrc: '/assets/menu.svg',
+                title: 'Dashboard',
+                selected: true,
+                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+            },
+            {
+                imgSrc: '/assets/books.svg',
+                title: 'Disciplinas',
+                selected: false,
+                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+            },
+            {
+                imgSrc: '/assets/register.svg',
+                title: 'Criar Quiz',
+                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+            }
+        ]
     }
     
 
-    
+
     )
     main.appendChild(navBar)
     

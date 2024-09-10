@@ -5,12 +5,16 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
 import { createQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
-import { getEntityID } from "../../utils/api.js"
+import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
-const subject = getEntityID() ? getEntityID() : null
+const subject = getEntityID() 
+console.log(subject);
+
+
 
 async function setRegisterQuizPage() {
+    const subjects = await getAllSubjects(token)
     const main = document.getElementById('main')
     
     const navBar = NavBar({
@@ -18,8 +22,18 @@ async function setRegisterQuizPage() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
+                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+            },
+            {
+                imgSrc: '/assets/books.svg',
+                title: 'Disciplinas',
+                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+            },
+            {
+                imgSrc: '/assets/register.svg',
+                title: 'Criar Quiz',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
             }
         ]
     }
@@ -33,7 +47,7 @@ async function setRegisterQuizPage() {
     const header = PageHeader({
         title_text: 'Informações do Quiz',
         back_btn: true,
-        back_btn_address: subject?  `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${subject}` : 'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html'
+        back_btn_address: subject?  `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${subject}` : 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
     })
 
     page.append(header)
@@ -52,8 +66,6 @@ async function setRegisterQuizPage() {
         type: 'text'
     })
     inputDiv.append(nameInput)
-
-    const subjects = await getAllSubjects(token)
         
     
     const subjectSelect = Select({

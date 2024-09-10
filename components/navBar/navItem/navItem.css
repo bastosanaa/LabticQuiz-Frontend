@@ -35,16 +35,19 @@
 
 .nav-item img {
     transition: transform 0.2s ease-in-out;
+    
 }
 
 .dropdown {
     display: flex;
     justify-content: baseline;
-    /* background-color: grey; */
+    background-color: var(--blue-color);
+    padding-bottom: 1rem;
     position: absolute;
     width: 100%;
     top: calc(21px + 1rem);
     animation: fadeInOut 1s linear 1 forwards;
+    z-index: 1;
 }
 
 .dropdown ul {
