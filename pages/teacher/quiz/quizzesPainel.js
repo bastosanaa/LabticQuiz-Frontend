@@ -82,7 +82,7 @@ async function setQuizzesPainel() {
     const draftList = ContentList({
         title_text: 'Rascunho',
         content_items: draftQuizzes,
-        href: ''
+        href: 'http://127.0.0.1:5501/pages/teacher/quiz/quizInfoPage.html'
     })
     draftList.style.width = '100%'
     quizzesLists.append(draftList)
@@ -91,10 +91,11 @@ async function setQuizzesPainel() {
         title_text: 'Postados',
         content_items: postedQuizzes.map(quiz => {
             return {
-                title: quiz.title
+                title: quiz.title,
+                id: quiz._id
             }
         }),
-        href: ''
+        href: 'http://127.0.0.1:5501/pages/teacher/quiz/quizInfoPage.html'
     })
     postedList.style.width = '100%'
     quizzesLists.append(postedList)

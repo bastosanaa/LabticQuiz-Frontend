@@ -5,20 +5,15 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { QuizInfo } from "../../../components/quizInfo/quizInfo.js"
 import { Dialog } from "../../../components/dialog/dialog.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
-import { formatDate, getEntityID, formatTime } from "../../utils/api.js"
+import { formatDate, getEntityID,formatTime} from "../../utils/api.js"
+import { ContentList } from "../../../components/contentList/contentList.js"
+import { getAllStudents } from "../../../scripts/service/userService.js"
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID() 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
-console.log(quiz);
-const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).json()
 
-const attemptsRemaining =  quiz.attempts - studentAttempts.length
-
-
-
-
-async function setQuizInfoPage() {
+function setQuizInfoPage() {
     const main = document.getElementById('main')
     
     const navBar = NavBar({
@@ -48,7 +43,7 @@ async function setQuizInfoPage() {
         instructions: quiz.instructions,
         infos: [{
             topic: 'Tentativas',
-            content: attemptsRemaining
+            content: quiz.attempts
         },
         {
             topic: 'Tempo de realização',
@@ -65,51 +60,12 @@ async function setQuizInfoPage() {
     ]
     })
     page.append(quizInfoChart)    
-    if (attemptsRemaining > 0 ) {
-        const startButton =  Button({
-            text: 'Começar',
-            size: 'small',
-            action: () => {
-                const dialog = Dialog({
-                    header: 'Deseja começar agora?',
-                    description: 'Ao clicar no botão o quiz começará imediatamente e deve ser entregue para poder sair',
-                    buttons: [{
-                        type: 'outline',
-                        size: 'small',
-                        text: 'Cancelar',
-                        action: () => {
-                            dialog.close()
-                        }
-                    },
-                    {
-                        type: 'default',
-                        size:'small',
-                        text: 'Começar',
-                        action: () => {
-                            window.location.href = `http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=${quiz_id}`
-                        }
-                    }
-                ]
-            })
-            const body = document.querySelector('body')
-            body.append(dialog)
-            dialog.showModal()
-        }
-    })
-    startButton.style.marginLeft = '45px'
-    page.append(startButton)
-    }
-
-    console.log(studentAttempts);
     
-    const chart = AttemptsChart({
-        attempts: studentAttempts
-        
+    const studentsList = ContentList({
+        title_text: 'Alunos que responderam',
+        content_items: [],
+        href: ''
     })
-    page.append(chart)
-
-    
+    page.append(studentsList)
 }
-
 setQuizInfoPage()
-

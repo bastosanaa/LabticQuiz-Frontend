@@ -140,3 +140,16 @@ export function formatDate(date){
     });
     return formattedDate
 }
+
+export function formatTime(time) {
+    const hours = Math.floor(time / 60);
+    // Calcula os time restantes
+    const minutes = time % 60;
+
+    // Formata horas e time para garantir dois dígitos
+    const hoursFormated = String(hours).padStart(2, '0');
+    const minutesFormated = String(minutes).padStart(2, '0');
+
+    // Retorna a string formatada
+    return `${hoursFormated}:${minutesFormated}`;
+}

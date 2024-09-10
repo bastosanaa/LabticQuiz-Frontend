@@ -78,6 +78,18 @@ export async function createAnswer(token, quiz_id, question_answer ) {
 }
 
 export async function getStudentsAttemptsAtQuiz(token, quiz_id) {
+    const response = await fetch(`${url}/answers/student/${quiz_id}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    return response
+}
+
+export async function getQuizAnswers(token, quiz_id){
     const response = await fetch(`${url}/answers/${quiz_id}`, {
         method: "GET",
         mode: "cors",
