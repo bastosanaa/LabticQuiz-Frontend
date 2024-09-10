@@ -3,7 +3,6 @@ import { formatDate } from "../../pages/utils/api.js";
 
 export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {
     const item = document.createElement('li')
-    console.log(id);
     
     item.id = id
     item.classList.add('content-item')

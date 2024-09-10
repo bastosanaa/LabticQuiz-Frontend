@@ -12,7 +12,6 @@ import { parseSubjectToList } from "../../utils/api.js";
 async function getUserName(token) {
     const user_id = (await getUserIDbyToken(token))._id
     const user = await getUserByID(token, user_id)
-    console.log(user);
     
     const user_name = user.name
     return user_name    
@@ -24,7 +23,6 @@ async function setPage() {
     const token = localStorage.getItem('token')
     const user_name =  await getUserName(token)
     const subjects = await getAllSubjects(token)
-    console.log(subjects);
     
     await setUserDashboard(user_name, subjects)
 
@@ -33,13 +31,17 @@ async function setPage() {
 async function setUserDashboard(user_name, subjects) {
     const main = document.getElementById('main')
     
-    const navBar = NavBar(
-        {
+    const navBar = NavBar({
+        items: {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: true,
             anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
-        },
+        }
+    }
+    
+
+    
     )
     main.appendChild(navBar)
     
@@ -48,13 +50,13 @@ async function setUserDashboard(user_name, subjects) {
     
     const header = PageHeader({
         title_text: 'Dashboard',
-        back_btn: true,
+        back_btn: false,
         subtitle_text: `Bem-vindo(a), ${user_name}`
     })
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',
-        content_items: parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html')
+        content_items: parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')
     })
     
     page.append(header)

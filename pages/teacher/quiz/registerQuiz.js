@@ -5,8 +5,10 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
 import { createQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
+import { getEntityID } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
+const subject = getEntityID() ? getEntityID() : null
 
 async function setRegisterQuizPage() {
     const main = document.getElementById('main')
@@ -31,7 +33,7 @@ async function setRegisterQuizPage() {
     const header = PageHeader({
         title_text: 'Informações do Quiz',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+        back_btn_address: subject?  `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${subject}` : 'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html'
     })
 
     page.append(header)

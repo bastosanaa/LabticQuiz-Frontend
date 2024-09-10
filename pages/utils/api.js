@@ -120,7 +120,7 @@ export function parseSubjectToList(subjects, href) {
     
     let parsedSubjects = []
     subjects.forEach(subject => {                
-        const id = subject.id
+        const id = subject.id ? subject.id : subject._id
         const parsedSubject = {
             name: subject.name ? subject.name : subject.text,
             href: `${href}?id=${id}`,

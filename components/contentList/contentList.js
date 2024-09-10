@@ -1,8 +1,6 @@
 import { ContentItem } from "../contentItem/contentItem.js"
 
 export function ContentList({title_text, content_items = [], href = null}) {
-    console.log(content_items);
-
     const content = document.createElement('div')
     content.classList.add('content')
     
@@ -28,7 +26,6 @@ export function ContentList({title_text, content_items = [], href = null}) {
     const ul = document.createElement('ul')
     ul.classList.add('content-list')
     content_items.forEach(item => {
-        console.log(item);
         
         const item_id = item.id? item.id : item._id
         const new_item = ContentItem({

@@ -73,6 +73,7 @@ export async function getAllSubjects(token) {
     })
 
     const subjects = await response.json()
+    
     return subjects
 }
 
