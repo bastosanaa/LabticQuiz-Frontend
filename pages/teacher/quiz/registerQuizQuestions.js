@@ -52,7 +52,7 @@ async function setRegisterQuizQuestionsPage() {
         subtitle_text: quiz.subject_id.name,
         // subtitle_size: 'small',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+        back_btn_address: `http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html?id=${quiz_id}`
     })
     page.append(header)
 
@@ -81,6 +81,7 @@ async function setRegisterQuizQuestionsPage() {
         questionDiv.append(question)
     
         const alternatives = Alternatives()
+        alternatives.style.pointerEvents = 'none'
         questionDiv.append(alternatives)
 
         inputDiv.append(questionDiv)

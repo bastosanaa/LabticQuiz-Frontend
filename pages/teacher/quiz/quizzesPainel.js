@@ -71,7 +71,7 @@ async function setQuizzesPainel() {
         text: 'Cadastrar',
         imgSrc: '/assets/register.svg',
         action: () => {
-            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html?id=${subject}`
+            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html`
         }
     })
     pageHeader.append(button)
@@ -83,8 +83,13 @@ async function setQuizzesPainel() {
 
     const draftList = ContentList({
         title_text: 'Rascunho',
-        content_items: draftQuizzes,
-        href: 'http://127.0.0.1:5501/pages/teacher/quiz/quizInfoPage.html'
+        content_items: draftQuizzes.map(quiz => {
+            return {
+                title: quiz.title,
+                id: quiz._id
+            }
+        }),
+        href: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
     })
     draftList.style.width = '100%'
     quizzesLists.append(draftList)

@@ -3,17 +3,15 @@ import { Input } from "../../../components/input/input.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
-import { createQuiz, getQuizByID } from "../../../scripts/service/quizService.js"
+import { createQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
-const quiz_id = getEntityID()
-const quiz = quiz_id ? await(await getQuizByID(token,quiz_id)).json() : null
-console.log(quiz);
+const subject = getEntityID() 
+console.log(subject);
 
-
-async function setRegisterQuizPage() {
+async function setQuizDraftPage() {
     const subjects = await getAllSubjects(token)
     const main = document.getElementById('main')
     
@@ -47,7 +45,7 @@ async function setRegisterQuizPage() {
     const header = PageHeader({
         title_text: 'Informações do Quiz',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+        back_btn_address: subject?  `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${subject}` : 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
     })
 
     page.append(header)
@@ -147,9 +145,6 @@ async function setRegisterQuizPage() {
         size: 'medium',
         text: 'Salvar Rascunho',
         action: async () => {
-            if (quiz) {
-                //update ao invez de enviar outro
-            }
             const quiz_id = await SaveQuizDraft()
 
             window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
@@ -162,9 +157,6 @@ async function setRegisterQuizPage() {
         text: 'Criar Perguntas',
         action: async () => {
 
-            if (quiz) {
-                //update ao invez de enviar outro
-            }
             const quiz_id = await SaveQuizDraft()
             console.log(quiz_id);
             
@@ -200,21 +192,10 @@ async function setRegisterQuizPage() {
         return none
     }
     
-    if (quiz) {
-        nameField.value = quiz.title
-        subjectField.value = quiz.subject_id._id
-        typeField.value = quiz.type
-        attemptsField.value = quiz.attempts
-        timeLimitField.value = quiz.time
-        instructionsTextArea.value = quiz.instructions
-
-        timeStartInput.value = quiz.date_start.split('T')[0]        
-        timeEndInput.value = quiz.date_end.split('T')[0]
-    }
 
 }
 
-setRegisterQuizPage()
+setQuizDraftPage()
 
 function generateTimeOptions() {
     const options = [];
