@@ -1,7 +1,7 @@
 import { formatDate } from "../../pages/utils/api.js";
 
 
-export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {
+export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {    
     const item = document.createElement('li')
     
     item.id = id
@@ -48,7 +48,7 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
             div.appendChild(seeAnswers)
 
             const grade = document.createElement('p')
-            grade.textContent = `${score.grade}/10`
+            grade.textContent = `${score}/10`
             div.appendChild(grade)
 
         }

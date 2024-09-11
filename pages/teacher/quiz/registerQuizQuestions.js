@@ -5,12 +5,14 @@ import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
 import { updateQuiz } from "../../../scripts/service/quizService.js"
-import { getEntityID } from "../../utils/api.js"
+import { getAllSubjects } from "../../../scripts/service/subjectService.js"
+import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
 
 async function setRegisterQuizQuestionsPage() {
     const main = document.getElementById('main')
+    const subjects = await getAllSubjects(token)
     
     const navBar = NavBar({
         items: [

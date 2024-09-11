@@ -4,7 +4,7 @@ import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { QuizInfo } from "../../../components/quizInfo/quizInfo.js"
 import { Dialog } from "../../../components/dialog/dialog.js"
-import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
+import { getQuizByID, getStudentsAttemptsAtQuiz, getQuizAnswers, deleteQuiz } from "../../../scripts/service/quizService.js"
 import { formatDate, getEntityID,formatTime} from "../../utils/api.js"
 import { ContentList } from "../../../components/contentList/contentList.js"
 import { getAllStudents } from "../../../scripts/service/userService.js"
@@ -13,7 +13,7 @@ const token = localStorage.getItem('token')
 const quiz_id = getEntityID() 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
 
-function setQuizInfoPage() {
+async function setQuizInfoPage() {
     const main = document.getElementById('main')
     
     const navBar = NavBar({
@@ -21,7 +21,7 @@ function setQuizInfoPage() {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: false,
-            anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
+            anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardStudent.html',
         }],
     })
     main.append(navBar)
@@ -35,7 +35,7 @@ function setQuizInfoPage() {
         subtitle_text: quiz.subject_id.name,
         subtitle_size:'small',
         back_btn: true,
-        back_btn_address: `http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
+        back_btn_address: `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
     })
     page.append(pageHeader)
 
@@ -61,11 +61,59 @@ function setQuizInfoPage() {
     })
     page.append(quizInfoChart)    
     
+    const students = await getQuizAnswers(token, quiz_id)
+    console.log(students);
+    
     const studentsList = ContentList({
         title_text: 'Alunos que responderam',
-        content_items: [],
+        content_items: students.map(student => {
+            return {
+                name: student.student_id.name,
+                id: student.student_id,
+                score: student.score
+            }
+        }),
         href: ''
     })
     page.append(studentsList)
+
+    const button = Button({
+        type: 'destructive-outline',
+        text: 'Eliminar Quiz',
+        action: async () => {  
+            const dialog =  Dialog({
+                header: 'Tem certeza?',
+                    description: 'Você irá eliminar o quiz "quiz", essa ação nao pode ser desfeita.',
+                    buttons: [{
+                        type: 'outline',
+                        size: 'small',
+                        text: 'Cancelar',
+                        action: () => {
+                            dialog.close()
+                        }
+                    },
+                    {
+                        type: 'destructive',
+                        size:'small',
+                        text: 'Eliminar',
+                        action: async () => {
+                            await deleteQuiz(token, quiz_id)
+                            window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+                        }
+                    }
+                ]
+            }
+            )
+            const body = document.querySelector('body')
+            body.append(dialog)
+            dialog.showModal()        
+        }
+    })
+    page.position = 'relative'
+    button.style.position = 'absolute'
+    button.style.bottom = '3rem'
+    button.style.right = '3rem'
+
+    page.append(button)
 }
 setQuizInfoPage()

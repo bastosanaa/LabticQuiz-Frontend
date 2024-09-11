@@ -60,6 +60,20 @@ export async function getQuizzesBySubject(token, subject_id) {
     return response
 }
 
+export async function deleteQuiz(token, quiz_id) {
+    console.log(quiz_id);
+    
+    const response = await fetch(`${url}/quizzes/${quiz_id}`, {
+        method: "DELETE",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+        })
+    return response
+}
+
 //Answer
 export async function createAnswer(token, quiz_id, question_answer ) {
     const response = await fetch(`${url}/answers`, {
@@ -98,5 +112,5 @@ export async function getQuizAnswers(token, quiz_id){
             'Authorization': token
         }
     })
-    return response
+    return await response.json()
 }
