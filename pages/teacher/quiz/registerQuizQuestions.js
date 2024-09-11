@@ -4,11 +4,16 @@ import { Input } from "../../../components/input/input.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
-import { updateQuiz } from "../../../scripts/service/quizService.js"
+import { getQuizByID, updateQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
+const quiz_id = getEntityID()
+
+const quiz = await (await getQuizByID(token, quiz_id)).json()
+console.log(quiz);
+
 
 async function setRegisterQuizQuestionsPage() {
     const main = document.getElementById('main')
@@ -43,8 +48,8 @@ async function setRegisterQuizQuestionsPage() {
     page.classList.add('page')
     
     const header = PageHeader({
-        title_text: 'Nome do Quiz',
-        subtitle_text: 'Nome da disciplina',
+        title_text: quiz.title,
+        subtitle_text: quiz.subject_id.name,
         // subtitle_size: 'small',
         back_btn: true,
         back_btn_address: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
@@ -114,6 +119,7 @@ async function setRegisterQuizQuestionsPage() {
                 const wrongAlt2 = document.querySelector('#wrong-alt2')
                 const wrongAlt3 = document.querySelector('#wrong-alt3')
 
+                
                 questions.push({
                     title: questionInput.value,
                     alternatives: [
@@ -136,7 +142,6 @@ async function setRegisterQuizQuestionsPage() {
                     ]
                 })
             })
-            const quiz_id = getEntityID()
             await updateQuiz(token,{questions: questions, is_draft: false},quiz_id)
             console.log(questions);
             

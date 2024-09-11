@@ -3,11 +3,10 @@ import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { getQuizzesBySubject } from "../../../scripts/service/quizService.js"
 import { getSubjectByID } from "../../../scripts/service/subjectService.js"
-import { getEntityID } from "../../utils/api.js"
+import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
-const subject_id = getEntityID() 
-
+const subject_id = getEntityID()
 
 async function setQuizzesPainelPage() {
     const main = document.getElementById('main')
@@ -18,7 +17,13 @@ async function setQuizzesPainelPage() {
             title: 'Dashboard',
             selected: false,
             anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
-        }],
+        },
+        {
+            imgSrc: '/assets/books.svg',
+                title: 'Painel',
+                dropdownItems: []
+        }
+    ],
     })
     main.append(navBar)
 

@@ -2,7 +2,7 @@ import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { ContentList } from "../../../components/contentList/contentList.js"
 import { createQuiz, getQuizzesBySubject } from "../../../scripts/service/quizService.js"
-import { getAllSubjects } from "../../../scripts/service/subjectService.js"
+import { getAllSubjects, getSubjectByID } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 import { Button } from "../../../components/button/button.js"
 
@@ -53,8 +53,10 @@ async function setQuizzesPainel() {
     pageHeader.classList.add('page-header')
     page.appendChild(pageHeader)
 
+    const subject_name = (await getSubjectByID(token, subject)).subject_name    
+
     const header = PageHeader({
-        title_text: 'Nome da matéria',
+        title_text: subject_name,
         subtitle_text: 'Quizzes',
         subtitle_size: 'small',
         back_btn: true,

@@ -13,6 +13,8 @@ export function Input({placeholder,title = null, required = false, errorMessage 
     }
 
     const input = document.createElement('input')
+    //mock
+    
     if (style === 'grey') {
         input.style.backgroundColor = 'var(--secondary-white)'
     }

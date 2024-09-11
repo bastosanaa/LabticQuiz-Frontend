@@ -3,12 +3,13 @@ import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
 import { getQuizByID } from "../../../scripts/service/quizService.js"
+import { getEntityID } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
 
 async function setQuizPage() {
 
-    const quiz_id = '66d1d681d29e8bf3c259bd22';
+    const quiz_id = getEntityID()
     const quiz_data = await (await getQuizByID(token,quiz_id)).json()    
 
     const main = document.getElementById('main')
@@ -26,7 +27,7 @@ async function setQuizPage() {
     const page = document.createElement('div')
     page.classList.add('page')
     
-    
+
     const pageHeader = PageHeader({
         title_text: quiz_data.title,
         subtitle_text: quiz_data.subject_id.name,
