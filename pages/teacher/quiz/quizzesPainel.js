@@ -1,7 +1,7 @@
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { ContentList } from "../../../components/contentList/contentList.js"
-import { createQuiz, getQuizzesBySubject } from "../../../scripts/service/quizService.js"
+import { createQuiz, getAllQuizzesBySubject } from "../../../scripts/service/quizService.js"
 import { getAllSubjects, getSubjectByID } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 import { Button } from "../../../components/button/button.js"
@@ -9,7 +9,7 @@ import { Button } from "../../../components/button/button.js"
 const token = localStorage.getItem('token')
 const subject = getEntityID()
 
-const quizzes = await (await getQuizzesBySubject(token, subject)).json()
+const quizzes = await (await getAllQuizzesBySubject(token, subject)).json()
 const postedQuizzes = quizzes.filter(quiz => !quiz.is_draft)
 const draftQuizzes = quizzes.filter(quiz => quiz.is_draft)
 const subjects = await getAllSubjects(token)

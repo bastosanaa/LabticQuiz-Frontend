@@ -35,10 +35,18 @@
     font-size: 1.125rem;
 }
 
-.alternative-item {
+/* .alternative-item {
     cursor: pointer;
+} */
+
+/* .alternative-item:hover {
+    background-color: var(--selected-yellow-color);
+} */
+
+.answer-right {
+    background-color: #D1FAE5;
 }
 
-.alternative-item:hover {
-    background-color: var(--selected-yellow-color);
+.answer-wrong {
+    background-color: #FEF2F2;
 }

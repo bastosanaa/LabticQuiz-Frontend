@@ -1,7 +1,7 @@
 import { ContentList } from "../../../components/contentList/contentList.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
-import { getQuizzesBySubject } from "../../../scripts/service/quizService.js"
+import { getPostedQuizzesBySubject } from "../../../scripts/service/quizService.js"
 import { getSubjectByID } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 
@@ -44,7 +44,7 @@ async function setQuizzesPainelPage() {
     page.appendChild(header)
 
     //refatorar componente para receber mais informacoes
-    const quizzes = await (await getQuizzesBySubject(token,subject_id )).json()
+    const quizzes = await (await getPostedQuizzesBySubject(token,subject_id )).json()
     
     const quizzesList = ContentList({
         title_text: ["Nome", "Entrega", "Tipo"],

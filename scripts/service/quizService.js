@@ -48,8 +48,20 @@ export async function getQuizByID(token, quiz_id) {
     return response
 }
 
-export async function getQuizzesBySubject(token, subject_id) {
+export async function getAllQuizzesBySubject(token, subject_id) {
     const response = await fetch(`${url}/quizzes/subject/${subject_id}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    return response
+}
+
+export async function getPostedQuizzesBySubject(token, subject_id) {
+    const response = await fetch(`${url}/quizzes/subject/posted/${subject_id}`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -104,7 +116,31 @@ export async function getStudentsAttemptsAtQuiz(token, quiz_id) {
 }
 
 export async function getQuizAnswers(token, quiz_id){
-    const response = await fetch(`${url}/answers/${quiz_id}`, {
+    const response = await fetch(`${url}/answers/quiz/${quiz_id}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    return await response.json()
+}
+
+export async function getAttempt(token, attempt_id){
+    const response = await fetch(`${url}/answers/${attempt_id}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    return await response.json()
+}
+
+export async function getAnswerKey(token, quiz_id) {
+    const response = await fetch(`${url}/quizzes/answer/${quiz_id}`, {
         method: "GET",
         mode: "cors",
         headers: {

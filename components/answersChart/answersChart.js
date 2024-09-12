@@ -2,7 +2,7 @@ import { getEntityID } from "../../pages/utils/api.js"
 import { createAnswer } from "../../scripts/service/quizService.js"
 import { Button } from "../button/button.js"
 
-export function AnswersChart({numAnswers, timer = null}) {
+export function AnswersChart({numAnswers, timer = null, button = true}) {
 
     const answerChartWrapper = document.createElement('div')
     answerChartWrapper.classList.add('chart-wrapper')
@@ -36,19 +36,20 @@ export function AnswersChart({numAnswers, timer = null}) {
         questionAnswerBox.appendChild(letterSelected);
 
     }
-
-    const button = Button({
-        size: 'small',
-        text: 'Entregar',
-        action: () => {
-            console.log('entregaddo');
-            
-            sendUserQuizAnswers()
-            window.location.href = 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
-        }
-
-    })
-    answersChart.appendChild(button)
+    if (button) {
+        const button = Button({
+            size: 'small',
+            text: 'Entregar',
+            action: () => {
+                console.log('entregaddo');
+                
+                sendUserQuizAnswers()
+                window.location.href = 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
+            }
+    
+        })
+        answersChart.appendChild(button)
+    }
 
     if (timer) {
         const timerBox = document.createElement('div')

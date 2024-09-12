@@ -12,7 +12,7 @@ export function AttemptsChart({attempts}) {
     title.textContent = 'Suas tentativas'
 
     let count = 1
-    attempts.forEach(attempt => {        
+    attempts.forEach(attempt => {                
         const attemptContainer = document.createElement('div')
         attemptContainer.classList.add('attempt-chart-line')
         attemptContainer.style.display = 'flex'
@@ -31,6 +31,7 @@ export function AttemptsChart({attempts}) {
         const answersLink = document.createElement('a')
         attemptContainer.append(answersLink)
         answersLink.textContent = 'Gabarito'
+        answersLink.href = `http://127.0.0.1:5501/pages/student/quiz/quizResults.html?id=${attempt._id}`
 
         count++
 

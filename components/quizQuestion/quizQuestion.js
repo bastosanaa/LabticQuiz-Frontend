@@ -1,4 +1,4 @@
-export function quizQuestion({question_number, description, alternatives, question_id}) {
+export function quizQuestion({question_number, description, alternatives, question_id, isGabarito= false}) {
 
     const questionContainer = document.createElement('div')
     questionContainer.classList.add('question-container')
@@ -42,29 +42,33 @@ export function quizQuestion({question_number, description, alternatives, questi
         altDescription.textContent = alternatives[i].content        
         alternative.append(altDescription)
 
-
-        alternative.addEventListener('click', () => {
+        if (!isGabarito){
+            console.log('nao é gabs');
             
-            //Select alternative and show it in the alternatives selecteds chart
-            const allQuestionAlts = questionContainer.querySelectorAll('.alternative-item')
-            allQuestionAlts.forEach(alt => {
-                if (alt.classList.contains('selected-alt')) {
-                    alt.classList.remove('selected-alt')
-                    return
-                }
+            alternative.addEventListener('click', () => {
+                
+                //Select alternative and show it in the alternatives selecteds chart
+                const allQuestionAlts = questionContainer.querySelectorAll('.alternative-item')
+                allQuestionAlts.forEach(alt => {
+                    if (alt.classList.contains('selected-alt')) {
+                        alt.classList.remove('selected-alt')
+                        return
+                    }
+                    
+                    
+                })
+                alternative.classList.add('selected-alt')
+                let alternativeSelectedLetter = alternative.getAttribute('letter')
+                
+                
+                let chartQuestionID = `#chart-question-${question_number}`
+                const chartQuestion = document.querySelector(chartQuestionID)
+    
+                let QuestionLetterSelected = chartQuestion.querySelector('.letter-selected')
+                QuestionLetterSelected.textContent = alternativeSelectedLetter.toUpperCase()
                 
             })
-            alternative.classList.add('selected-alt')
-            let alternativeSelectedLetter = alternative.getAttribute('letter')
-            
-            
-            let chartQuestionID = `#chart-question-${question_number}`
-            const chartQuestion = document.querySelector(chartQuestionID)
-
-            let QuestionLetterSelected = chartQuestion.querySelector('.letter-selected')
-            QuestionLetterSelected.textContent = alternativeSelectedLetter.toUpperCase()
-            
-        })
+        }
     }
 
 

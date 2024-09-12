@@ -3,7 +3,7 @@ import { Input } from "../../../components/input/input.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
-import { createQuiz, getQuizByID } from "../../../scripts/service/quizService.js"
+import { createQuiz, getQuizByID, updateQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 
@@ -147,9 +147,7 @@ async function setRegisterQuizPage() {
         size: 'medium',
         text: 'Salvar Rascunho',
         action: async () => {
-            if (quiz) {
-                //update ao invez de enviar outro
-            }
+
             const quiz_id = await SaveQuizDraft()
 
             window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
@@ -162,9 +160,6 @@ async function setRegisterQuizPage() {
         text: 'Criar Perguntas',
         action: async () => {
 
-            if (quiz) {
-                //update ao invez de enviar outro
-            }
             const quiz_id = await SaveQuizDraft()
             console.log(quiz_id);
             
@@ -192,10 +187,34 @@ async function setRegisterQuizPage() {
         const questions = []
         const isDraft = true
     
-        if (quizName && quizSubject && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {            
+        if (quizName && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {            
+            console.log('tem quiz');
+            if (quiz) {
+                console.log("tente",quizAttempts);
+                
+                const quiz_id = getEntityID()
+
+                const quizNewInfo = {
+                    title:quizName,
+                    time: quizTimeLimit,
+                    attempts: quizAttempts,
+                    date_start: quizStartDate,
+                    date_end: quizEndDate,
+                    instructions: quizInstructions,
+                    type: quizType,
+                    is_draft: true,
+                    
+                }
+                const response = await updateQuiz(token, quizNewInfo, quiz_id )
+                const updatedQuiz = (await response.json())._id
+                console.log(updatedQuiz);
+                
+                return updatedQuiz
+            }
             const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
             const quiz_id = (await response.json())._id
             return quiz_id
+
         }
         return none
     }
