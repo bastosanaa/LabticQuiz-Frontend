@@ -123,7 +123,7 @@ export async function getQuizAnswers(token, quiz_id){
             'Content-Type': 'application/json',
             'Authorization': token
         }
-    })
+    })    
     return await response.json()
 }
 

@@ -3,7 +3,8 @@ import { formatDate } from "../../pages/utils/api.js";
 
 export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {    
     const item = document.createElement('li')
-    
+    console.log(href);
+        
     item.id = id
     item.classList.add('content-item')
     const p = document.createElement('p')
@@ -44,7 +45,7 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
         if (score) {
             const seeAnswers = document.createElement('a')
             seeAnswers.textContent = 'Ver Respostas'
-            seeAnswers.href = score.href
+            seeAnswers.href = href
             div.appendChild(seeAnswers)
 
             const grade = document.createElement('p')

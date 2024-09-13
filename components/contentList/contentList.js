@@ -1,6 +1,6 @@
 import { ContentItem } from "../contentItem/contentItem.js"
 
-export function ContentList({title_text, content_items = [], href = null}) {
+export function ContentList({title_text, content_items = [], href = null}) {    
     const content = document.createElement('div')
     content.classList.add('content')
     

@@ -60,20 +60,22 @@ async function setQuizInfoPage() {
     ]
     })
     page.append(quizInfoChart)    
-    
+        
     const students = await getQuizAnswers(token, quiz_id)
     console.log(students);
-    
+        
     const studentsList = ContentList({
         title_text: 'Alunos que responderam',
         content_items: students.map(student => {
+            console.log(students);
+            
             return {
                 name: student.student_id.name,
-                id: student.student_id,
-                score: student.score
+                id: student._id,
+                score: student.score,
             }
         }),
-        href: ''
+        href: 'http://127.0.0.1:5501/pages/teacher/quiz/quizStudentAnswers.html'
     })
     page.append(studentsList)
 
