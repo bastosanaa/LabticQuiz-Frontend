@@ -12,8 +12,9 @@ async function setQuizResultsPage() {
 
     const attempt_id = getEntityID()
     const attempt_data = await getAttempt(token,attempt_id)
-    const quiz = await (await getQuizByID(token, attempt_data.quiz_id._id)).json()
-    const answer_key = await getAnswerKey(token, attempt_data.quiz_id._id)
+    const quiz_id = attempt_data.quiz_id._id
+    const quiz = await (await getQuizByID(token, quiz_id)).json()
+    const answer_key = await getAnswerKey(token, quiz_id)
     console.log(answer_key);    
 
     const main = document.getElementById('main')
@@ -22,8 +23,8 @@ async function setQuizResultsPage() {
         items: [{
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
-            selected: true,
-            anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
+            selected: false,
+            anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
         }],
     })
     main.append(navBar)
@@ -34,7 +35,7 @@ async function setQuizResultsPage() {
 
     const pageHeader = PageHeader({
         back_btn: true,
-        back_btn_address: '',
+        back_btn_address: `http://127.0.0.1:5501/pages/student/quiz/quizInfoPage.html?id=${quiz_id}`,
         title_text: quiz.title,
         subtitle_text:quiz.subject_id.name,
         subtitle_size: 'small',
@@ -70,28 +71,37 @@ async function setQuizResultsPage() {
 
     let counter = 1
     attempt_data.question_answer.forEach(question => {
-        console.log(question);
         
         let question_id = question.question_id;
-        //alternative
-        // console.log(question.alternative);
         const questionFounded = answer_key.filter(answer => answer.id === question_id)
-        // console.log(questionFounded);
         
         const altSelectedId = question.alternative;
         const correctAltID = questionFounded[0].answer_id;
         
-        let chartAnswer = document.getElementById(`chart-question${counter}`)
-        if (altSelectedId === correctAltID){
+        let chartAnswer = document.getElementById(`chart-question-${counter}`)
+        console.log(chartAnswer);
         
+            //selecionar a box no chart container baseado no numero e colocar a letrinha la dentro
+        let answerLetter = chartAnswer.querySelector('.letter-selected')
+        if (altSelectedId === correctAltID){
+            //scored
             let alternativeSelected = document.getElementById(altSelectedId)
             alternativeSelected.classList.add('answer-right')
+            let altLetter = alternativeSelected.querySelector('.alternative-letter')
+            answerLetter.textContent = altLetter.textContent.toUpperCase();
+            answerLetter.style.color = '#059669'
+
         } else {
             let alternativeSelected = document.getElementById(altSelectedId)
             alternativeSelected.classList.add('answer-wrong')
             let alternativeCorrect = document.getElementById(correctAltID)
             alternativeCorrect.classList.add('answer-right')
+
+            let altLetter = alternativeSelected.querySelector('.alternative-letter')
+            answerLetter.textContent = altLetter.textContent.toUpperCase();
+            answerLetter.style.color = '#EF4444'
         }
+        counter++
     })
 
 

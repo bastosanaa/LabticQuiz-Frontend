@@ -34,7 +34,7 @@ export function quizQuestion({question_number, description, alternatives, questi
         alternative.setAttribute('letter', letter)
 
         const altLetter = document.createElement('div')
-        altLetter.classList.add('alternative_letter')
+        altLetter.classList.add('alternative-letter')
         altLetter.textContent = letter
         alternative.append(altLetter)
     
