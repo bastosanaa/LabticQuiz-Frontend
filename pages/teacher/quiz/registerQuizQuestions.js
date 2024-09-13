@@ -145,6 +145,8 @@ async function setRegisterQuizQuestionsPage() {
             })
             await updateQuiz(token,{questions: questions, is_draft: false},quiz_id)
             console.log(questions);
+
+            window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
             
         }
     })

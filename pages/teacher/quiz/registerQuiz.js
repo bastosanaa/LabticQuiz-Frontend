@@ -76,6 +76,9 @@ async function setRegisterQuizPage() {
         ...parseSubjectsToSelect(subjects)
     ]
     })
+    if (quiz) {
+        subjectSelect.disabled = true
+    }
     subjectSelect.classList.add('crud-input')
     inputDiv.append(subjectSelect)
 
