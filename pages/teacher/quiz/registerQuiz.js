@@ -182,7 +182,7 @@ async function setRegisterQuizPage() {
         const quizName = nameField.value
         const quizSubject = subjectField.value
         const quizType = typeField.value
-        const quizAttempts = attemptsField.value
+        const quizAttempts = attemptsField.value ? attemptsField.value : 999
         const quizTimeLimit = timeLimitField.value
         const quizInstructions = instructionsTextArea.value
         const quizStartDate = timeStartInput.value
@@ -190,10 +190,8 @@ async function setRegisterQuizPage() {
         const questions = []
         const isDraft = true
     
-        if (quizName && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {            
-            console.log('tem quiz');
+        if (quizName && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) { 
             if (quiz) {
-                console.log("tente",quizAttempts);
                 
                 const quiz_id = getEntityID()
 

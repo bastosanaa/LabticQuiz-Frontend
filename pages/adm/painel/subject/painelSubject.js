@@ -68,7 +68,7 @@ async function createPainelSubject() {
     page.append(pageHeader)
 
 
-    const table = Table({
+    const table = await Table({
         columns: ['Nome', 'Professor', 'Quiz'],
         rows: subjects,
         parser: subjectTableParser,

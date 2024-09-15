@@ -6,7 +6,7 @@ import { Toast } from "../../../../components/toast/toast.js";
 
 import { deleteUserByID, getAllTeachers } from "../../../../scripts/service/userService.js"
 import { teacherTableParser } from "../teacher/teacherTableParser.js";
-import { setSubjectsTeacherToNull } from "../../../../scripts/service/subjectService.js";
+import { getSubjectsByTeacher, setSubjectsTeacherToNull } from "../../../../scripts/service/subjectService.js";
 
 
 const token = localStorage.getItem('token')
@@ -42,8 +42,6 @@ async function createPainelTeacher() {
 
     const teachers = await getAllTeachers(token)    
 
-    console.log(teachers);
-
     const pageHeader = document.createElement('div')
     pageHeader.classList.add('page-header')
 
@@ -71,10 +69,10 @@ async function createPainelTeacher() {
 
     page.append(pageHeader)
 
-    const table = Table({
+    const table = await Table({
         columns: ['Identificador', 'Nome', 'Disciplinas'],
         rows: teachers,
-        parser: teacherTableParser,
+        parser: async (teacher) => await teacherTableParser(teacher),
         removeAction: async (token,id) => {
             const deleteduser = await deleteUserByID(token,id)
             await setSubjectsTeacherToNull(token, id)

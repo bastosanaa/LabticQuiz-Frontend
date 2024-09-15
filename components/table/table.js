@@ -2,7 +2,8 @@
 import { Dialog } from "../dialog/dialog.js"
 import { Toast } from "../toast/toast.js"
 
-export function Table({columns = [], rows=[], parser, removeAction, removeWarning, editPageHref}) {
+export async function Table({columns = [], rows=[], parser, removeAction, removeWarning, editPageHref}) {
+    
     const body = document.querySelector('body')
     const table = document.createElement('table')
 
@@ -33,12 +34,10 @@ export function Table({columns = [], rows=[], parser, removeAction, removeWarnin
     const tbody = document.createElement('tbody')
     table.appendChild(tbody)
 
-    console.log(rows);
-    
-
-    rows.forEach(row => {
-        const parsedRowObj = parser(row)
-        // console.log(parsedRowObj)
+    for (const row of rows) {
+        const parsedRowObj = await parser(row)
+        console.log(parsedRowObj);
+        
         
         const bodyTr = document.createElement('tr')
         columns.forEach(column  => {
@@ -47,6 +46,7 @@ export function Table({columns = [], rows=[], parser, removeAction, removeWarnin
             td.textContent = data
             bodyTr.appendChild(td)
         })
+        
 
         const tdAnchor = document.createElement('td')
 
@@ -95,7 +95,9 @@ export function Table({columns = [], rows=[], parser, removeAction, removeWarnin
         tdAnchor.appendChild(aEditBtn)
         bodyTr.appendChild(tdAnchor)
         tbody.appendChild(bodyTr)
-    })
+        
+    }
+    
 
     function removeAccentsAndCapitalLetters(str) {
         const lowerCasedStr = str.toLowerCase()

@@ -176,7 +176,7 @@ async function setQuizDraftPage() {
         const quizName = nameField.value
         const quizSubject = subjectField.value
         const quizType = typeField.value
-        const quizAttempts = attemptsField.value
+        const quizAttempts = attemptsField.value ? attemptsField.value : 999
         const quizTimeLimit = timeLimitField.value
         const quizInstructions = instructionsTextArea.value
         const quizStartDate = timeStartInput.value
@@ -184,7 +184,8 @@ async function setQuizDraftPage() {
         const questions = []
         const isDraft = true
     
-        if (quizName && quizSubject && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {            
+        if (quizName && quizSubject && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {
+            console.log("tentativas", quizAttempts);
             const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
             const quiz_id = (await response.json())._id
             return quiz_id

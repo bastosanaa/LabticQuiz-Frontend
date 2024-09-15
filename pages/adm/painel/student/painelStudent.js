@@ -67,7 +67,7 @@ async function createPainelStudent() {
     
     page.append(pageHeader)
     
-    const table = Table({
+    const table = await Table({
         columns: ['Matrícula', 'Nome', 'Disciplinas'],
         rows: students,
         parser: studentTableParser,
