@@ -15,7 +15,6 @@ export function Alternatives() {
     correctTextArea.classList.add('answer-textarea', 'correct-container-color')
     correctTextArea.id = 'correct-alt'
     //mock
-    correctTextArea.value = 'correta'
 
     correctTextArea.placeholder = 'Digite aqui a resposta correta...'
     alternative.appendChild(correctTextArea)
@@ -29,9 +28,6 @@ export function Alternatives() {
         wrongAlternative.appendChild(wrongIcon)
 
         const wrongTextArea =  document.createElement('textarea')
-
-        //mock
-        wrongTextArea.value = `errada ${i}`
 
         wrongTextArea.classList.add('answer-textarea', 'wrong-container-color')
         wrongTextArea.placeholder = 'Digite aqui uma alternativa incorreta...'

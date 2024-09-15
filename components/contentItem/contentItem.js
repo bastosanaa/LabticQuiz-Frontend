@@ -4,7 +4,7 @@ import { formatDate } from "../../pages/utils/api.js";
 export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {    
     const item = document.createElement('li')
     console.log(href);
-        
+    
     item.id = id
     item.classList.add('content-item')
     const p = document.createElement('p')
@@ -27,13 +27,17 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
     }
 
     if (crud  || score) {
+        href = null
         const div = document.createElement('div')
         div.classList.add('item-actions')
 
         if (crud) { 
             const aRemoveBtn = document.createElement('a')
             aRemoveBtn.textContent = 'Remover'
-            aRemoveBtn.href = crud.remove
+            aRemoveBtn.addEventListener('click', (event) => {
+                // event.preventDefault()
+                (crud.remove)()
+                })
             div.appendChild(aRemoveBtn)
 
             const aEditBtn = document.createElement('a')

@@ -35,7 +35,8 @@ export function ContentList({title_text, content_items = [], href = null}) {
             id: item_id,
             tag: item.type,
             date: item.date_end,
-            score: item.score
+            score: item.score,
+            crud: item.crud
 
         })
         ul.appendChild(new_item)

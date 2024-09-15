@@ -4,9 +4,15 @@ import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
+import { ContentList } from "../../../../../components/contentList/contentList.js";
+import { Dialog } from "../../../../../components/dialog/dialog.js";
 
 import { updateSubjectChanges,getSubjectByID } from "../../../../../scripts/service/subjectService.js"
 import { getEntityID } from "../../../../utils/api.js";
+import { deleteQuiz, getPostedQuizzesBySubject } from "../../../../../scripts/service/quizService.js";
+
+const token = localStorage.getItem('token')
+const id = getEntityID()
 
 async function editSubject() {
     const main = document.getElementById('main')
@@ -73,6 +79,53 @@ async function editSubject() {
     inputDiv.append(input)
     inputDiv.append(select)
 
+    const quizzes = await(await getPostedQuizzesBySubject(token, id)).json()
+    console.log(quizzes);
+    
+
+    const quizList = ContentList({
+        title_text: "Quizzes",
+        content_items: quizzes.map(quiz => {
+            return {
+                title: quiz.title,
+                id: quiz._id,
+                crud: {
+                    remove: async () => {  
+                        const dialog =  Dialog({
+                            header: 'Tem certeza?',
+                                description: 'Você irá eliminar o quiz "quiz", essa ação nao pode ser desfeita.',
+                                buttons: [{
+                                    type: 'outline',
+                                    size: 'small',
+                                    text: 'Cancelar',
+                                    action: () => {
+                                        dialog.close()
+                                    }
+                                },
+                                {
+                                    type: 'destructive',
+                                    size:'small',
+                                    text: 'Eliminar',
+                                    action: async () => {
+                                        await deleteQuiz(token, quiz._id)
+                                        window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
+                                    }
+                                }
+                            ]
+                        }
+                        )
+                        const body = document.querySelector('body')
+                        body.append(dialog)
+                        dialog.showModal()        
+                    },
+                    edit: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editQuiz.html?id=${quiz._id}`
+                }
+            }
+        })
+    })
+
+    inputDiv.append(quizList)
+
     const button = Button({
         text: 'Salvar alterações',
         action: async () => {
@@ -84,6 +137,7 @@ async function editSubject() {
     registerForm.append(button)
 
     page.append(registerForm)
+
 
     main.append(page)
 
@@ -117,6 +171,4 @@ async function editSubject() {
         await updateSubjectChanges(token, id, new_name, new_teacher)
     }
 } 
-
 editSubject()
-

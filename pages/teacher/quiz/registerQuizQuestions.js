@@ -71,7 +71,6 @@ async function setRegisterQuizQuestionsPage() {
         questionDiv.style.display = 'flex'
         questionDiv.style.flexDirection = 'column'
         questionDiv.style.gap = '1rem'
-        //criar div aqui e percorrer as divs transformando em obejtos
         const question = Input({
             placeholder: 'Digite aqui a pergunta...',
             title: `Pergunta ${i}`,

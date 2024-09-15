@@ -60,7 +60,7 @@ export async function getAllQuizzesBySubject(token, subject_id) {
     return response
 }
 
-export async function getPostedQuizzesBySubject(token, subject_id) {
+export async function getPostedQuizzesBySubject(token, subject_id) {    
     const response = await fetch(`${url}/quizzes/subject/posted/${subject_id}`, {
         method: "GET",
         mode: "cors",
