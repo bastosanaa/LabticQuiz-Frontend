@@ -62,12 +62,10 @@ async function setQuizInfoPage() {
     page.append(quizInfoChart)    
         
     const students = await getQuizAnswers(token, quiz_id)
-    console.log(students);
         
     const studentsList = ContentList({
         title_text: 'Alunos que responderam',
         content_items: students.map(student => {
-            console.log(students);
             
             return {
                 name: student.student_id.name,

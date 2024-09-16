@@ -42,9 +42,7 @@ export function quizQuestion({question_number, description, alternatives, questi
         altDescription.textContent = alternatives[i].content        
         alternative.append(altDescription)
 
-        if (!isGabarito){
-            console.log('nao é gabs');
-            
+        if (!isGabarito){            
             alternative.addEventListener('click', () => {
                 
                 //Select alternative and show it in the alternatives selecteds chart

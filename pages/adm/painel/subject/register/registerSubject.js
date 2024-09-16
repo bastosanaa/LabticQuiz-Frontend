@@ -89,11 +89,6 @@ async function registerSubject() {
             }
         }
     })
-
-    button.addEventListener('click', () => {
-        console.log('clicando');
-    })
-
     registerForm.append(button)
 
     page.append(registerForm)
@@ -115,10 +110,7 @@ async function postNewSubject() {
     
     const subjectName = document.querySelector('input').value
     const selectedTeacher = document.querySelector('select').value
-    
-    
-    console.log(subjectName)
-    console.log(selectedTeacher);
+
     await createSubject(token, subjectName, selectedTeacher)
 }
 

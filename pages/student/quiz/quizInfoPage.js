@@ -10,7 +10,6 @@ import { formatDate, getEntityID, formatTime } from "../../utils/api.js"
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID() 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
-console.log(quiz);
 const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).json()
 
 const attemptsRemaining =  quiz.attempts - studentAttempts.length
@@ -99,8 +98,6 @@ async function setQuizInfoPage() {
     startButton.style.marginLeft = '45px'
     page.append(startButton)
     }
-
-    console.log(studentAttempts);
     
     const chart = AttemptsChart({
         attempts: studentAttempts

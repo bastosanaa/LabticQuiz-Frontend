@@ -3,7 +3,6 @@ import { formatDate } from "../../pages/utils/api.js";
 
 export function ContentItem({text, date= null, tag= null , score= null, crud= null, extraAnchor = null, href=null, action = null, id=null}) {    
     const item = document.createElement('li')
-    console.log(href);
     
     item.id = id
     item.classList.add('content-item')
@@ -67,9 +66,6 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
         item.appendChild(a)
         a.id = 'content-item-anchor'
 
-        a.addEventListener('click', () => {
-            console.log('endereco da ancora');
-        })
     }
 
     if (href) {

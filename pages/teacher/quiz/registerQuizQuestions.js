@@ -12,8 +12,6 @@ const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
-console.log(quiz);
-
 
 async function setRegisterQuizQuestionsPage() {
     const main = document.getElementById('main')
@@ -86,9 +84,8 @@ async function setRegisterQuizQuestionsPage() {
         const alternatives = Alternatives({
             altContent: quiz.questions ? quizQuestion.alternatives : null
         })
-        // alternatives.style.pointerEvents = 'none'
         questionDiv.append(alternatives)
-
+        
         inputDiv.append(questionDiv)
         
     }
@@ -106,7 +103,7 @@ async function setRegisterQuizQuestionsPage() {
         action: async () => {
             const questions = getQuizQuestions()
             await updateQuiz(token,{questions: questions, is_draft: true},quiz_id)
-            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.student_id._id}`
+            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
 
         }
     })
@@ -119,7 +116,7 @@ async function setRegisterQuizQuestionsPage() {
             const questions = getQuizQuestions()
             await updateQuiz(token,{questions: questions, is_draft: false},quiz_id)
 
-            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.student_id._id}`
+            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
             
         }
     })
@@ -133,8 +130,6 @@ async function setRegisterQuizQuestionsPage() {
 
 function getQuizQuestions() {
     const questionDivs = document.querySelectorAll('.question-div')
-    console.log(questionDivs);
-
     const questions = []
 
     questionDivs.forEach(questionDiv => {

@@ -57,7 +57,6 @@ async function createUserDashboard() {
 async function setPage() {
     const token = localStorage.getItem('token')
     const user_role = await getRoleByToken(token)
-    console.log(user_role);
     if (user_role === 'administrador') {
         await createUserDashboard()
     }

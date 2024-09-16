@@ -1,7 +1,6 @@
 const url = "http://localhost:3333/api"
 
 export async function createSubject(token, name, teacher_id) {
-    console.log('entrou no create');
     
     let newSubject = {}
     if (!teacher_id) {
@@ -30,11 +29,9 @@ export async function updateSubjectChanges(token, id, new_name, new_teacher) {
         },
         body: JSON.stringify({name: new_name, teacher_id: new_teacher})
     })
-    console.log(response)
     return response
 }
 export async function deleteSubject(token, subject_id) {
-    console.log(subject_id);
     
     const response = await fetch(`${url}/subjects`, {
         method: 'DELETE',
@@ -44,7 +41,6 @@ export async function deleteSubject(token, subject_id) {
         },
         body: JSON.stringify({id: subject_id})
     })
-    console.log(response)
     return response
 }
 

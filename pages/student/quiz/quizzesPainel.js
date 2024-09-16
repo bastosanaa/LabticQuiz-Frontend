@@ -31,9 +31,7 @@ async function setQuizzesPainelPage() {
     page.classList.add('page')
     main.append(page)
         
-    const subject_name = (await getSubjectByID(token, subject_id)).subject_name
-    console.log(subject_name);
-    
+    const subject_name = (await getSubjectByID(token, subject_id)).subject_name    
 
     const header = PageHeader({
         title_text: subject_name,

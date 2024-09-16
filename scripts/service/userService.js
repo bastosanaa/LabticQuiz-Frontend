@@ -10,7 +10,6 @@ export async function userLogin(user, password) {
         },
         body: JSON.stringify({email: user, password: password})
     })
-    console.log(response)
     return response
 }
 
@@ -55,7 +54,6 @@ export async function updateUserChanges(token,id, name,registration, email) {
         },
         body: JSON.stringify({name, registration, email})
     })
-    console.log(response)
     return response
 }
 
@@ -106,9 +104,7 @@ export async function getRoleByToken(token) {
         body: JSON.stringify({token: token})
     })
     
-    console.log("get role")
     const user = await response.json()
-    console.log(user);
     const user_role = user.user_role
     
     return user_role

@@ -75,9 +75,7 @@ async function createPainelTeacher() {
         parser: async (teacher) => await teacherTableParser(teacher),
         removeAction: async (token,id) => {
             const deleteduser = await deleteUserByID(token,id)
-            await setSubjectsTeacherToNull(token, id)
-            console.log("deletado",deleteduser);
-            
+            await setSubjectsTeacherToNull(token, id)            
             const toast = Toast({
                 message: 'Professor removido com sucesso',
                 reloadPage:true

@@ -10,10 +10,8 @@ import { getEntityID, parseSubjectToList } from "../../../../utils/api.js"
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
-console.log(quiz_id);
 
 const quiz = quiz_id ? await(await getQuizByID(token,quiz_id)).json() : null
-console.log(quiz);
 
 
 async function setEditQuizPage() {
@@ -162,7 +160,6 @@ async function setEditQuizPage() {
             
         })
         const quizQuestion = quiz.questions[i-1] 
-        console.log(quizQuestion);
         
         const questionContent = question.querySelector('input')
         questionContent.value = quizQuestion.title
@@ -186,7 +183,6 @@ async function setEditQuizPage() {
 
             // const quiz_id = await SaveQuizDraft()
             const questionDivs = document.querySelectorAll('.question-div')
-            console.log(questionDivs);
 
             const questions = []
 
@@ -251,8 +247,6 @@ async function setEditQuizPage() {
                         
                     }
             await updateQuiz(token,quizNewInfo,quiz_id)
-            console.log(questions);
-            console.log(quiz_id);
             
 
             if (quiz_id) {

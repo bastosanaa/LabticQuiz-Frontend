@@ -72,9 +72,7 @@ export async function getPostedQuizzesBySubject(token, subject_id) {
     return response
 }
 
-export async function deleteQuiz(token, quiz_id) {
-    console.log(quiz_id);
-    
+export async function deleteQuiz(token, quiz_id) {    
     const response = await fetch(`${url}/quizzes/${quiz_id}`, {
         method: "DELETE",
         mode: "cors",

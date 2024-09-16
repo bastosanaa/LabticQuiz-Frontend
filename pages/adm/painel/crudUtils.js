@@ -48,7 +48,6 @@ export async function getSubjectsRegistered(token) {
 }
 
 export async function registerStudentToSubjects(token,studentID, subjects) {
-    console.log(subjects);
     
 
     subjects.forEach(async(subject) => {
@@ -58,7 +57,6 @@ export async function registerStudentToSubjects(token,studentID, subjects) {
 }
 
 export async function deleteStudentFromSubjects(token, studentID, subjects) {
-    console.log(subjects);
     
     subjects.forEach(async subject => {
         await deleteStudentSubject(token, studentID, subject._id)

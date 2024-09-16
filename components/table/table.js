@@ -36,7 +36,6 @@ export async function Table({columns = [], rows=[], parser, removeAction, remove
 
     for (const row of rows) {
         const parsedRowObj = await parser(row)
-        console.log(parsedRowObj);
         
         
         const bodyTr = document.createElement('tr')

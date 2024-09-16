@@ -111,8 +111,6 @@ export async function registerStudent() {
 
                 const { removedItems, addedItems } = compareItemsSelected(parsedPreSelectedItems, selectedItems)
 
-                console.log(addedItems);
-                
                 await registerTeacherToSubjects(token, teacher_id,addedItems)
                 await deleteTeacherFromSubjetcs(token, removedItems)
 

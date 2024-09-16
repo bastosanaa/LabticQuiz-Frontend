@@ -15,7 +15,6 @@ async function setQuizResultsPage() {
     const quiz_id = attempt_data.quiz_id._id
     const quiz = await (await getQuizByID(token, quiz_id)).json()
     const answer_key = await getAnswerKey(token, quiz_id)
-    console.log(answer_key);    
 
     const main = document.getElementById('main')
     
@@ -79,7 +78,6 @@ async function setQuizResultsPage() {
         const correctAltID = questionFounded[0].answer_id;
         
         let chartAnswer = document.getElementById(`chart-question-${counter}`)
-        console.log(chartAnswer);
         
             //selecionar a box no chart container baseado no numero e colocar a letrinha la dentro
         let answerLetter = chartAnswer.querySelector('.letter-selected')

@@ -37,12 +37,12 @@ export function Alternatives({altContent = null}) {
         wrongTextArea.placeholder = 'Digite aqui uma alternativa incorreta...'
         wrongTextArea.id = `wrong-alt${i}`
         wrongAlternative.appendChild(wrongTextArea)
-        
-        alternativesContainer.appendChild(wrongAlternative)
-        if (altContent) {
+                
+        if (altContent) {            
             const altsWrong = altContent.filter(alt => !alt.correct)
             wrongTextArea.value = altsWrong[i-1].content
         }
+        alternativesContainer.appendChild(wrongAlternative)                
 
     }
     return alternativesContainer

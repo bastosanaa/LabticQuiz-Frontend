@@ -65,7 +65,6 @@ export function LoginPage() {
 LoginPage()
 
 const userInput = document.querySelector('.login-user-input')
-console.log(userInput);
 const passwordInput = document.querySelector('.login-password-input')
 
 async function tryLogin() {
@@ -74,7 +73,6 @@ async function tryLogin() {
         if (!userData.ok) {
             //mostrar mensagem de erro de login na tela
             sendLoginErrorMessage()
-            console.log('erro de login');
             return
         }
         const data = await userData.json()
@@ -84,7 +82,7 @@ async function tryLogin() {
         
 }
 
-//refatorar utilizando dicionario
+
 async function redirectUserPage(token) {
     const user_role = await getRoleByToken(token)
     if (user_role == "estudante") {

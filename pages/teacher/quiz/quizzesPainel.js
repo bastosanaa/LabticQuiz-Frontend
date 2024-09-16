@@ -14,10 +14,6 @@ const postedQuizzes = quizzes.filter(quiz => !quiz.is_draft)
 const draftQuizzes = quizzes.filter(quiz => quiz.is_draft)
 const subjects = await getAllSubjects(token)
 
-
-console.log(quizzes);
-
-
 async function setQuizzesPainel() {
     const main = document.getElementById('main')
     

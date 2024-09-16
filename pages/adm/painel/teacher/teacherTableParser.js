@@ -3,10 +3,8 @@ import { getSubjectsByTeacher } from "../../../../scripts/service/subjectService
 const token = localStorage.getItem('token')
 
 export async function teacherTableParser(teacherObj) {
-    console.log('teacher obj', teacherObj);
 
     const subjects = await getSubjectsByTeacher(token, teacherObj._id)
-    console.log("DISCIPPLINAS", subjects);
     
 
     const parsedTeacherObj = {

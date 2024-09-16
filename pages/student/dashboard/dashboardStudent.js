@@ -12,8 +12,6 @@ import { getUserByID } from "../../../scripts/service/userService.js";
 const token = localStorage.getItem('token')
 const subjects = await getUserSubjects(token)
 const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
-console.log(parsedSubjects);
-
 
 async function getUserName(token) {
     const user = await getUserIDbyToken(token)
@@ -35,16 +33,12 @@ async function getUserSubjects(token) {
             subjects_items.push(item)
         })
         return subjects_items
-    } else {
-        console.log('nada');
     }
 }
 
 async function setUserDashboard() {
     const user_name =  await getUserName(token)
     const main = document.getElementById('main')
-    
-    console.log(subjects);
     
     const navBar = NavBar({
         items: [{

@@ -20,7 +20,6 @@ export async function setTeachersSelect() {
         }
         options.push(option)
     })
-    console.log(options);
     
     return options
 }

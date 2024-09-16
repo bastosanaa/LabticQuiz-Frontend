@@ -79,9 +79,7 @@ async function editSubject() {
     inputDiv.append(input)
     inputDiv.append(select)
 
-    const quizzes = await(await getPostedQuizzesBySubject(token, id)).json()
-    console.log(quizzes);
-    
+    const quizzes = await(await getPostedQuizzesBySubject(token, id)).json()    
 
     const quizList = ContentList({
         title_text: "Quizzes",
@@ -146,17 +144,12 @@ async function editSubject() {
         const token = localStorage.getItem('token')
         const id = getEntityID()
         const subject = await getSubjectByID(token,id)
-        console.log(subject);
-        
-        console.log(input);
         
         input.value = subject.subject_name
         
         if (subject.subject_teacher !== null) {
             select.value = subject.subject_teacher
-            console.log('entrouuu')
         } else {
-            console.log(subject.subject_teacher);
             select.value = ''
             
         }

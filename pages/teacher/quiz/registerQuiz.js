@@ -10,8 +10,6 @@ import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
 const quiz = quiz_id ? await(await getQuizByID(token,quiz_id)).json() : null
-console.log(quiz);
-
 
 async function setRegisterQuizPage() {
     const subjects = await getAllSubjects(token)
@@ -163,9 +161,7 @@ async function setRegisterQuizPage() {
         text: 'Criar Perguntas',
         action: async () => {
 
-            const quiz_id = await SaveQuizDraft()
-            console.log(quiz_id);
-            
+            const quiz_id = await SaveQuizDraft()            
 
             if (quiz_id) {
                 window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/registerQuizQuestions.html?id=${quiz_id}`
@@ -207,9 +203,7 @@ async function setRegisterQuizPage() {
                     
                 }
                 const response = await updateQuiz(token, quizNewInfo, quiz_id )
-                const updatedQuiz = (await response.json())._id
-                console.log(updatedQuiz);
-                
+                const updatedQuiz = (await response.json())._id                
                 return updatedQuiz
             }
             const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
