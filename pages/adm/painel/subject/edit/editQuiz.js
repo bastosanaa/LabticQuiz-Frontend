@@ -50,7 +50,7 @@ async function setEditQuizPage() {
     const header = PageHeader({
         title_text: 'Informações do Quiz',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
+        back_btn_address: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html?id=${quiz.subject_id._id}`
     })
 
     page.append(header)
@@ -161,10 +161,17 @@ async function setEditQuizPage() {
             title: `Pergunta ${i}`,
             
         })
+        const quizQuestion = quiz.questions[i-1] 
+        console.log(quizQuestion);
+        
+        const questionContent = question.querySelector('input')
+        questionContent.value = quizQuestion.title
         question.classList.add('question')
         questionDiv.append(question)
         
-        const alternatives = Alternatives()
+        const alternatives = Alternatives({
+            altContent: quizQuestion.alternatives
+        })
         alternatives.style.pointerEvents = 'none'
         questionDiv.append(alternatives)
         
@@ -249,7 +256,7 @@ async function setEditQuizPage() {
             
 
             if (quiz_id) {
-                window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/registerQuizQuestions.html?id=${quiz_id}`
+                window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html?id=${quiz.subject_id._id}`
             }
 
         }}

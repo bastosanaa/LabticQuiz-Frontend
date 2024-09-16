@@ -65,6 +65,8 @@ async function setRegisterQuizQuestionsPage() {
     registerForm.appendChild(inputDiv)
 
     for (let i = 1; i < 11; i++) {
+        
+        const quizQuestion = quiz.questions ? quiz.questions[i-1] : null
         const questionDiv = document.createElement('div')
         questionDiv.classList.add('question-div')
         questionDiv.style.width = '100%'
@@ -74,13 +76,17 @@ async function setRegisterQuizQuestionsPage() {
         const question = Input({
             placeholder: 'Digite aqui a pergunta...',
             title: `Pergunta ${i}`,
-    
         })
+        const inputContainer = question.querySelector('input')
+        inputContainer.value = quizQuestion ? quizQuestion.title : null
+
         question.classList.add('question')
         questionDiv.append(question)
-    
-        const alternatives = Alternatives()
-        alternatives.style.pointerEvents = 'none'
+        
+        const alternatives = Alternatives({
+            altContent: quiz.questions ? quizQuestion.alternatives : null
+        })
+        // alternatives.style.pointerEvents = 'none'
         questionDiv.append(alternatives)
 
         inputDiv.append(questionDiv)
@@ -96,7 +102,13 @@ async function setRegisterQuizQuestionsPage() {
     const draftButton = Button({
         type: 'outline',
         text: 'Guardar Rascunho',
-        size: 'medium'
+        size: 'medium',
+        action: async () => {
+            const questions = getQuizQuestions()
+            await updateQuiz(token,{questions: questions, is_draft: true},quiz_id)
+            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.student_id._id}`
+
+        }
     })
     buttonDiv.append(draftButton)
 
@@ -104,48 +116,10 @@ async function setRegisterQuizQuestionsPage() {
         text: 'Postar',
         size: 'medium',
         action: async () => {
-            const questionDivs = document.querySelectorAll('.question-div')
-            console.log(questionDivs);
-
-            const questions = []
-
-            questionDivs.forEach(questionDiv => {
-                const questionInputContainer = questionDiv.querySelector('.question')
-                const questionInput = questionInputContainer.querySelector('input')
-
-                const correctAlt = document.querySelector('#correct-alt')
-
-                const wrongAlt1 = document.querySelector('#wrong-alt1')
-                const wrongAlt2 = document.querySelector('#wrong-alt2')
-                const wrongAlt3 = document.querySelector('#wrong-alt3')
-
-                
-                questions.push({
-                    title: questionInput.value,
-                    alternatives: [
-                        {
-                            correct: true,
-                            content: correctAlt.value
-                        },
-                        {
-                            correct: false,
-                            content: wrongAlt1.value
-                        },
-                        {
-                            correct: false,
-                            content: wrongAlt2.value
-                        },
-                        {
-                            correct: false,
-                            content: wrongAlt3.value
-                        }
-                    ]
-                })
-            })
+            const questions = getQuizQuestions()
             await updateQuiz(token,{questions: questions, is_draft: false},quiz_id)
-            console.log(questions);
 
-            window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.student_id._id}`
             
         }
     })
@@ -156,6 +130,48 @@ async function setRegisterQuizQuestionsPage() {
 
 }
 
+
+function getQuizQuestions() {
+    const questionDivs = document.querySelectorAll('.question-div')
+    console.log(questionDivs);
+
+    const questions = []
+
+    questionDivs.forEach(questionDiv => {
+        const questionInputContainer = questionDiv.querySelector('.question')
+        const questionInput = questionInputContainer.querySelector('input')
+
+        const correctAlt = document.querySelector('#correct-alt')
+
+        const wrongAlt1 = document.querySelector('#wrong-alt1')
+        const wrongAlt2 = document.querySelector('#wrong-alt2')
+        const wrongAlt3 = document.querySelector('#wrong-alt3')
+
+        
+        questions.push({
+            title: questionInput.value,
+            alternatives: [
+                {
+                    correct: true,
+                    content: correctAlt.value
+                },
+                {
+                    correct: false,
+                    content: wrongAlt1.value
+                },
+                {
+                    correct: false,
+                    content: wrongAlt2.value
+                },
+                {
+                    correct: false,
+                    content: wrongAlt3.value
+                }
+            ]
+        })
+    })
+    return questions
+}
 
 setRegisterQuizQuestionsPage()
 
