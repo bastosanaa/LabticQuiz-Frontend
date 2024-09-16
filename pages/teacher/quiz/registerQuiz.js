@@ -117,16 +117,38 @@ async function setRegisterQuizPage() {
     timeLimitSelect.classList.add('crud-input')
     inputDiv.append(timeLimitSelect)
 
+    //startDiv
+    const dateStartDiv = document.createElement('div')
+    dateStartDiv.classList.add('date-div')
+
     const timeStartInput = document.createElement('input')
     timeStartInput.type = 'date'
     timeStartInput.classList.add('crud-input')
-    inputDiv.append(timeStartInput)
+    dateStartDiv.append(timeStartInput)
+
+    const timeStartInputLabel = document.createElement('p')
+    timeStartInputLabel.textContent = 'Data de Início'
+    dateStartDiv.append(timeStartInputLabel)
+    inputDiv.append(dateStartDiv)
+    
+    //endDiv
+    const dateEndDiv = document.createElement('div')
+    dateEndDiv.classList.add('date-div')
 
     const timeEndInput = document.createElement('input')
     timeEndInput.type = 'date'
     timeEndInput.classList.add('crud-input')
-    inputDiv.append(timeEndInput)
+    dateEndDiv.append(timeEndInput)
+    inputDiv.append(dateEndDiv)
 
+    const timeEndInputLabel = document.createElement('p')
+    timeEndInputLabel.textContent = 'Data de Término'
+    dateEndDiv.append(timeEndInputLabel)
+    inputDiv.append(dateEndDiv)
+
+    
+
+    //textArea
     const instructionsTextArea = document.createElement('textarea')
     instructionsTextArea.cols = 220
     instructionsTextArea.rows = 10

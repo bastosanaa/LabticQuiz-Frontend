@@ -27,14 +27,14 @@ async function setEditQuizPage() {
             },
             {
                 imgSrc: '/assets/books.svg',
-                title: 'Disciplinas',
-                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
-            },
-            {
-                imgSrc: '/assets/register.svg',
-                title: 'Criar Quiz',
-                selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+                title: 'Painel',
+                dropdownItems: [
+                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
+                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
+                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected:true}
+                ],
+                selected: true
+
             }
         ]
     }
