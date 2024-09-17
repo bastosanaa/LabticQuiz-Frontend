@@ -1,4 +1,6 @@
-export function Select({title=null, tooltipText = null, options}) {
+import { checkIfEmpty } from "../../pages/utils/api.js"
+
+export function Select({title=null, tooltipText = null, options, required = false}) {
     
     const selectContainer = document.createElement('div')
     selectContainer.classList.add('select-container')
@@ -37,8 +39,20 @@ export function Select({title=null, tooltipText = null, options}) {
 
         select.append(newOption)
     })
-
     selectContainer.appendChild(select)
+
+    if (required) {
+        select.required = true
+        select.addEventListener('blur', () => {
+            checkIfEmpty(select)}
+        )
+    }
+    const errorParagraph = document.createElement('p')
+    errorParagraph.classList.add('error-message', 'hidden')
+    errorParagraph.style.bottom = '-1.5rem'
+    selectContainer.appendChild(errorParagraph)
+
+
 
 
     return selectContainer

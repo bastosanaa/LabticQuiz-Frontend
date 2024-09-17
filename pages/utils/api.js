@@ -153,3 +153,28 @@ export function formatTime(time) {
     // Retorna a string formatada
     return `${hoursFormated}:${minutesFormated}`;
 }
+
+export function checkDate() {
+    const dateStartInput = document.querySelector('.date-start')
+    
+    const dateEndInput = document.querySelector('.date-end')
+    
+    const dateNow = new Date();
+    const formattedDate = String(dateNow.getFullYear()+'-'+ dateNow.getMonth()+'-'+ dateNow.getDate());
+    console.log(dateStartInput.value,'//', dateEndInput.value, formattedDate);
+
+    if (dateStartInput.value > dateNow) {
+        dateStartInput.style.border = '1px solid red'
+        const errorMessage = dateStartInput.parentNode.querySelector('.error-message')
+        errorMessage.classList.remove('hidden')
+        return false
+    }
+    if (dateEndInput < dateStartInput) {
+        dateEndInput.style.border = '1px solid red'
+        const errorMessage = dateStartInput.parentNode.querySelector('.error-message')
+        errorMessage.classList.remove('hidden')
+        return false
+    }
+    return true
+    
+}

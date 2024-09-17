@@ -5,7 +5,7 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../components/select/select.js"
 import { createQuiz, getQuizByID, updateQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
-import { getEntityID, parseSubjectToList } from "../../utils/api.js"
+import { checkDate, checkIfEmpty, getEntityID, parseSubjectToList } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
@@ -61,7 +61,8 @@ async function setRegisterQuizPage() {
 
     const nameInput = Input({
         placeholder: 'Nome do quiz',
-        type: 'text'
+        type: 'text',
+        required: true
     })
     inputDiv.append(nameInput)
         
@@ -72,10 +73,12 @@ async function setRegisterQuizPage() {
             value: ''
         },
         ...parseSubjectsToSelect(subjects)
-    ]
+    ],
+    required: true
     })
     if (quiz) {
-        subjectSelect.disabled = true
+        const select = subjectSelect.querySelector('select')
+        select.disabled = true
     }
     subjectSelect.classList.add('crud-input')
     inputDiv.append(subjectSelect)
@@ -93,14 +96,16 @@ async function setRegisterQuizPage() {
             text: 'Atividade',
             value: 'atividade'
         }
-    ]
+    ],
+    required:true
     })
     quizTypeSelect.classList.add('crud-input')
     inputDiv.append(quizTypeSelect)
 
     const attemptsInput = Input({
         placeholder: 'Tentativas para realizar o quiz',
-        type: 'text'
+        type: 'text',
+
     })
     attemptsInput.classList.add('crud-input')
     inputDiv.append(attemptsInput)
@@ -108,42 +113,58 @@ async function setRegisterQuizPage() {
     const timeLimitSelect = Select({
         options: [{
             text: 'Tempo máximo do Quiz',
-            value: ''
+            value: '',
         },
         ...generateTimeOptions()
-
-    ]
+        
+    ],
+    required: true
     })
     timeLimitSelect.classList.add('crud-input')
     inputDiv.append(timeLimitSelect)
 
-    //startDiv
+    //startDateDiv
     const dateStartDiv = document.createElement('div')
+    dateStartDiv.style.position = 'relative'
     dateStartDiv.classList.add('date-div')
 
     const timeStartInput = document.createElement('input')
     timeStartInput.type = 'date'
-    timeStartInput.classList.add('crud-input')
+    timeStartInput.classList.add('crud-input', 'date-start')
     dateStartDiv.append(timeStartInput)
 
     const timeStartInputLabel = document.createElement('p')
     timeStartInputLabel.textContent = 'Data de Início'
+
+    const errorDateStart = document.createElement('p')
+    errorDateStart.classList.add('error-message', 'hidden')
+    errorDateStart.textContent = 'Data inválida'
+    errorDateStart.style.bottom = '-1rem'
+
     dateStartDiv.append(timeStartInputLabel)
+    dateStartDiv.append(errorDateStart)
     inputDiv.append(dateStartDiv)
     
-    //endDiv
+    //endDateDiv
     const dateEndDiv = document.createElement('div')
+    dateEndDiv.style.position = 'relative'
     dateEndDiv.classList.add('date-div')
 
     const timeEndInput = document.createElement('input')
     timeEndInput.type = 'date'
-    timeEndInput.classList.add('crud-input')
+    timeEndInput.classList.add('crud-input', 'date-end')
     dateEndDiv.append(timeEndInput)
     inputDiv.append(dateEndDiv)
 
     const timeEndInputLabel = document.createElement('p')
     timeEndInputLabel.textContent = 'Data de Término'
     dateEndDiv.append(timeEndInputLabel)
+    const errorDateEnd = document.createElement('p')
+    errorDateEnd.classList.add('error-message', 'hidden')
+    errorDateEnd.textContent = 'Data inválida'
+    errorDateEnd.style.bottom = '-1rem'
+
+    dateEndDiv.append(errorDateEnd)
     inputDiv.append(dateEndDiv)
 
     
@@ -173,7 +194,9 @@ async function setRegisterQuizPage() {
 
             const quiz_id = await SaveQuizDraft()
 
-            window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+            if (quiz_id) {
+                window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+            }
         }
     })
     buttonDiv.append(draftButton)
@@ -208,7 +231,16 @@ async function setRegisterQuizPage() {
         const questions = []
         const isDraft = true
     
-        if (quizName && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) { 
+
+        checkIfEmpty(nameField)
+        checkIfEmpty(subjectField)
+        checkIfEmpty(typeField)
+        checkIfEmpty(timeLimitField)
+        if (quizName && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {
+            const data = checkDate()
+            console.log(data);
+            
+            //check if its a draft quiz
             if (quiz) {
                 
                 const quiz_id = getEntityID()
@@ -233,7 +265,7 @@ async function setRegisterQuizPage() {
             return quiz_id
 
         }
-        return none
+        return null
     }
     
     if (quiz) {
