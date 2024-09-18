@@ -156,23 +156,29 @@ export function formatTime(time) {
 
 export function checkDate() {
     const dateStartInput = document.querySelector('.date-start')
+    const dateStart = new Date(dateStartInput.value)
+    //ajusting timezone
+    const ajustedStartDate = new Date(dateStart.getTime() + dateStart.getTimezoneOffset() * 60000)
     
     const dateEndInput = document.querySelector('.date-end')
+    const dateEnd = new Date(dateEndInput.value)
+    //ajusting timezone
+    const ajustedEndDate = new Date(dateEnd.getTime() + dateEnd.getTimezoneOffset() * 60000)
     
     const dateNow = new Date();
-    const formattedDate = String(dateNow.getFullYear()+'-'+ dateNow.getMonth()+'-'+ dateNow.getDate());
-    console.log(dateStartInput.value,'//', dateEndInput.value, formattedDate);
+    console.log(ajustedStartDate,'//', ajustedEndDate,"//", dateNow);
 
-    if (dateStartInput.value > dateNow) {
+    if (new Date(ajustedStartDate) < new Date(dateNow)) {
         dateStartInput.style.border = '1px solid red'
         const errorMessage = dateStartInput.parentNode.querySelector('.error-message')
         errorMessage.classList.remove('hidden')
         return false
     }
-    if (dateEndInput < dateStartInput) {
+    if (new Date(ajustedEndDate) < new Date(ajustedStartDate)) {
         dateEndInput.style.border = '1px solid red'
-        const errorMessage = dateStartInput.parentNode.querySelector('.error-message')
+        const errorMessage = dateEndInput.parentNode.querySelector('.error-message')
         errorMessage.classList.remove('hidden')
+
         return false
     }
     return true

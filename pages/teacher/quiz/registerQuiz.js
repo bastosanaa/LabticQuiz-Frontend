@@ -193,9 +193,11 @@ async function setRegisterQuizPage() {
         action: async () => {
 
             const quiz_id = await SaveQuizDraft()
+            console.log(quiz_id);
+            
 
             if (quiz_id) {
-                window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+                // window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
             }
         }
     })
@@ -236,33 +238,38 @@ async function setRegisterQuizPage() {
         checkIfEmpty(subjectField)
         checkIfEmpty(typeField)
         checkIfEmpty(timeLimitField)
-        if (quizName && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {
+        if (quizName && quizTimeLimit && quizStartDate && quizEndDate  && quizType) {
             const data = checkDate()
             console.log(data);
-            
-            //check if its a draft quiz
-            if (quiz) {
+            if (data) {
+                console.log('data deu true');
                 
-                const quiz_id = getEntityID()
-
-                const quizNewInfo = {
-                    title:quizName,
-                    time: quizTimeLimit,
-                    attempts: quizAttempts,
-                    date_start: quizStartDate,
-                    date_end: quizEndDate,
-                    instructions: quizInstructions,
-                    type: quizType,
-                    is_draft: true,
+                //check if its a draft quiz
+                if (quiz) {
                     
+                    const quiz_id = getEntityID()
+
+                    const quizNewInfo = {
+                        title:quizName,
+                        time: quizTimeLimit,
+                        attempts: quizAttempts,
+                        date_start: quizStartDate,
+                        date_end: quizEndDate,
+                        instructions: quizInstructions,
+                        type: quizType,
+                        is_draft: true,
+                        
+                    }
+                    const response = await updateQuiz(token, quizNewInfo, quiz_id )
+                    const updatedQuiz = (await response.json())._id                
+                    return updatedQuiz
                 }
-                const response = await updateQuiz(token, quizNewInfo, quiz_id )
-                const updatedQuiz = (await response.json())._id                
-                return updatedQuiz
+                const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
+                console.log(response);
+                
+                const quiz_id = (await response.json())._id
+                return quiz_id
             }
-            const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
-            const quiz_id = (await response.json())._id
-            return quiz_id
 
         }
         return null
