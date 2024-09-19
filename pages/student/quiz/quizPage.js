@@ -2,15 +2,15 @@ import { AnswersChart } from "../../../components/answersChart/answersChart.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
-import { getQuizByID } from "../../../scripts/service/quizService.js"
+import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
 import { getEntityID } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
+const quiz_id = getEntityID()
+const quiz_data = await (await getQuizByID(token,quiz_id)).json()    
 
 async function setQuizPage() {
 
-    const quiz_id = getEntityID()
-    const quiz_data = await (await getQuizByID(token,quiz_id)).json()    
 
     const main = document.getElementById('main')
     
@@ -62,5 +62,14 @@ async function setQuizPage() {
     main.append(page)
 
 }
+console.log(quiz_data);
 
-await setQuizPage()
+const date_end = new Date(quiz_data.date_end)
+const dateNow = new Date()
+const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).json()
+const attemptsRemaining =  quiz_data.attempts - studentAttempts.length
+
+if (attemptsRemaining > 0 && date_end > dateNow) {
+    await setQuizPage()
+}
+

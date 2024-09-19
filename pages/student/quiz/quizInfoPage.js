@@ -68,7 +68,6 @@ async function setQuizInfoPage() {
     console.log(quiz);
     const date_end = new Date(quiz.date_end)
     const dateNow = new Date()    
-
         
     if (attemptsRemaining > 0 && date_end > dateNow) {
         const startButton =  Button({
