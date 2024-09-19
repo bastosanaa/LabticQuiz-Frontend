@@ -197,7 +197,7 @@ async function setRegisterQuizPage() {
             
 
             if (quiz_id) {
-                // window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+                window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
             }
         }
     })

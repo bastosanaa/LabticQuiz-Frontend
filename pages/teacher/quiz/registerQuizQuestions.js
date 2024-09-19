@@ -12,6 +12,8 @@ const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
+console.log(quiz);
+
 
 async function setRegisterQuizQuestionsPage() {
     const main = document.getElementById('main')
@@ -82,7 +84,7 @@ async function setRegisterQuizQuestionsPage() {
         questionDiv.append(question)
         
         const alternatives = Alternatives({
-            altContent: quiz.questions ? quizQuestion.alternatives : null
+            altContent: quiz.questions.length >0  ? quizQuestion.alternatives : null
         })
         questionDiv.append(alternatives)
         
@@ -102,9 +104,11 @@ async function setRegisterQuizQuestionsPage() {
         size: 'medium',
         action: async () => {
             const questions = getQuizQuestions()
+            console.log(questions);
+            
             await updateQuiz(token,{questions: questions, is_draft: true},quiz_id)
             window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
-
+// 
         }
     })
     buttonDiv.append(draftButton)
@@ -136,11 +140,11 @@ function getQuizQuestions() {
         const questionInputContainer = questionDiv.querySelector('.question')
         const questionInput = questionInputContainer.querySelector('input')
 
-        const correctAlt = document.querySelector('#correct-alt')
+        const correctAlt = questionDiv.querySelector('#correct-alt')
 
-        const wrongAlt1 = document.querySelector('#wrong-alt1')
-        const wrongAlt2 = document.querySelector('#wrong-alt2')
-        const wrongAlt3 = document.querySelector('#wrong-alt3')
+        const wrongAlt1 = questionDiv.querySelector('#wrong-alt1')
+        const wrongAlt2 = questionDiv.querySelector('#wrong-alt2')
+        const wrongAlt3 = questionDiv.querySelector('#wrong-alt3')
 
         
         questions.push({

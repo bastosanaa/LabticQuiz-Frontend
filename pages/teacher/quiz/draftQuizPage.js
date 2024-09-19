@@ -146,7 +146,9 @@ async function setQuizDraftPage() {
         action: async () => {
             const quiz_id = await SaveQuizDraft()
 
-            window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+            if (quiz_id) {
+                window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+            }
         }
     })
     buttonDiv.append(draftButton)
@@ -182,6 +184,9 @@ async function setQuizDraftPage() {
         const isDraft = true
     
         if (quizName && quizSubject && quizTimeLimit && quizStartDate && quizEndDate && quizInstructions && quizType) {
+
+
+            
             const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
             const quiz_id = (await response.json())._id
             return quiz_id
