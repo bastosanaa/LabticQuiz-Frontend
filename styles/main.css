@@ -125,3 +125,25 @@ time, mark, audio, video,select {
     flex: 1 0 48%;
 
 }
+@media (max-width: 480px) {
+    .quiz-info-chart {
+        padding: 0;
+    }
+    .page {
+        align-items: center;
+
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .page {
+        padding: 40px 20px;
+    }
+    .content {
+        padding: 0;
+    }
+
+}

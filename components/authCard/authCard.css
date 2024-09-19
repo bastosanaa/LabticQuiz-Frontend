@@ -6,7 +6,7 @@
 }
 
 .auth-card {
-    width: 100%;
+    width: calc(300px + 25%);
     max-width: 545px;
     background-color: var(--primary-white);
     border: 1px solid var(--border-color);
@@ -46,4 +46,17 @@
 
 .auth-card button {
     margin-top: 30px;
+}
+
+
+@media (max-width: 480px ){
+    .auth-card {
+        width: 95%;
+        padding: 95px 10px;
+    }
+}
+@media (max-width: 768px) and (min-width: 480px) {
+    .auth-card {
+        width: 85%;
+    }
 }

@@ -26,5 +26,38 @@
     gap: 1rem;
     position: absolute;
     bottom: 40px;
+}
 
+
+@media (max-width: 768px) {
+
+    .nav-bar {
+        height: 50px;
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        justify-content: space-between;
+    }
+    .nav-bar p {
+        display: none;
+    }
+    .logo p {
+        display: block;
+    }
+    .nav-items {
+        flex-direction: row;
+        margin: 0;
+    }
+    .nav-item {
+        width: 21px;
+    }
+
+    .nav-footer {
+        flex-direction: row;
+        position: static;
+    }
+
+    .selected {display: none;}
 }

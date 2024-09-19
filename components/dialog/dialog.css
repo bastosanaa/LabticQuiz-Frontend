@@ -3,7 +3,8 @@
 }
 
 .dialog {
-    width: 25vw;
+    width: 35vw;
+    max-width: 400px;
 
     line-height: 1.3rem;
     padding: 40px;
@@ -30,4 +31,19 @@
     flex-direction: row;
     justify-content: end;
 
+}
+
+@media (max-width: 480px ){
+    .dialog {
+        width: 95%;
+        padding: 40px;
+        box-sizing: border-box;
+    }
+}
+@media (max-width: 768px){
+    .dialog {
+        width: 95%;
+        padding: 40px;
+        box-sizing: border-box;
+    }
 }

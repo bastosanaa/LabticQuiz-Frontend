@@ -1,7 +1,7 @@
 
 
 .chart {
-    max-width: 320px;
+    /* max-width: 320px; */
     padding: 3rem 5rem;
     box-sizing: border-box;
     background-color: #F5F5F5;
@@ -53,4 +53,19 @@
     padding: 0.8rem 1rem;
     border-radius: 6px;
     font-size: 1.25rem;
+}
+
+
+@media (max-width: 768px){
+    .chart-wrapper {
+        position: static;
+        display: block;
+    }
+}
+
+@media (max-width: 920px) {
+    .chard {
+        padding: 28px 40px;
+        max-width: 320px;
+    }
 }

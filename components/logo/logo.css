@@ -26,3 +26,9 @@
     fill: var(--logo-color);
 
 }
+
+@media (max-width: 768px) {
+    .logo {
+        width: 28px;
+    }
+}
