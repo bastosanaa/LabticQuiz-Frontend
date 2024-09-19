@@ -3,9 +3,11 @@ import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { getPostedQuizzesBySubject } from "../../../scripts/service/quizService.js"
 import { getSubjectByID } from "../../../scripts/service/subjectService.js"
-import { getEntityID, parseSubjectToList } from "../../utils/api.js"
+import { getEntityID, parseSubjectToList,getUserSubjects } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
+const subjects = await getUserSubjects(token)
+const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
 const subject_id = getEntityID()
 
 async function setQuizzesPainelPage() {
@@ -21,7 +23,8 @@ async function setQuizzesPainelPage() {
         {
             imgSrc: '/assets/books.svg',
                 title: 'Painel',
-                dropdownItems: []
+                dropdownItems: parsedSubjects,
+                selected: true
         }
     ],
     })

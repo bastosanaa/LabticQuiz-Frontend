@@ -18,10 +18,30 @@ async function setQuizPage() {
         items: [{
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
-            selected: true,
             anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
-        }],
+        },
+        {
+            imgSrc: '/assets/books.svg',
+            title: 'Painel',
+            selected: true
+        }
+    ],
     })
+    //disabling navigation
+    const navBarTexts = navBar.querySelectorAll('p')
+    navBarTexts.forEach(text => {
+        text.style.display = 'none'
+    });
+
+    const navBarAnchors = navBar.querySelectorAll('a')
+    navBarAnchors.forEach(anchor => {
+        anchor.addEventListener('click', function(event) {
+            event.preventDefault();
+            alert('A navegação está desativada nesta página. Você deve entregar a atividade para continuar navegando');
+        });
+    })
+
+
     main.append(navBar)
 
     const page = document.createElement('div')

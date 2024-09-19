@@ -31,12 +31,7 @@ export function NavBar({items = []}) {
 
     const footer = document.createElement('div')
     footer.classList.add('nav-footer')
-    const signOut = NavItem({
-        imgSrc: '/assets/password.svg',
-        title: 'Trocar senha',
-
-    }) 
-    const signOut2 = NavItem({
+    const signOut= NavItem({
         imgSrc: '/assets/sign-out.svg',
         title: 'Encerrar sessão',
         action: () => {
@@ -71,7 +66,6 @@ export function NavBar({items = []}) {
         
     }) 
     footer.appendChild(signOut)
-    footer.appendChild(signOut2)
     navBar.appendChild(footer)
     
     return navBar 

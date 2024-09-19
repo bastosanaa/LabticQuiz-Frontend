@@ -6,7 +6,7 @@ import { ContentList } from "./../../../components/contentList/contentList.js";
 
 import { getUserIDbyToken } from "/../../../scripts/service/userService.js"
 import  { getSubjectsbyStudent } from "/../../scripts/service/studentSubjecService.js"
-import { parseSubjectToList } from "../../utils/api.js";
+import { parseSubjectToList, getUserSubjects } from "../../utils/api.js";
 import { getUserByID } from "../../../scripts/service/userService.js";
 
 const token = localStorage.getItem('token')
@@ -18,22 +18,6 @@ async function getUserName(token) {
     const user_data = await getUserByID(token, user._id)    
     const user_name = user_data.name
     return user_name    
-}
-
-async function getUserSubjects(token) {
-    const user = await getUserIDbyToken(token)
-    const subjects = await getSubjectsbyStudent(token,user._id)
-    
-    const subjects_items = []
-    if (subjects.length > 0) {
-        subjects.forEach(subject => {
-            const item = {text: subject.subject_name,
-                id: subject.subject_id
-            } 
-            subjects_items.push(item)
-        })
-        return subjects_items
-    }
 }
 
 async function setUserDashboard() {

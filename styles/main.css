@@ -46,7 +46,7 @@ time, mark, audio, video,select {
     flex-direction: column;
     font-family: arial;
     /* padding-bottom: 70px; */
-    width: calc(100vw - 250px);
+    width: 100vw;
     overflow-y: auto;
     height: 100vh;
 }
@@ -58,6 +58,7 @@ time, mark, audio, video,select {
 
 #main {
     display: flex;
+    width: 100vw;
 }
 
 .hidden {

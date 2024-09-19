@@ -184,3 +184,19 @@ export function checkDate() {
     return true
     
 }
+
+export async function getUserSubjects(token) {
+    const user = await getUserIDbyToken(token)
+    const subjects = await getSubjectsbyStudent(token,user._id)
+    
+    const subjects_items = []
+    if (subjects.length > 0) {
+        subjects.forEach(subject => {
+            const item = {text: subject.subject_name,
+                id: subject.subject_id
+            } 
+            subjects_items.push(item)
+        })
+        return subjects_items
+    }
+}

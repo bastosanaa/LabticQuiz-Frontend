@@ -5,12 +5,15 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { QuizInfo } from "../../../components/quizInfo/quizInfo.js"
 import { Dialog } from "../../../components/dialog/dialog.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
-import { formatDate, getEntityID, formatTime } from "../../utils/api.js"
+import { formatDate, getEntityID, formatTime, parseSubjectToList, getUserSubjects } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID() 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
 const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).json()
+
+const subjects = await getUserSubjects(token)
+const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
 
 const attemptsRemaining =  quiz.attempts - studentAttempts.length
 
@@ -26,6 +29,12 @@ async function setQuizInfoPage() {
             title: 'Dashboard',
             selected: false,
             anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
+        },
+        {
+            imgSrc: '/assets/books.svg',
+                title: 'Painel',
+                dropdownItems: parsedSubjects,
+                selected: true
         }],
     })
     main.append(navBar)

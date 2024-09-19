@@ -2,11 +2,14 @@ import { AnswersChart } from "../../../components/answersChart/answersChart.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
-import { getAttempt, getQuizAnswers, getQuizByID,getAnswerKey } from "../../../scripts/service/quizService.js"
-import { getSubjectByID } from "../../../scripts/service/subjectService.js"
-import { getEntityID } from "../../utils/api.js"
+import { getAttempt, getQuizByID,getAnswerKey } from "../../../scripts/service/quizService.js"
+import { getEntityID, getUserSubjects, parseSubjectToList } from "../../utils/api.js"
 
 const token = localStorage.getItem('token')
+const subjects = await getUserSubjects(token)
+const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
+
+
 
 async function setQuizResultsPage() {
 
@@ -24,6 +27,12 @@ async function setQuizResultsPage() {
             title: 'Dashboard',
             selected: false,
             anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
+        },
+        {
+            imgSrc: '/assets/books.svg',
+                title: 'Painel',
+                dropdownItems: parsedSubjects,
+                selected: true
         }],
     })
     main.append(navBar)
