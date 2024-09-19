@@ -43,6 +43,7 @@ async function setQuizInfoPage() {
     })
     page.append(pageHeader)
 
+    
     const quizInfoChart = QuizInfo({
         instructions: quiz.instructions,
         infos: [{
@@ -63,8 +64,13 @@ async function setQuizInfoPage() {
         }
     ]
     })
-    page.append(quizInfoChart)    
-    if (attemptsRemaining > 0 ) {
+    page.append(quizInfoChart) 
+    console.log(quiz);
+    const date_end = new Date(quiz.date_end)
+    const dateNow = new Date()    
+
+        
+    if (attemptsRemaining > 0 && date_end > dateNow) {
         const startButton =  Button({
             text: 'Começar',
             size: 'small',
