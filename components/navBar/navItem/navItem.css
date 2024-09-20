@@ -48,6 +48,7 @@
     padding-bottom: 1rem;
     position: absolute;
     width: 100%;
+    min-width: 200px;
     top: calc(21px + 1rem);
     animation: fadeInOut 1s linear 1 forwards;
     z-index: 1;

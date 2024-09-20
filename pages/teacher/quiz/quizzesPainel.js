@@ -95,7 +95,7 @@ async function setQuizzesPainel() {
         content_items: postedQuizzes.map(quiz => {
             return {
                 title: quiz.title,
-                id: quiz._id
+                id: quiz._id,
             }
         }),
         href: 'http://127.0.0.1:5501/pages/teacher/quiz/quizInfoPage.html'

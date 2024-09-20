@@ -24,13 +24,19 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
         span.textContent = tag
         item.appendChild(span)
     }
-
-    if (crud  || score) {
-        href = null
+    console.log(href);
+    
+    console.log(score);
+    console.log(crud);
+    
+    
+    if (crud  || score !== null ) {
+        
         const div = document.createElement('div')
         div.classList.add('item-actions')
-
+        
         if (crud) { 
+            href = null
             const aRemoveBtn = document.createElement('a')
             aRemoveBtn.textContent = 'Remover'
             aRemoveBtn.addEventListener('click', (event) => {
@@ -45,7 +51,8 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
             div.appendChild(aEditBtn)
         }
 
-        if (score) {
+        if (score >= 0) {
+            
             const seeAnswers = document.createElement('a')
             seeAnswers.textContent = 'Ver Respostas'
             seeAnswers.href = href

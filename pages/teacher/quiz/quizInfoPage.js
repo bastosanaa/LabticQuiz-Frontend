@@ -62,6 +62,8 @@ async function setQuizInfoPage() {
     page.append(quizInfoChart)    
         
     const students = await getQuizAnswers(token, quiz_id)
+    console.log(students);
+    
         
     const studentsList = ContentList({
         title_text: 'Alunos que responderam',
@@ -77,6 +79,8 @@ async function setQuizInfoPage() {
     })
     page.append(studentsList)
 
+    const buttonDiv = document.createElement('div')
+    page.append(buttonDiv)
     const button = Button({
         type: 'destructive-outline',
         text: 'Eliminar Quiz',
@@ -109,11 +113,11 @@ async function setQuizInfoPage() {
             dialog.showModal()        
         }
     })
-    page.position = 'relative'
-    button.style.position = 'absolute'
-    button.style.bottom = '3rem'
-    button.style.right = '3rem'
-
-    page.append(button)
+    buttonDiv.append(button)
+    buttonDiv.style.display = 'flex'
+    buttonDiv.style.justifyContent = 'center'
+    // button.style.position = 'absolute'
+    // button.style.bottom = '3rem'
+    // button.style.right = '3rem'
 }
 setQuizInfoPage()
