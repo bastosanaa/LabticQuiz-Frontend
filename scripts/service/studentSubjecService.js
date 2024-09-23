@@ -1,4 +1,4 @@
-const url = "http://localhost:3333/api"
+const url = "https://labticquiz-backend.onrender.com/api"
 
 export async function registerStudentToSubject(token, user_id, subject_id) {
     const response = await fetch(`${url}/studentsSubjects/`, {

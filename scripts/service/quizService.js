@@ -1,4 +1,4 @@
-const url = "http://localhost:3333/api"
+const url = "https://labticquiz-backend.onrender.com/api"
 
 export async function createQuiz(token, title, subject_id, time, attempts, dateStart, dateEnd, instructions, type, questions, isDraft) {
     const response = await fetch(`${url}/quizzes`, {
