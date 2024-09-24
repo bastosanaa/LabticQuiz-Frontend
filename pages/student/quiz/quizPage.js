@@ -83,8 +83,6 @@ async function setQuizPage() {
     main.append(page)
 
 }
-console.log(quiz_data);
-
 const date_end = new Date(quiz_data.date_end)
 const dateNow = new Date()
 const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).json()

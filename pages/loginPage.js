@@ -31,7 +31,6 @@ export function LoginPage() {
                 try {
                     tryLogin()
                 } catch(error) {
-                    console.log(error);
                     alert('Login Falhou')
                 }
             }
@@ -112,7 +111,6 @@ async function sendUserDataToFetch() {
 async function sendLoginErrorMessage() {
 
     const lastErrorMessage = document.getElementsByClassName('error-message')[1]
-    console.log(lastErrorMessage);
     lastErrorMessage.innerHTML = 'senha e/ou usuário incorretos'
     lastErrorMessage.classList.remove('hidden')
 

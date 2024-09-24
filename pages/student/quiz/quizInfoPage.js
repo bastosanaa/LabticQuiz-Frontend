@@ -76,7 +76,6 @@ async function setQuizInfoPage() {
     ]
     })
     page.append(quizInfoChart) 
-    console.log(quiz);
     const date_end = new Date(quiz.date_end)
     const dateNow = new Date()    
         

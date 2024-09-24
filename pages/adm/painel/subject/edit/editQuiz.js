@@ -7,7 +7,7 @@ import { Select } from "../../../../../components/select/select.js"
 import { urlPage } from "../../../../../config/url-config.js"
 import { getQuizByID, updateQuiz } from "../../../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js"
-import { getEntityID, parseSubjectToList } from "../../../../utils/api.js"
+import { getEntityID } from "../../../../../utils/api.js"
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID()

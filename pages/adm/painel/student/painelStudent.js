@@ -5,7 +5,7 @@ import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
 import { deleteUserByID, getAllStudents } from "../../../../scripts/service/userService.js"
 import { studentTableParser } from "./studentTableParser.js";
-import { urlPage } from "../../../config/url-config.js"
+import { urlPage } from "../../../../config/url-config.js"
 
 
 const token = localStorage.getItem('token')

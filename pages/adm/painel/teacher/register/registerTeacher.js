@@ -4,7 +4,7 @@ import { Input } from "../../../../../components/input/input.js"
 import { Button } from "../../../../../components/button/button.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
 import { getSubjectsWithoutTeacher } from "../../../../../scripts/service/subjectService.js";
-import { urlPage } from "../../../config/url-config.js"
+import { urlPage } from "../../../../../config/url-config.js"
 
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { registerTeacherToSubjects } from "../../crudUtils.js";

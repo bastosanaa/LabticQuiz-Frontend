@@ -80,7 +80,6 @@ async function editSubject() {
     inputDiv.append(select)
 
     const quizzes = await(await getPostedQuizzesBySubject(token, id)).json() 
-    console.log(quizzes);
     
 
     const quizList = ContentList({

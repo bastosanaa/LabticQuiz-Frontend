@@ -13,8 +13,6 @@ const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
 
 const quiz = await (await getQuizByID(token, quiz_id)).json()
-console.log(quiz);
-
 
 async function setRegisterQuizQuestionsPage() {
     const main = document.getElementById('main')
@@ -104,9 +102,7 @@ async function setRegisterQuizQuestionsPage() {
         text: 'Guardar Rascunho',
         size: 'medium',
         action: async () => {
-            const questions = getQuizQuestions()
-            console.log(questions);
-            
+            const questions = getQuizQuestions()            
             await updateQuiz(token,{questions: questions, is_draft: true},quiz_id)
             window.location.href = `${urlPage}/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
 // 

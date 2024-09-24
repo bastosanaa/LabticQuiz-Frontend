@@ -194,9 +194,7 @@ async function setRegisterQuizPage() {
         text: 'Salvar Rascunho',
         action: async () => {
 
-            const quiz_id = await SaveQuizDraft()
-            console.log(quiz_id);
-            
+            const quiz_id = await SaveQuizDraft()            
 
             if (quiz_id) {
                 window.location.href = `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`
@@ -242,9 +240,7 @@ async function setRegisterQuizPage() {
         checkIfEmpty(timeLimitField)
         if (quizName && quizTimeLimit && quizStartDate && quizEndDate  && quizType) {
             const data = checkDate()
-            console.log(data);
             if (data) {
-                console.log('data deu true');
                 
                 //check if its a draft quiz
                 if (quiz) {
@@ -267,7 +263,6 @@ async function setRegisterQuizPage() {
                     return updatedQuiz
                 }
                 const response = await createQuiz(token, quizName, quizSubject, quizTimeLimit, quizAttempts, quizStartDate,quizEndDate, quizInstructions, quizType, questions, isDraft)
-                console.log(response);
                 
                 const quiz_id = (await response.json())._id
                 return quiz_id

@@ -166,8 +166,6 @@ export function checkDate() {
     const ajustedEndDate = new Date(dateEnd.getTime() + dateEnd.getTimezoneOffset() * 60000)
     
     const dateNow = new Date();
-    console.log(ajustedStartDate,'//', ajustedEndDate,"//", dateNow);
-
     if (new Date(ajustedStartDate) < new Date(dateNow)) {
         dateStartInput.style.border = '1px solid red'
         const errorMessage = dateStartInput.parentNode.querySelector('.error-message')

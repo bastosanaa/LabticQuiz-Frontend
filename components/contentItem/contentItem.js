@@ -24,11 +24,7 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
         span.textContent = tag
         item.appendChild(span)
     }
-    console.log(href);
-    
-    console.log(score);
-    console.log(crud);
-    
+
     
     if (crud  || score !== null ) {
         

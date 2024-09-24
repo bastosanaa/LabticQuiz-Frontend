@@ -6,7 +6,7 @@ import { Multiselect } from "../../../../../components/multiselect/multiselect.j
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
 import { registerStudentToSubjects } from "../../crudUtils.js"
-import { urlPage } from "../../../config/url-config.js"
+import { urlPage } from "../../../../../config/url-config.js"
 
 const token = localStorage.getItem('token')
 
