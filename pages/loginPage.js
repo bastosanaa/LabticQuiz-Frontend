@@ -4,8 +4,9 @@ import { Button } from "../components/button/button.js"
 import { Logo } from "../components/logo/logo.js"
 
 import { getRoleByToken, userLogin } from "../scripts/service/userService.js"
+import { urlPage } from "../config/url-config.js"
 
-const url = 'http://127.0.0.1:5501'
+const url = `${urlPage}`
 export function LoginPage() {
 
     const body = document.querySelector('body')

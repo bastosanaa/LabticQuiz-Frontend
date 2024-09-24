@@ -4,6 +4,8 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
 import { getEntityID } from "../../utils/api.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
@@ -18,7 +20,7 @@ async function setQuizPage() {
         items: [{
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
-            anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
+            anchor: `${urlPage}/dashboardAdm.html`,
         },
         {
             imgSrc: '/assets/books.svg',

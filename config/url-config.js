@@ -1,0 +1,1 @@
+export const urlPage = 'https://calm-bombolone-93d344.netlify.app'

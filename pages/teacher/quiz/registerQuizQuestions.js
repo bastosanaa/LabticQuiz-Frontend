@@ -3,10 +3,11 @@ import { Button } from "../../../components/button/button.js"
 import { Input } from "../../../components/input/input.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
-import { Select } from "../../../components/select/select.js"
+import { urlPage } from "../../../config/url-config.js"
 import { getQuizByID, updateQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
+
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
@@ -25,18 +26,18 @@ async function setRegisterQuizQuestionsPage() {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+                anchor: `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Disciplinas',
                 selected: true,
-                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+                dropdownItems: parseSubjectToList(subjects,`${urlPage}/pages/teacher/quiz/quizzesPainel.html`)        
             },
             {
                 imgSrc: '/assets/register.svg',
                 title: 'Criar Quiz',
-                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+                anchor: `${urlPage}/pages/teacher/quiz/registerQuiz.html`
             }
         ]
     }
@@ -52,7 +53,7 @@ async function setRegisterQuizQuestionsPage() {
         subtitle_text: quiz.subject_id.name,
         // subtitle_size: 'small',
         back_btn: true,
-        back_btn_address: `http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html?id=${quiz_id}`
+        back_btn_address: `${urlPage}/pages/teacher/quiz/registerQuiz.html?id=${quiz_id}`
     })
     page.append(header)
 
@@ -107,7 +108,7 @@ async function setRegisterQuizQuestionsPage() {
             console.log(questions);
             
             await updateQuiz(token,{questions: questions, is_draft: true},quiz_id)
-            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
+            window.location.href = `${urlPage}/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
 // 
         }
     })
@@ -120,7 +121,7 @@ async function setRegisterQuizQuestionsPage() {
             const questions = getQuizQuestions()
             await updateQuiz(token,{questions: questions, is_draft: false},quiz_id)
 
-            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
+            window.location.href = `${urlPage}/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
             
         }
     })

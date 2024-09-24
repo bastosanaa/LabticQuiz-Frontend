@@ -31,7 +31,7 @@ export function AttemptsChart({attempts}) {
         const answersLink = document.createElement('a')
         attemptContainer.append(answersLink)
         answersLink.textContent = 'Gabarito'
-        answersLink.href = `http://127.0.0.1:5501/pages/student/quiz/quizResults.html?id=${attempt._id}`
+        answersLink.href = `${urlPage}/pages/student/quiz/quizResults.html?id=${attempt._id}`
 
         count++
 

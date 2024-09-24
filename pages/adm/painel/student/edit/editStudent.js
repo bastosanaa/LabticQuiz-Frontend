@@ -1,12 +1,12 @@
 import { NavBar } from "../../../../../components/navBar/navBar.js";
 import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
-import { Select } from "../../../../../components/select/select.js";
 import { Button } from "../../../../../components/button/button.js";
 import { Multiselect } from "../../../../../components/multiselect/multiselect.js";
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
 import { checkIfAllInputsFiled, patchUserUpdates, setUserEditPage, getSubjectsRegistered, compareItemsSelected, subjectParser, getEntityID } from "../../../../utils/api.js";
 import { registerStudentToSubjects, deleteStudentFromSubjects } from "../../crudUtils.js"
+import { urlPage } from "../../../../config/url-config.js"
 
 
 const token = localStorage.getItem('token')
@@ -19,16 +19,16 @@ export async function editStudent() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+                anchor: `${urlPage}/pages/adm/dashboard/dashboardAdm.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 selected: true,
                 dropdownItems: [
-                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html', selected:true},
-                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
+                    {text:'alunos', href:`${urlPage}/pages/adm/painel/student/painelStudent.html`, selected:true},
+                    {text:'professores', href:`${urlPage}/pages/adm/painel/teacher/painelTeacher.html`},
+                    {text:'disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`}
                 ]
 
             }
@@ -43,7 +43,7 @@ export async function editStudent() {
     const header = PageHeader({
         title_text: 'Edição do Aluno',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+        back_btn_address: `${urlPage}/pages/adm/painel/student/painelStudent.html`
     })
     page.append(header)
 
@@ -117,7 +117,7 @@ export async function editStudent() {
                 await registerStudentToSubjects(token,student_id, addedItems)
                 await deleteStudentFromSubjects(token,student_id, removedItems)
 
-                window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'
+                window.location.href = `${urlPage}/pages/adm/painel/student/painelStudent.html`
             }
         }
     })

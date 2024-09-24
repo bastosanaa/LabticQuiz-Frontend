@@ -6,10 +6,10 @@ import { Button } from "../../../../../components/button/button.js";
 import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
 import { ContentList } from "../../../../../components/contentList/contentList.js";
 import { Dialog } from "../../../../../components/dialog/dialog.js";
-
 import { updateSubjectChanges,getSubjectByID } from "../../../../../scripts/service/subjectService.js"
 import { getEntityID } from "../../../../utils/api.js";
 import { deleteQuiz, getPostedQuizzesBySubject } from "../../../../../scripts/service/quizService.js";
+import { urlPage } from "../../../../../config/url-config.js";
 
 const token = localStorage.getItem('token')
 const id = getEntityID()
@@ -22,15 +22,15 @@ async function editSubject() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
+                anchor: `${urlPage}/dashboardAdm.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 dropdownItems: [
-                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected:true}
+                    {text:'alunos', href:`${urlPage}/pages/adm/painel/student/painelStudent.html`},
+                    {text:'professores', href:`${urlPage}/pages/adm/painel/teacher/painelTeacher.html`},
+                    {text:'disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`, selected:true}
                 ],
                 selected: true
 
@@ -45,7 +45,7 @@ async function editSubject() {
     const header = PageHeader({
         title_text: 'Edição da disciplina',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
+        back_btn_address: `${urlPage}/pages/adm/painel/subject/painelSubject.html`
     })
     page.append(header)
 
@@ -108,7 +108,7 @@ async function editSubject() {
                                     text: 'Eliminar',
                                     action: async () => {
                                         await deleteQuiz(token, quiz._id)
-                                        window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
+                                        window.location.href = `${urlPage}/pages/adm/painel/subject/painelSubject.html`
                                     }
                                 }
                             ]
@@ -118,7 +118,7 @@ async function editSubject() {
                         body.append(dialog)
                         dialog.showModal()        
                     },
-                    edit: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editQuiz.html?id=${quiz._id}`
+                    edit: `${urlPage}/pages/adm/painel/subject/edit/editQuiz.html?id=${quiz._id}`
                 }
             }
         })
@@ -130,7 +130,7 @@ async function editSubject() {
         text: 'Salvar alterações',
         action: async () => {
             await sendNewSubjectData()
-            window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
+            window.location.href = `${urlPage}/pages/adm/painel/subject/painelSubject.html`
         }
     })
 

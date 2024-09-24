@@ -1,4 +1,3 @@
-import { AttemptsChart } from "../../../components/attemptsChart/attemptsChart.js"
 import { Button } from "../../../components/button/button.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
@@ -7,7 +6,8 @@ import { Dialog } from "../../../components/dialog/dialog.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz, getQuizAnswers, deleteQuiz } from "../../../scripts/service/quizService.js"
 import { formatDate, getEntityID,formatTime} from "../../utils/api.js"
 import { ContentList } from "../../../components/contentList/contentList.js"
-import { getAllStudents } from "../../../scripts/service/userService.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID() 
@@ -21,7 +21,7 @@ async function setQuizInfoPage() {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: false,
-            anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardStudent.html',
+            anchor: `${urlPage}/pages/teacher/dashboard/dashboardStudent.html`,
         }],
     })
     main.append(navBar)
@@ -35,7 +35,7 @@ async function setQuizInfoPage() {
         subtitle_text: quiz.subject_id.name,
         subtitle_size:'small',
         back_btn: true,
-        back_btn_address: `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
+        back_btn_address: `${urlPage}/pages/teacher/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
     })
     page.append(pageHeader)
 
@@ -75,7 +75,7 @@ async function setQuizInfoPage() {
                 score: student.score,
             }
         }),
-        href: 'http://127.0.0.1:5501/pages/teacher/quiz/quizStudentAnswers.html'
+        href: `${urlPage}/pages/teacher/quiz/quizStudentAnswers.html`
     })
     page.append(studentsList)
 
@@ -102,7 +102,7 @@ async function setQuizInfoPage() {
                         text: 'Eliminar',
                         action: async () => {
                             await deleteQuiz(token, quiz_id)
-                            window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+                            window.location.href = `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`
                         }
                     }
                 ]

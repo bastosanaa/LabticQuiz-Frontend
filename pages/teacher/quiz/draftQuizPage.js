@@ -6,6 +6,8 @@ import { Select } from "../../../components/select/select.js"
 import { createQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const subject = getEntityID() 
@@ -19,18 +21,18 @@ async function setQuizDraftPage() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+        anchor:  `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Disciplinas',
-                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+        dropdownItems: parseSubjectToList(subjects, `${urlPage}/pages/teacher/quiz/quizzesPainel.html`) 
             },
             {
                 imgSrc: '/assets/register.svg',
                 title: 'Criar Quiz',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+        anchor:  `${urlPage}/pages/teacher/quiz/registerQuiz.html`
             }
         ]
     }
@@ -44,7 +46,7 @@ async function setQuizDraftPage() {
     const header = PageHeader({
         title_text: 'Informações do Quiz',
         back_btn: true,
-        back_btn_address: subject?  `http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html?id=${subject}` : 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+back_btn_address: subject?   `${urlPage}/pages/teacher/quiz/quizzesPainel.html?id=${subject}` : `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`
     })
 
     page.append(header)
@@ -147,7 +149,7 @@ async function setQuizDraftPage() {
             const quiz_id = await SaveQuizDraft()
 
             if (quiz_id) {
-                window.location.href = 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+        window.location.href =  `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`
             }
         }
     })
@@ -161,7 +163,7 @@ async function setQuizDraftPage() {
             const quiz_id = await SaveQuizDraft()            
 
             if (quiz_id) {
-                window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/registerQuizQuestions.html?id=${quiz_id}`
+        window.location.href =  `${urlPage}/pages/teacher/quiz/registerQuizQuestions.html?id=${quiz_id}`
             }
 
         }

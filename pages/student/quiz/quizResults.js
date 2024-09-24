@@ -4,10 +4,12 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
 import { getAttempt, getQuizByID,getAnswerKey } from "../../../scripts/service/quizService.js"
 import { getEntityID, getUserSubjects, parseSubjectToList } from "../../utils/api.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const subjects = await getUserSubjects(token)
-const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
+const parsedSubjects = parseSubjectToList(subjects, `${urlPage}/pages/student/quiz/quizzesPainel.html`)
 
 
 
@@ -26,7 +28,7 @@ async function setQuizResultsPage() {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: false,
-            anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
+            anchor: `${urlPage}/pages/student/dashboard/dashboardStudent.html`,
         },
         {
             imgSrc: '/assets/books.svg',
@@ -43,7 +45,7 @@ async function setQuizResultsPage() {
 
     const pageHeader = PageHeader({
         back_btn: true,
-        back_btn_address: `http://127.0.0.1:5501/pages/student/quiz/quizInfoPage.html?id=${quiz_id}`,
+        back_btn_address: `${urlPage}/pages/student/quiz/quizInfoPage.html?id=${quiz_id}`,
         title_text: quiz.title,
         subtitle_text:quiz.subject_id.name,
         subtitle_size: 'small',

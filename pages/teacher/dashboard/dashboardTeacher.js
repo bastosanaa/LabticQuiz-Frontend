@@ -1,5 +1,3 @@
-import { Button } from "./../../../components/button/button.js";
-import { ContentItem } from "./../../../components/contentItem/contentItem.js";
 import { NavBar } from "./../../../components/navBar/navBar.js";
 import { PageHeader } from "./../../../components/pageHeader/pageHeader.js";
 import { ContentList } from "./../../../components/contentList/contentList.js";
@@ -7,7 +5,7 @@ import { ContentList } from "./../../../components/contentList/contentList.js";
 import { getUserIDbyToken, getUserByID } from "/../../../scripts/service/userService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js";
 import { parseSubjectToList } from "../../utils/api.js";
-
+import { urlPage } from "../../../config/url-config.js";
 
 async function getUserName(token) {
     const user_id = (await getUserIDbyToken(token))._id
@@ -37,18 +35,18 @@ async function setUserDashboard(user_name, subjects) {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+                anchor: `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Disciplinas',
                 selected: false,
-                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+                dropdownItems: parseSubjectToList(subjects,`${urlPage}/pages/teacher/quiz/quizzesPainel.html`)        
             },
             {
                 imgSrc: '/assets/register.svg',
                 title: 'Criar Quiz',
-                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+                anchor: `${urlPage}/pages/teacher/quiz/registerQuiz.html`
             }
         ]
     }
@@ -69,7 +67,7 @@ async function setUserDashboard(user_name, subjects) {
 
     const subjectList = ContentList({
         title_text: 'Disciplinas',
-        content_items: parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')
+        content_items: parseSubjectToList(subjects, `${urlPage}/pages/teacher/quiz/quizzesPainel.html`)
     })
     
     page.append(header)

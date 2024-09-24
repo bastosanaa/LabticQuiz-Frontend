@@ -1,17 +1,15 @@
-import { Button } from "./../../../components/button/button.js";
-import { ContentItem } from "./../../../components/contentItem/contentItem.js";
 import { NavBar } from "./../../../components/navBar/navBar.js";
 import { PageHeader } from "./../../../components/pageHeader/pageHeader.js";
 import { ContentList } from "./../../../components/contentList/contentList.js";
-
 import { getUserIDbyToken } from "/../../../scripts/service/userService.js"
-import  { getSubjectsbyStudent } from "/../../scripts/service/studentSubjecService.js"
 import { parseSubjectToList, getUserSubjects } from "../../utils/api.js";
 import { getUserByID } from "../../../scripts/service/userService.js";
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const subjects = await getUserSubjects(token)
-const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
+const parsedSubjects = parseSubjectToList(subjects, `${urlPage}/pages/student/quiz/quizzesPainel.html`)
 
 async function getUserName(token) {
     const user = await getUserIDbyToken(token)
@@ -29,7 +27,7 @@ async function setUserDashboard() {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: true,
-            anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
+            anchor: `${urlPage}/pages/student/dashboard/dashboardStudent.html`,
         },
         {
             imgSrc: '/assets/books.svg',

@@ -3,6 +3,8 @@ import { PageHeader } from "../../../../components/pageHeader/pageHeader.js";
 import { Table } from "../../../../components/table/table.js";
 import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
+import { urlPage } from "../../../config/url-config.js"
+
 
 import { deleteSubject, getAllSubjects } from "../../../../scripts/service/subjectService.js"
 import { subjectTableParser } from "./subjectTableParser.js";
@@ -17,16 +19,16 @@ async function createPainelSubject() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+                anchor: `${urlPage}/pages/adm/dashboard/dashboardAdm.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 selected: true,
                 dropdownItems: [
-                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected: true}
+                    {text:'alunos', href:`${urlPage}/pages/adm/painel/student/painelStudent.html`},
+                    {text:'professores', href:`${urlPage}/pages/adm/painel/teacher/painelTeacher.html`},
+                    {text:'disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`, selected: true}
                 ]
 
             }
@@ -46,7 +48,7 @@ async function createPainelSubject() {
     const header = PageHeader({
         title_text: 'Disciplinas',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+        back_btn_address: `${urlPage}/pages/adm/dashboard/dashboardAdm.html`,
         subtitle_text: `${subjects.length} disciplinas cadastradas`
     })
 
@@ -58,7 +60,7 @@ async function createPainelSubject() {
         text: 'Cadastrar',
         imgSrc: '/assets/register.svg',
         action: () => {
-            window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/subject/register/registerSubjetc.html'
+            window.location.href = `${urlPage}/pages/adm/painel/subject/register/registerSubjetc.html`
         }
 
     })
@@ -80,7 +82,7 @@ async function createPainelSubject() {
             })
             body.append(toast)
         },
-        editPageHref: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html`,
+        editPageHref: `${urlPage}/pages/adm/painel/subject/edit/editSubject.html`,
         removeWarning: 'Você irá eliminar a disciplina "entidade". Esta ação não pode ser desfeita'
     })
     

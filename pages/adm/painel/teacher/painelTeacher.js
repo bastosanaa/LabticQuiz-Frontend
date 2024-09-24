@@ -3,10 +3,10 @@ import { PageHeader } from "../../../../components/pageHeader/pageHeader.js";
 import { Table } from "../../../../components/table/table.js";
 import { Button } from "../../../../components/button/button.js";
 import { Toast } from "../../../../components/toast/toast.js";
-
 import { deleteUserByID, getAllTeachers } from "../../../../scripts/service/userService.js"
 import { teacherTableParser } from "../teacher/teacherTableParser.js";
-import { getSubjectsByTeacher, setSubjectsTeacherToNull } from "../../../../scripts/service/subjectService.js";
+import { setSubjectsTeacherToNull } from "../../../../scripts/service/subjectService.js";
+import { urlPage } from "../../../../config/url-config.js";
 
 
 const token = localStorage.getItem('token')
@@ -19,16 +19,16 @@ async function createPainelTeacher() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+                anchor: `${urlPage}/pages/adm/dashboard/dashboardAdm.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 selected: true,
                 dropdownItems: [
-                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html', selected:true},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
+                    {text:'alunos', href:`${urlPage}/pages/adm/painel/student/painelStudent.html`},
+                    {text:'professores', href:`${urlPage}/pages/adm/painel/teacher/painelTeacher.html`, selected:true},
+                    {text:'disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`}
                 ]
 
             }
@@ -48,7 +48,7 @@ async function createPainelTeacher() {
     const header = PageHeader({
         title_text: 'Professores',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+        back_btn_address: `${urlPage}/pages/adm/dashboard/dashboardAdm.html`,
         subtitle_text:  `${teachers.length} professores cadastrados`
     })
 
@@ -60,7 +60,7 @@ async function createPainelTeacher() {
         text: 'Cadastrar',
         imgSrc: '/assets/register.svg',
         action: () => {
-            window.location.href = 'http://127.0.0.1:5501/pages/adm/painel/teacher/register/registerTeacher.html'
+            window.location.href = `${urlPage}/pages/adm/painel/teacher/register/registerTeacher.html`
         }
     
     })
@@ -82,7 +82,7 @@ async function createPainelTeacher() {
             })
             body.append(toast)
         },
-        editPageHref: 'http://127.0.0.1:5501/pages/adm/painel/teacher/edit/editTeacher.html',
+        editPageHref: `${urlPage}/pages/adm/painel/teacher/edit/editTeacher.html`,
         removeWarning: 'Você irá eliminar o professor "entidade". Esta ação não pode ser desfeita'
     })
 

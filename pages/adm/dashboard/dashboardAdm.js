@@ -3,6 +3,7 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js";
 import { ContentList } from "../../../components/contentList/contentList.js";
 
 import { getRoleByToken } from "../../../scripts/service/userService.js"
+import { urlPage } from "../../../config/url-config.js";
 
 async function createUserDashboard() {
     const main = document.getElementById('main')
@@ -13,15 +14,15 @@ async function createUserDashboard() {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
                 selected: true,
-                anchor: 'http://127.0.0.1:5501/pages/adm/dashboard/dashboardAdm.html',
+                anchor: `${urlPage}/pages/adm/dashboard/dashboardAdm.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 dropdownItems: [
-                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
+                    {text:'alunos', href:`${urlPage}/pages/adm/painel/student/painelStudent.html`},
+                    {text:'professores', href:`${urlPage}/pages/adm/painel/teacher/painelTeacher.html`},
+                    {text:'disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`}
                 ]
 
             }
@@ -42,9 +43,9 @@ async function createUserDashboard() {
         title_text: 'Opções',
         content_items: [
             //passar as acoes aqui
-            {name: 'Alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-            {name: 'Professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
-            {name: 'Disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'}
+            {name: 'Alunos', href:`${urlPage}/pages/adm/painel/student/painelStudent.html`},
+            {name: 'Professores', href:`${urlPage}/pages/adm/painel/teacher/painelTeacher.html`},
+            {name: 'Disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`}
         ],
     })
     

@@ -4,10 +4,12 @@ import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { getPostedQuizzesBySubject } from "../../../scripts/service/quizService.js"
 import { getSubjectByID } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList,getUserSubjects } from "../../utils/api.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const subjects = await getUserSubjects(token)
-const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
+const parsedSubjects = parseSubjectToList(subjects, `${urlPage}/pages/student/quiz/quizzesPainel.html`)
 const subject_id = getEntityID()
 
 async function setQuizzesPainelPage() {
@@ -18,7 +20,7 @@ async function setQuizzesPainelPage() {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: false,
-            anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
+            anchor: `${urlPage}/pages/student/dashboard/dashboardStudent.html`
         },
         {
             imgSrc: '/assets/books.svg',
@@ -40,7 +42,7 @@ async function setQuizzesPainelPage() {
         title_text: subject_name,
         back_btn: true,
         subtitle_text: 'Quizzes',
-        back_btn_address: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
+        back_btn_address: `${urlPage}/pages/student/dashboard/dashboardStudent.html`
     })
     page.appendChild(header)
 
@@ -50,7 +52,7 @@ async function setQuizzesPainelPage() {
     const quizzesList = ContentList({
         title_text: ["Nome", "Entrega", "Tipo"],
         content_items: quizzes,
-        href: 'http://127.0.0.1:5501/pages/student/quiz/quizInfoPage.html'
+        href: `${urlPage}/pages/student/quiz/quizInfoPage.html`
     })
 
     page.appendChild(quizzesList)

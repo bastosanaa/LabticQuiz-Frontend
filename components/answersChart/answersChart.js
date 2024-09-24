@@ -42,7 +42,7 @@ export function AnswersChart({numAnswers, timer = null, button = true}) {
             text: 'Entregar',
             action: () => {                
                 sendUserQuizAnswers()
-                window.location.href = 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
+                window.location.href = `${urlPage}/pages/student/dashboard/dashboardStudent.html`
             }
     
         })
@@ -73,7 +73,7 @@ export function AnswersChart({numAnswers, timer = null, button = true}) {
                 if (time <= 0) {
                     clearInterval(timerInterval);
                     sendUserQuizAnswers()
-                    window.location.href = 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html'
+                    window.location.href = `${urlPage}/pages/student/dashboard/dashboardStudent.html`
                     
                 } else {
                     time--;

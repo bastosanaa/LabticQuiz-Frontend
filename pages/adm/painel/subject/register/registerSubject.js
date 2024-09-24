@@ -2,14 +2,14 @@ import { NavBar } from "../../../../../components/navBar/navBar.js";
 import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js";
 import { Input } from "../../../../../components/input/input.js"
 import { Select } from "../../../../../components/select/select.js";
-
 import { createSubject } from "../../../../../scripts/service/subjectService.js";
 import { getRoleByToken } from "../../../../../scripts/service/userService.js"
 import { Button } from "../../../../../components/button/button.js";
 import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
 import { checkIfAllInputsFiled } from "../../../../utils/api.js";
+import { urlPage } from "../../../../../config/url-config.js";
 
-const url = 'http://127.0.0.1:5501'
+const url = `${urlPage}`
 
 
 
@@ -21,7 +21,7 @@ async function registerSubject() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/dashboardAdm.html',
+                anchor: `${urlPage}/dashboardAdm.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
@@ -29,7 +29,7 @@ async function registerSubject() {
                 dropdownItems: [
                     {text:'alunos', href:''},
                     {text:'professores', href:''},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected:true}
+                    {text:'disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`, selected:true}
                 ],
                 selected: true
 
@@ -44,7 +44,7 @@ async function registerSubject() {
     const header = PageHeader({
         title_text: 'Cadastro da disciplina',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html'
+        back_btn_address: `${urlPage}/pages/adm/painel/subject/painelSubject.html`
     })
     page.append(header)
     
@@ -85,7 +85,7 @@ async function registerSubject() {
         action: async () => {
             if (checkIfAllInputsFiled()) {
                 await postNewSubject()
-                window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html`
+                window.location.href = `${urlPage}/pages/adm/painel/subject/painelSubject.html`
             }
         }
     })

@@ -2,9 +2,10 @@ import { AnswersChart } from "../../../components/answersChart/answersChart.js"
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
-import { getAttempt, getQuizAnswers, getQuizByID,getAnswerKey } from "../../../scripts/service/quizService.js"
-import { getSubjectByID } from "../../../scripts/service/subjectService.js"
+import { getAttempt, getQuizByID,getAnswerKey } from "../../../scripts/service/quizService.js"
 import { getEntityID } from "../../utils/api.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 
@@ -24,7 +25,7 @@ async function setQuizResultsPage() {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: false,
-            anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+            anchor: `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`,
         }],
     })
     main.append(navBar)
@@ -35,7 +36,7 @@ async function setQuizResultsPage() {
 
     const pageHeader = PageHeader({
         back_btn: true,
-        back_btn_address: `http://127.0.0.1:5501/pages/teacher/quiz/quizInfoPage.html?id=${quiz_id}`,
+        back_btn_address: `${urlPage}/pages/teacher/quiz/quizInfoPage.html?id=${quiz_id}`,
         title_text: quiz.title,
         subtitle_text:attempt_data.student_id.name,
         subtitle_size: 'small',

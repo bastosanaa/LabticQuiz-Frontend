@@ -6,6 +6,8 @@ import { QuizInfo } from "../../../components/quizInfo/quizInfo.js"
 import { Dialog } from "../../../components/dialog/dialog.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
 import { formatDate, getEntityID, formatTime, parseSubjectToList, getUserSubjects } from "../../utils/api.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID() 
@@ -13,7 +15,7 @@ const quiz = await (await getQuizByID(token, quiz_id)).json()
 const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).json()
 
 const subjects = await getUserSubjects(token)
-const parsedSubjects = parseSubjectToList(subjects, 'http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html')
+const parsedSubjects = parseSubjectToList(subjects, `${urlPage}/pages/student/quiz/quizzesPainel.html`)
 
 const attemptsRemaining =  quiz.attempts - studentAttempts.length
 
@@ -28,7 +30,7 @@ async function setQuizInfoPage() {
             imgSrc: '/assets/menu.svg',
             title: 'Dashboard',
             selected: false,
-            anchor: 'http://127.0.0.1:5501/pages/student/dashboard/dashboardStudent.html',
+            anchor: `${urlPage}/pages/student/dashboard/dashboardStudent.html`,
         },
         {
             imgSrc: '/assets/books.svg',
@@ -48,7 +50,7 @@ async function setQuizInfoPage() {
         subtitle_text: quiz.subject_id.name,
         subtitle_size:'small',
         back_btn: true,
-        back_btn_address: `http://127.0.0.1:5501/pages/student/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
+        back_btn_address: `${urlPage}/pages/student/quiz/quizzesPainel.html?id=${quiz.subject_id._id}`
     })
     page.append(pageHeader)
 
@@ -99,7 +101,7 @@ async function setQuizInfoPage() {
                         size:'small',
                         text: 'Começar',
                         action: () => {
-                            window.location.href = `http://127.0.0.1:5501/pages/student/quiz/quizPage.html?id=${quiz_id}`
+                            window.location.href = `${urlPage}/pages/student/quiz/quizPage.html?id=${quiz_id}`
                         }
                     }
                 ]

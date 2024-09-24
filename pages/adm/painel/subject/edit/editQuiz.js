@@ -4,7 +4,8 @@ import { Input } from "../../../../../components/input/input.js"
 import { NavBar } from "../../../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../../../components/pageHeader/pageHeader.js"
 import { Select } from "../../../../../components/select/select.js"
-import { createQuiz, getQuizByID, updateQuiz } from "../../../../../scripts/service/quizService.js"
+import { urlPage } from "../../../../../config/url-config.js"
+import { getQuizByID, updateQuiz } from "../../../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../../../utils/api.js"
 
@@ -23,15 +24,15 @@ async function setEditQuizPage() {
             {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
-                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+                anchor: `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`,
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Painel',
                 dropdownItems: [
-                    {text:'alunos', href:'http://127.0.0.1:5501/pages/adm/painel/student/painelStudent.html'},
-                    {text:'professores', href:'http://127.0.0.1:5501/pages/adm/painel/teacher/painelTeacher.html'},
-                    {text:'disciplinas', href:'http://127.0.0.1:5501/pages/adm/painel/subject/painelSubject.html', selected:true}
+                    {text:'alunos', href:`${urlPage}/pages/adm/painel/student/painelStudent.html`},
+                    {text:'professores', href:`${urlPage}/pages/adm/painel/teacher/painelTeacher.html`},
+                    {text:'disciplinas', href:`${urlPage}/pages/adm/painel/subject/painelSubject.html`, selected:true}
                 ],
                 selected: true
 
@@ -48,7 +49,7 @@ async function setEditQuizPage() {
     const header = PageHeader({
         title_text: 'Informações do Quiz',
         back_btn: true,
-        back_btn_address: `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html?id=${quiz.subject_id._id}`
+        back_btn_address: `${urlPage}/pages/adm/painel/subject/edit/editSubject.html?id=${quiz.subject_id._id}`
     })
 
     page.append(header)
@@ -250,7 +251,7 @@ async function setEditQuizPage() {
             
 
             if (quiz_id) {
-                window.location.href = `http://127.0.0.1:5501/pages/adm/painel/subject/edit/editSubject.html?id=${quiz.subject_id._id}`
+                window.location.href = `${urlPage}/pages/adm/painel/subject/edit/editSubject.html?id=${quiz.subject_id._id}`
             }
 
         }}

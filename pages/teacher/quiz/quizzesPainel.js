@@ -1,10 +1,12 @@
 import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { ContentList } from "../../../components/contentList/contentList.js"
-import { createQuiz, getAllQuizzesBySubject } from "../../../scripts/service/quizService.js"
+import { getAllQuizzesBySubject } from "../../../scripts/service/quizService.js"
 import { getAllSubjects, getSubjectByID } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 import { Button } from "../../../components/button/button.js"
+import { urlPage } from "../../../config/url-config.js"
+
 
 const token = localStorage.getItem('token')
 const subject = getEntityID()
@@ -23,18 +25,18 @@ async function setQuizzesPainel() {
                 imgSrc: '/assets/menu.svg',
                 title: 'Dashboard',
                 selected: false,
-                anchor: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html',
+                anchor: `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`
             },
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Disciplinas',
                 selected: true,
-                dropdownItems: parseSubjectToList(subjects,'http://127.0.0.1:5501/pages/teacher/quiz/quizzesPainel.html')        
+                dropdownItems: parseSubjectToList(subjects,`${urlPage}/pages/teacher/quiz/quizzesPainel.html`)        
             },
             {
                 imgSrc: '/assets/register.svg',
                 title: 'Criar Quiz',
-                anchor: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+                anchor: `${urlPage}/pages/teacher/quiz/registerQuiz.html`
             }
         ]
     }
@@ -56,7 +58,7 @@ async function setQuizzesPainel() {
         subtitle_text: 'Quizzes',
         subtitle_size: 'small',
         back_btn: true,
-        back_btn_address: 'http://127.0.0.1:5501/pages/teacher/dashboard/dashboardTeacher.html'
+        back_btn_address: `${urlPage}/pages/teacher/dashboard/dashboardTeacher.html`
     })
 
     pageHeader.append(header)
@@ -67,7 +69,7 @@ async function setQuizzesPainel() {
         text: 'Cadastrar',
         imgSrc: '/assets/register.svg',
         action: () => {
-            window.location.href = `http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html?id=${subject}`
+            window.location.href = `${urlPage}/pages/teacher/quiz/registerQuiz.html?id=${subject}`
         }
     })
     pageHeader.append(button)
@@ -85,7 +87,7 @@ async function setQuizzesPainel() {
                 id: quiz._id
             }
         }),
-        href: 'http://127.0.0.1:5501/pages/teacher/quiz/registerQuiz.html'
+        href: `${urlPage}/pages/teacher/quiz/registerQuiz.html`
     })
     draftList.style.width = '100%'
     quizzesLists.append(draftList)
@@ -98,7 +100,7 @@ async function setQuizzesPainel() {
                 id: quiz._id,
             }
         }),
-        href: 'http://127.0.0.1:5501/pages/teacher/quiz/quizInfoPage.html'
+        href: `${urlPage}/pages/teacher/quiz/quizInfoPage.html`
     })
     postedList.style.width = '100%'
     quizzesLists.append(postedList)
