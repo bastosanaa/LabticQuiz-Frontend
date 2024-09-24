@@ -1,3 +1,5 @@
+import { urlPage } from "../../config/url-config"
+
 export function AttemptsChart({attempts}) {
 
     const answerChartWrapper = document.createElement('div')
