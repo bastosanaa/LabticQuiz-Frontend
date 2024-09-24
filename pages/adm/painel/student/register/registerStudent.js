@@ -103,7 +103,7 @@ export async function registerStudent() {
                     const studentID = (await studentReq.json())._id
                     const selectedSubjectsIDs = getSelecteds();
 
-                    registerStudentToSubjects(studentID, selectedSubjectsIDs)
+                    await registerStudentToSubjects(token, studentID, selectedSubjectsIDs)
                     
 
                     window.location.href = `${urlPage}/pages/adm/painel/student/painelStudent.html`
