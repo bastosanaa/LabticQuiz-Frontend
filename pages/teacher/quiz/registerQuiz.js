@@ -211,7 +211,7 @@ async function setRegisterQuizPage() {
             const quiz_id = await SaveQuizDraft()            
 
             if (quiz_id) {
-                window.location.href = `${urlPage}/pages/teacher/quiz/registerQuizQuestions.htmlid=${quiz_id}`
+                window.location.href = `${urlPage}/pages/teacher/quiz/registerQuizQuestions.html?id=${quiz_id}`
             }
 
         }
