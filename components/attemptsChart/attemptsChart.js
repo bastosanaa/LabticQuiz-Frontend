@@ -1,4 +1,4 @@
-import { urlPage } from "../../config/url-config"
+import { urlPage } from "../../config/url-config.js"
 
 export function AttemptsChart({attempts}) {
 
