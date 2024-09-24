@@ -1,3 +1,4 @@
+import { urlPage } from "../../config/url-config.js"
 import { getEntityID } from "../../pages/utils/api.js"
 import { createAnswer } from "../../scripts/service/quizService.js"
 import { Button } from "../button/button.js"
