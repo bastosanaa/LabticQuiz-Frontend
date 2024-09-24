@@ -27,7 +27,7 @@ async function setRegisterQuizPage() {
             {
                 imgSrc: '/assets/books.svg',
                 title: 'Disciplinas',
-                dropdownItems: parseSubjectToList(subjects`${urlPage}/pages/teacher/quiz/quizzesPainel.html`)        
+                dropdownItems: parseSubjectToList(subjects,`${urlPage}/pages/teacher/quiz/quizzesPainel.html`)        
             },
             {
                 imgSrc: '/assets/register.svg',
