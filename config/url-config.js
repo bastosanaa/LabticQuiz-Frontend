@@ -1,1 +1,1 @@
-export const urlPage = 'https://calm-bombolone-93d344.netlify.app'
+export const urlPage = 'https://polvoapp.netlify.app'
