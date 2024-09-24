@@ -69,7 +69,7 @@ async function setQuizzesPainel() {
         text: 'Cadastrar',
         imgSrc: '/assets/register.svg',
         action: () => {
-            window.location.href = `${urlPage}/pages/teacher/quiz/registerQuiz.html?id=${subject}`
+            window.location.href = `${urlPage}/pages/teacher/quiz/registerQuiz.html`
         }
     })
     pageHeader.append(button)
