@@ -5,6 +5,7 @@ import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
 import { getEntityID } from "../../utils/api.js"
 import { urlPage } from "../../../config/url-config.js"
+import { showLoader, hideLoader} from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -75,7 +76,7 @@ async function setQuizPage() {
         questionNumber++
         pageContent.append(question)
     });
-    const answersChart = AnswersChart({
+    const answersChart = await AnswersChart({
         numAnswers: quizQuestionsData.length,
         timer: quiz_data.time
     })
@@ -89,6 +90,16 @@ const studentAttempts = await (await getStudentsAttemptsAtQuiz(token, quiz_id)).
 const attemptsRemaining =  quiz_data.attempts - studentAttempts.length
 
 if (attemptsRemaining > 0 && date_end > dateNow) {
-    await setQuizPage()
+    
+    async function loadPage() {
+        showLoader()
+        try {
+            await setQuizPage()
+    
+        } finally {
+            hideLoader()
+        }
+    }
+    await loadPage()
 }
 

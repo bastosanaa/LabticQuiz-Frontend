@@ -7,6 +7,7 @@ import { Dialog } from "../../../components/dialog/dialog.js"
 import { getQuizByID, getStudentsAttemptsAtQuiz } from "../../../scripts/service/quizService.js"
 import { formatDate, getEntityID, formatTime, parseSubjectToList, getUserSubjects } from "../../utils/api.js"
 import { urlPage } from "../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -123,5 +124,14 @@ async function setQuizInfoPage() {
     
 }
 
-setQuizInfoPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setQuizInfoPage()
+
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
 

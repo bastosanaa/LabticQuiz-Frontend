@@ -10,6 +10,7 @@ import { updateSubjectChanges,getSubjectByID } from "../../../../../scripts/serv
 import { getEntityID } from "../../../../utils/api.js";
 import { deleteQuiz, getPostedQuizzesBySubject } from "../../../../../scripts/service/quizService.js";
 import { urlPage } from "../../../../../config/url-config.js";
+import { showLoader,hideLoader} from "../../../../utils/loaderManipulation.js"
 
 const token = localStorage.getItem('token')
 const id = getEntityID()
@@ -165,4 +166,14 @@ async function editSubject() {
         await updateSubjectChanges(token, id, new_name, new_teacher)
     }
 } 
-editSubject()
+
+
+async function loadPage() {
+    showLoader()
+    try {
+        await editSubject()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

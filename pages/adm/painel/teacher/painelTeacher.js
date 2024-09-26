@@ -8,6 +8,7 @@ import { teacherTableParser } from "../teacher/teacherTableParser.js";
 import { setSubjectsTeacherToNull } from "../../../../scripts/service/subjectService.js";
 import { urlPage } from "../../../../config/url-config.js";
 
+import { showLoader,hideLoader} from "../../../utils/loaderManipulation.js"
 
 const token = localStorage.getItem('token')
 
@@ -91,4 +92,13 @@ async function createPainelTeacher() {
     body.append(page)
 }
 
-await createPainelTeacher()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await createPainelTeacher()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

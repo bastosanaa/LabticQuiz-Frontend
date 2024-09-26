@@ -6,6 +6,8 @@ import { Toast } from "../../../../components/toast/toast.js";
 import { deleteUserByID, getAllStudents } from "../../../../scripts/service/userService.js"
 import { studentTableParser } from "./studentTableParser.js";
 import { urlPage } from "../../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../../utils/loaderManipulation.js";
+
 
 
 const token = localStorage.getItem('token')
@@ -90,4 +92,13 @@ async function createPainelStudent() {
     body.append(page)
 }
 
-await createPainelStudent()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await createPainelStudent()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

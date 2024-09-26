@@ -7,6 +7,7 @@ import { createQuiz, getQuizByID, updateQuiz } from "../../../scripts/service/qu
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { checkDate, checkIfEmpty, getEntityID, parseSubjectToList } from "../../utils/api.js"
 import { urlPage } from "../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -286,7 +287,17 @@ async function setRegisterQuizPage() {
 
 }
 
-setRegisterQuizPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setRegisterQuizPage()
+
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
+
 
 function generateTimeOptions() {
     const options = [];

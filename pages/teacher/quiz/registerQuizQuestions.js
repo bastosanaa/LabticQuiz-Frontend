@@ -7,6 +7,7 @@ import { urlPage } from "../../../config/url-config.js"
 import { getQuizByID, updateQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -169,6 +170,15 @@ function getQuizQuestions() {
     return questions
 }
 
-setRegisterQuizQuestionsPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setRegisterQuizQuestionsPage()
+
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
 
 

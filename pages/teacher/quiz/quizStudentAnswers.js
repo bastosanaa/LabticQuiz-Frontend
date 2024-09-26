@@ -5,6 +5,7 @@ import { quizQuestion } from "../../../components/quizQuestion/quizQuestion.js"
 import { getAttempt, getQuizByID,getAnswerKey } from "../../../scripts/service/quizService.js"
 import { getEntityID } from "../../utils/api.js"
 import { urlPage } from "../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -106,4 +107,12 @@ async function setQuizResultsPage() {
 
 }
 
-await setQuizResultsPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setQuizResultsPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

@@ -6,6 +6,7 @@ import { getAllSubjects, getSubjectByID } from "../../../scripts/service/subject
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 import { Button } from "../../../components/button/button.js"
 import { urlPage } from "../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -106,4 +107,14 @@ async function setQuizzesPainel() {
     quizzesLists.append(postedList)
 }
 
-setQuizzesPainel()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await setQuizzesPainel()
+
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

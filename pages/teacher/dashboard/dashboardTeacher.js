@@ -6,6 +6,7 @@ import { getUserIDbyToken, getUserByID } from "/../../../scripts/service/userSer
 import { getAllSubjects } from "../../../scripts/service/subjectService.js";
 import { parseSubjectToList } from "../../utils/api.js";
 import { urlPage } from "../../../config/url-config.js";
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js";
 
 async function getUserName(token) {
     const user_id = (await getUserIDbyToken(token))._id
@@ -76,5 +77,12 @@ async function setUserDashboard(user_name, subjects) {
     main.append(page)
 
 }
-
-await setPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

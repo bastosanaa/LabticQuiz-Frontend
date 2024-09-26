@@ -6,6 +6,7 @@ import { Toast } from "../../../../components/toast/toast.js";
 import { urlPage } from "../../../../config/url-config.js"
 import { deleteSubject, getAllSubjects } from "../../../../scripts/service/subjectService.js"
 import { subjectTableParser } from "./subjectTableParser.js";
+import { showLoader,hideLoader} from "../../../utils/loaderManipulation.js"
 
 const token = localStorage.getItem('token')
 
@@ -89,8 +90,16 @@ async function createPainelSubject() {
     body.append(page)
 }
 
-await createPainelSubject()
 
+async function loadPage() {
+    showLoader()
+    try {
+        await createPainelSubject()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
 
 
 

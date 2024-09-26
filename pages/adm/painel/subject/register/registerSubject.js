@@ -8,6 +8,7 @@ import { Button } from "../../../../../components/button/button.js";
 import { setTeachersSelect } from "../../../../../scripts/utils/setTeachersSelect.js";
 import { checkIfAllInputsFiled } from "../../../../utils/api.js";
 import { urlPage } from "../../../../../config/url-config.js";
+import { hideLoader, showLoader } from "../../../../utils/loaderManipulation.js";
 
 const url = `${urlPage}`
 
@@ -114,4 +115,13 @@ async function postNewSubject() {
     await createSubject(token, subjectName, selectedTeacher)
 }
 
-await setPage()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await setPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

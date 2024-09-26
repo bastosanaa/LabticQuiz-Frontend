@@ -3,10 +3,11 @@ import { NavBar } from "../../../components/navBar/navBar.js"
 import { PageHeader } from "../../../components/pageHeader/pageHeader.js"
 import { QuizInfo } from "../../../components/quizInfo/quizInfo.js"
 import { Dialog } from "../../../components/dialog/dialog.js"
-import { getQuizByID, getStudentsAttemptsAtQuiz, getQuizAnswers, deleteQuiz } from "../../../scripts/service/quizService.js"
+import { getQuizByID, getQuizAnswers, deleteQuiz } from "../../../scripts/service/quizService.js"
 import { formatDate, getEntityID,formatTime} from "../../utils/api.js"
 import { ContentList } from "../../../components/contentList/contentList.js"
 import { urlPage } from "../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -118,4 +119,13 @@ async function setQuizInfoPage() {
     // button.style.bottom = '3rem'
     // button.style.right = '3rem'
 }
-setQuizInfoPage()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await setQuizInfoPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

@@ -8,6 +8,7 @@ import { urlPage } from "../../../../../config/url-config.js"
 
 import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { registerTeacherToSubjects } from "../../crudUtils.js";
+import { hideLoader, showLoader } from "../../../../utils/loaderManipulation.js";
 
 const token = localStorage.getItem('token')
 
@@ -118,5 +119,15 @@ export async function registerStudent() {
     body.append(page)
 
 }
-await registerStudent()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await registerStudent()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
+
 

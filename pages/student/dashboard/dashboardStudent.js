@@ -5,6 +5,7 @@ import { getUserIDbyToken } from "/../../../scripts/service/userService.js"
 import { parseSubjectToList, getUserSubjects } from "../../utils/api.js";
 import { getUserByID } from "../../../scripts/service/userService.js";
 import { urlPage } from "../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js";
 
 
 const token = localStorage.getItem('token')
@@ -63,4 +64,12 @@ async function setUserDashboard() {
 
 }
 
-await setUserDashboard()
+async function loadPage() {
+    showLoader()
+    try {
+        await setUserDashboard()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

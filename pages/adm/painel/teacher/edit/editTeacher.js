@@ -7,6 +7,7 @@ import { Multiselect } from "../../../../../components/multiselect/multiselect.j
 import { getSubjectsByTeacher, getSubjectsWithoutTeacher } from "../../../../../scripts/service/subjectService.js";
 import { deleteTeacherFromSubjetcs, getSubjectsRegistered, registerTeacherToSubjects, subjectParser } from "../../crudUtils.js";
 import { urlPage } from "../../../../../config/url-config.js";
+import { hideLoader, showLoader } from "../../../../utils/loaderManipulation.js";
 
 const token = localStorage.getItem('token')
 
@@ -128,4 +129,15 @@ export async function registerStudent() {
     body.append(page)
 
 }
-await registerStudent()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await registerStudent()
+
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
+

@@ -7,6 +7,7 @@ import { checkIfAllInputsFiled, postNewUser } from "../../../../utils/api.js";
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js";
 import { registerStudentToSubjects } from "../../crudUtils.js"
 import { urlPage } from "../../../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../../../utils/loaderManipulation.js";
 
 const token = localStorage.getItem('token')
 
@@ -107,6 +108,8 @@ export async function registerStudent() {
                     
 
                     window.location.href = `${urlPage}/pages/adm/painel/student/painelStudent.html`
+                } else {
+                    alert('Usuário já existe')
                 }
                 
             }
@@ -121,5 +124,15 @@ export async function registerStudent() {
     body.append(page)
 
 }
-await registerStudent()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await registerStudent()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
+
 

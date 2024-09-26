@@ -47,7 +47,7 @@ export function ContentItem({text, date= null, tag= null , score= null, crud= nu
             div.appendChild(aEditBtn)
         }
 
-        if (score >= 0) {
+        if (score !== null) {
             
             const seeAnswers = document.createElement('a')
             seeAnswers.textContent = 'Ver Respostas'

@@ -7,7 +7,8 @@ import { Select } from "../../../../../components/select/select.js"
 import { urlPage } from "../../../../../config/url-config.js"
 import { getQuizByID, updateQuiz } from "../../../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../../../scripts/service/subjectService.js"
-import { getEntityID } from "../../../../../utils/api.js"
+import { getEntityID } from "../../../../utils/api.js"
+import { showLoader,hideLoader} from "../../../../utils/loaderManipulation.js"
 
 const token = localStorage.getItem('token')
 const quiz_id = getEntityID()
@@ -276,7 +277,16 @@ async function setEditQuizPage() {
     }
 }
 
-setEditQuizPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setEditQuizPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
+
 
 function generateTimeOptions() {
     const options = [];

@@ -7,6 +7,7 @@ import { createQuiz } from "../../../scripts/service/quizService.js"
 import { getAllSubjects } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList } from "../../utils/api.js"
 import { urlPage } from "../../../config/url-config.js"
+import { showLoader,hideLoader} from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -199,7 +200,16 @@ back_btn_address: subject?   `${urlPage}/pages/teacher/quiz/quizzesPainel.html?i
 
 }
 
-setQuizDraftPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setQuizDraftPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
+
 
 function generateTimeOptions() {
     const options = [];

@@ -4,6 +4,7 @@ import { ContentList } from "../../../components/contentList/contentList.js";
 
 import { getRoleByToken } from "../../../scripts/service/userService.js"
 import { urlPage } from "../../../config/url-config.js";
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js";
 
 async function createUserDashboard() {
     const main = document.getElementById('main')
@@ -63,4 +64,12 @@ async function setPage() {
     }
 }
 
-await setPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

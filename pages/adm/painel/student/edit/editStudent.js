@@ -7,6 +7,7 @@ import { getAllSubjects } from "../../../../../scripts/service/subjectService.js
 import { checkIfAllInputsFiled, patchUserUpdates, setUserEditPage, getSubjectsRegistered, compareItemsSelected, subjectParser, getEntityID } from "../../../../utils/api.js";
 import { registerStudentToSubjects, deleteStudentFromSubjects } from "../../crudUtils.js"
 import { urlPage } from "../../../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../../../utils/loaderManipulation.js";
 
 
 const token = localStorage.getItem('token')
@@ -130,4 +131,13 @@ export async function editStudent() {
     body.append(page)
 
 }
-await editStudent()
+
+async function loadPage() {
+    showLoader()
+    try {
+        await editStudent()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()

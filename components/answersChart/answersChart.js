@@ -3,7 +3,7 @@ import { getEntityID } from "../../pages/utils/api.js"
 import { createAnswer } from "../../scripts/service/quizService.js"
 import { Button } from "../button/button.js"
 
-export function AnswersChart({numAnswers, timer = null, button = true}) {
+export async function AnswersChart({numAnswers, timer = null, button = true}) {
 
     const answerChartWrapper = document.createElement('div')
     answerChartWrapper.classList.add('chart-wrapper')
@@ -55,10 +55,10 @@ export function AnswersChart({numAnswers, timer = null, button = true}) {
         timerBox.classList.add('timer-box')
         answerChartWrapper.appendChild(timerBox)
 
-        function startClock(minutes) {
+        async function startClock(minutes) {
             let time = minutes * 60;
     
-            function updateClock() {
+            async function updateClock() {
                 const hoursLeft = Math.floor(time / 3600);
                 const minutesLeft = Math.floor((time % 3600) / 60);
                 const secondsLeft = time % 60;
@@ -73,7 +73,7 @@ export function AnswersChart({numAnswers, timer = null, button = true}) {
     
                 if (time <= 0) {
                     clearInterval(timerInterval);
-                    sendUserQuizAnswers()
+                    await sendUserQuizAnswers()
                     window.location.href = `${urlPage}/pages/student/dashboard/dashboardStudent.html`
                     
                 } else {
@@ -84,15 +84,9 @@ export function AnswersChart({numAnswers, timer = null, button = true}) {
             updateClock();
             const timerInterval = setInterval(updateClock, 1000);
         }
-        startClock(timer)
-
-        
-
+        await startClock(timer)
 
     }
-
-    
-
     return answerChartWrapper
 }
 

@@ -5,6 +5,7 @@ import { getPostedQuizzesBySubject } from "../../../scripts/service/quizService.
 import { getSubjectByID } from "../../../scripts/service/subjectService.js"
 import { getEntityID, parseSubjectToList,getUserSubjects } from "../../utils/api.js"
 import { urlPage } from "../../../config/url-config.js"
+import { hideLoader, showLoader } from "../../utils/loaderManipulation.js"
 
 
 const token = localStorage.getItem('token')
@@ -59,4 +60,13 @@ async function setQuizzesPainelPage() {
     
 }
 
-setQuizzesPainelPage()
+async function loadPage() {
+    showLoader()
+    try {
+        await setQuizzesPainelPage()
+    } finally {
+        hideLoader()
+    }
+}
+await loadPage()
+
