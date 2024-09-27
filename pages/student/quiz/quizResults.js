@@ -59,11 +59,13 @@ async function setQuizResultsPage() {
     page.appendChild(pageContent)
     
     const quizQuestionsData = quiz.questions
-    const answersChart = AnswersChart({
+    const answersChart = await AnswersChart({
         numAnswers: quizQuestionsData.length,
         button: false
     })
     pageContent.append(answersChart)
+    console.log(answersChart);
+    
 
     let questionNumber = 1
     quizQuestionsData.forEach(questionData => {

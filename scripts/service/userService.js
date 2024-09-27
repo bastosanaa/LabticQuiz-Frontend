@@ -1,4 +1,6 @@
-const url = "https://labticquiz-backend.onrender.com/api"
+import { urlBackend } from "../../config/url-config.js"
+
+const url = urlBackend
 
 
 //User - Login

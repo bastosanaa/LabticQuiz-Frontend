@@ -1,4 +1,6 @@
-const url = "https://labticquiz-backend.onrender.com/api"
+import { urlBackend } from "../../config/url-config.js"
+
+const url = urlBackend
 
 export async function createQuiz(token, title, subject_id, time, attempts, dateStart, dateEnd, instructions, type, questions, isDraft) {
     const response = await fetch(`${url}/quizzes`, {

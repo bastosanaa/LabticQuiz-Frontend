@@ -36,7 +36,7 @@ export function LoginPage() {
             }
         }),
         inputs: [Input({
-            placeholder: 'usuario@gmai.com',
+            placeholder: 'usuario@gmail.com',
             required: true,
             title: 'Matricula ou Email',
             errorMessage: 'este campo deve ser preenchido',
@@ -44,7 +44,7 @@ export function LoginPage() {
             style: 'grey'
         }),
         Input({
-            placeholder: 'placeholder',
+            placeholder: 'password',
             required: true,
             title: 'Senha',
             errorMessage: 'este campo deve ser preenchido',

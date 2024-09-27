@@ -1,4 +1,6 @@
-const url = "https://labticquiz-backend.onrender.com/api"
+import { urlBackend } from "../../config/url-config.js"
+
+const url = urlBackend
 
 export async function registerStudentToSubject(token, user_id, subject_id) {
     const response = await fetch(`${url}/studentsSubjects/`, {

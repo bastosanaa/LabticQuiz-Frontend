@@ -241,7 +241,8 @@ async function setRegisterQuizPage() {
         checkIfEmpty(timeLimitField)
         if (quizName && quizTimeLimit && quizStartDate && quizEndDate  && quizType) {
             const data = checkDate()
-            if (data) {
+
+            if (data && !isNaN(quizAttempts)) {
                 
                 //check if its a draft quiz
                 if (quiz) {
@@ -260,6 +261,7 @@ async function setRegisterQuizPage() {
                         
                     }
                     const response = await updateQuiz(token, quizNewInfo, quiz_id )
+                    
                     const updatedQuiz = (await response.json())._id                
                     return updatedQuiz
                 }
@@ -267,6 +269,8 @@ async function setRegisterQuizPage() {
                 
                 const quiz_id = (await response.json())._id
                 return quiz_id
+            } else {
+                alert('Preencha os campos corretamente')
             }
 
         }

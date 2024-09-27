@@ -86,7 +86,7 @@ async function setQuizInfoPage() {
         action: async () => {  
             const dialog =  Dialog({
                 header: 'Tem certeza?',
-                    description: 'Você irá eliminar o quiz "quiz", essa ação nao pode ser desfeita.',
+                    description: 'Você irá eliminar o quiz, essa ação nao pode ser desfeita.',
                     buttons: [{
                         type: 'outline',
                         size: 'small',

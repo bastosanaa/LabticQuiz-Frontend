@@ -50,7 +50,7 @@ async function setQuizResultsPage() {
     page.appendChild(pageContent)
     
     const quizQuestionsData = quiz.questions
-    const answersChart = AnswersChart({
+    const answersChart = await AnswersChart({
         numAnswers: quizQuestionsData.length,
         button: false
     })
@@ -93,13 +93,17 @@ async function setQuizResultsPage() {
 
         } else {
             let alternativeSelected = document.getElementById(altSelectedId)
-            alternativeSelected.classList.add('answer-wrong')
+            if (alternativeSelected) {
+                alternativeSelected.classList.add('answer-wrong')
+                let altLetter = alternativeSelected.querySelector('.alternative-letter')
+                answerLetter.textContent = altLetter.textContent.toUpperCase();
+                answerLetter.style.color = '#EF4444'
+            } else {
+                answerLetter.textContent = 'X'
+            }
             let alternativeCorrect = document.getElementById(correctAltID)
             alternativeCorrect.classList.add('answer-right')
 
-            let altLetter = alternativeSelected.querySelector('.alternative-letter')
-            answerLetter.textContent = altLetter.textContent.toUpperCase();
-            answerLetter.style.color = '#EF4444'
         }
         counter++
     })
