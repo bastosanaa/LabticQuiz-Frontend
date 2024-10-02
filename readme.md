@@ -1,9 +1,9 @@
-# Teste o Software!
-Você pode testar o software através da url = https://polvoapp.netlify.app
-Para entrar como adminitrador:
-email: adm@email.com
-password: 123
-por padrão todo usuário criado recebe a senha 123
+> ### Teste o Software!
+> - Você pode testar o software através da url = https://polvoapp.netlify.app
+> ##### Para entrar como administrador:
+> - email: adm@email.com
+> - password: 123
+> (por padrão todo usuário criado recebe a senha 123)
 
 # Polvo - Quiz Feature Frontend
 Este repositório consiste no frontend do projeto Polvo, gerenciador de instituição educacional, juntamente a nova feature de realizar quizzes na plataforma
