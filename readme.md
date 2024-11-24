@@ -24,7 +24,7 @@ View grades and answer keys for quizzes (if provided by professors).
 View grades and answer keys for each attempt in quizzes with multiple attempts.
 Change password.
 
-###Professors
+### Professors
 
 Create new quizzes, such as exams, exercises, or mock tests.
 Save quizzes as drafts.
