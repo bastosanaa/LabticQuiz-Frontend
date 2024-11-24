@@ -6,6 +6,8 @@ Professor Login: harry@email.com Password: 123
 
 Student Login: snape@email.com Password: 123
 
+(There might have some delay on the login, sorry about that)
+
 ## About the Project
 This project was developed using the concepts of React, but without using the React library (lib). Instead, I used pure JavaScript to build the entire frontend of the software. The goal of this approach was to challenge myself by building the app without frameworks or libraries, in order to deeply understand how a framework simplifies what can be done with pure language.
 
