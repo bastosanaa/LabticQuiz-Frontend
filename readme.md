@@ -2,9 +2,9 @@
 You can access the deployed application
 https://polvoapp.netlify.app
 
-Professor Login: harry@gmail.com Password: 123
+Student Login: harry@gmail.com Password: 123
 
-Student Login: severus@gmail.com Password: 123
+Professor Login: severus@gmail.com Password: 123
 
 (There might have some delay on the login, sorry about that)
 
